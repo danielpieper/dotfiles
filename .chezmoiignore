@@ -1,0 +1,5 @@
+symlinked/
+symlinked/composer.json
+symlinked/ini
+symlinked/plug.vim
+osx-settings.sh

@@ -1,0 +1,13 @@
+{{- $token := "" -}}
+{{- range (first (onepassword "ieyxgbj5yvg5zombgcxkze56gy").details.sections).fields -}}
+  {{- if eq .n "4aeixh7sq4ufgoiefcahwueewa" -}}
+    {{- $token = .v -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne $token "" -}}
+{
+    "github-oauth": {
+        "github.com": "{{ $token }}"
+    }
+}
+{{- end -}}

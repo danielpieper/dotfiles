@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.hostname "falcon9" }}
+# Kensington Expert Settings
+# Speed up scrolling for chromium and pass unchanged for zoom
+"^chromium$"
+    None, Up, Button4, 2                  # scroll
+    None, Down, Button5, 2                # scroll
+    Shift_L, Up,   Button6, 2             # shift + scroll = horizontal scroll
+    Shift_L, Down, Button7, 2             # shift + scroll = horizontal scroll
+    Shift_L, Left, Control_L|Shift_L|Tab  # shift + top right = tab right
+    Shift_L, Right, Control_L|Tab         # shift + top left = tab left
+    None, Left, Alt_L|Left                # top left = browser back
+    None, Right, Alt_R|Right              # top right = browser forward
+{{- end }}

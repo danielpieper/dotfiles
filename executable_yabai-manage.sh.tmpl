@@ -1,0 +1,51 @@
+{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+#!/bin/bash
+
+export PATH=/usr/local/bin:$PATH
+
+function annihilateDesktops() {
+  desktops=$(yabai -m query --spaces | jq 'length')
+  for n in $(seq $desktops); do
+    yabai -m space --destroy
+    # sleep 0.3
+  done
+}
+
+function createDesktops() {
+  number=$1
+  for n in $(seq $number); do
+    yabai -m space --create
+    # sleep 0.3
+  done
+}
+
+
+if [[ "$1" = "stop" ]]; then
+  brew services stop yabai
+  brew services stop skhd
+fi
+
+if [[ "$1" = "restart" ]]; then
+  brew services restart yabai
+  brew services restart skhd
+fi
+
+if [[ "$1" = "refresh" ]]; then
+  monitor_count=$(yabai -m query --displays | jq '. | length')
+  if [[ $monitor_count -eq 1 ]]; then
+    yabai -m display --focus 1
+    annihilateDesktops
+    createDesktops 9
+  else
+    yabai -m display --focus 1
+    annihilateDesktops
+    createDesktops 3
+
+    yabai -m display --focus 2
+    annihilateDesktops
+    createDesktops 4
+  fi
+
+  source ~/.yabairc
+fi
+{{- end }}
