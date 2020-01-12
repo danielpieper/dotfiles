@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
 export PATH=/usr/local/bin:$PATH
@@ -48,4 +48,4 @@ if [[ "$1" = "refresh" ]]; then
 
   source ~/.yabairc
 fi
-{{- end }}
+{{- end -}}

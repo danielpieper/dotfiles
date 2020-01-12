@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" -}}
 # Fading
 fading = true;                  # Fade windows during opacity changes.
 fade-delta = 12;                # The time between steps in a fade in milliseconds. (default 10).
@@ -8,4 +8,4 @@ no-fading-openclose = false;    # Fade windows in/out when opening/closing.
 opacity-rule = [
   "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
 ];
-{{- end }}
+{{- end -}}

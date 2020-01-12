@@ -13,10 +13,10 @@
 # kitty list-fonts
 # font_family      monospace
 # font_family      Consolas Nerd Font
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- if eq .chezmoi.os "darwin" }}
 font_family      FantasqueSansMono Nerd Font
 {{- end }}
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" }}
 font_family      Fantasque Sans Mono
 {{- end }}
 italic_font      auto
@@ -374,10 +374,10 @@ map ctrl+shift+u        input_unicode_character
 copy_on_select no
 
 # Hide the kitty window's title bar
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- if eq .chezmoi.os "darwin" }}
 hide_window_decorations yes
 {{- end }}
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" }}
 hide_window_decorations no
 {{- end }}
 

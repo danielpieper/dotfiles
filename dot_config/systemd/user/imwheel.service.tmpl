@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" -}}
 [Unit]
 Description=IMWheel
 Wants=display-manager.service
@@ -13,4 +13,4 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=graphical.target
-{{- end }}
+{{- end -}}

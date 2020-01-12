@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env sh
 
 # bar settings
@@ -58,4 +58,4 @@ yabai -m rule --add app="^PhpStorm$" title="\[.+\]" manage=on space=7
 yabai -m rule --add app="^intelliJ IDEA Community$" title="\[.+\]" manage=on space=7
 
 echo "yabai configuration loaded.."
-{{- end }}
+{{- end -}}

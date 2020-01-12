@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 # Set the theme to "TwoDark"
 --theme="TwoDark"
 
@@ -16,3 +17,4 @@
 
 # Use "gitignore" highlighting for ".ignore" files
 --map-syntax .ignore:.gitignore
+{{- end -}}

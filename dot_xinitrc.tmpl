@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" -}}
 dbus-update-activation-environment --all
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
@@ -20,4 +20,4 @@ udiskie --tray --use-udisks2 &
 
 export DESKTOP_SESSION=i3
 exec i3
-{{- end }}
+{{- end -}}

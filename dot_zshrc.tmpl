@@ -12,7 +12,7 @@ ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 {{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
 export GITLAB_URL={{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}
 export GITLAB_TOKEN={{ (first (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields).v }}
-{{- end}}
+{{- end }}
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -21,13 +21,13 @@ export GPG_TTY=`tty`
 
 export PATH=$PATH:~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin
 
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- if eq .chezmoi.os "darwin" }}
 export PATH="/usr/local/opt/node@8/bin:/usr/local/sbin:$PATH"
 alias pc="~/projects/personio/perctl"
 alias wl="nvim ~/projects/private/personio/worklog.md"
 {{- end }}
 
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .chezmoi.os "linux" }}
 source /usr/share/nvm/init-nvm.sh
 {{- end }}
 

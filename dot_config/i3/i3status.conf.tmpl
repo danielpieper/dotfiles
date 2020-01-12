@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 order += "spotify"
 order += "sysdata"
 order += "wifi"
@@ -67,5 +68,4 @@ clock {
   format = "{Europe/Berlin}"
   format_time = " %d.%m.%Y %H:%M"
 }
-
-
+{{- end -}}
