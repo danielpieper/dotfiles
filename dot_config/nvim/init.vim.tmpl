@@ -832,6 +832,7 @@ if s:has_plugin('ale')
   let g:ale_lint_on_insert_leave = 0
   let g:ale_disable_lsp = 1
   let g:ale_maximum_file_size = 80000 " 80kb?
+  let g:ale_echo_msg_format = '%linter%: %code: %%s'
   let g:ale_linters_explicit = 1
   let g:ale_linters = {
         \ 'php': ['phpcs', 'phpmd'],
@@ -947,11 +948,11 @@ if s:has_plugin('vim-wordmotion')
   let g:wordmotion_prefix = '<Leader>'
 endif
 
-"BEGIN work
-"if s:has_plugin('fugitive-gitlab.vim')
-"  source $HOME/.config/nvim/fugitive-gitlab.vim
-"endif
-"END work
+{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+if s:has_plugin('fugitive-gitlab.vim')
+  source $HOME/.config/nvim/fugitive-gitlab.vim
+endif
+{{- end }}
 
 " Output the current syntax group
 nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
