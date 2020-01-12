@@ -138,7 +138,7 @@ Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx'
 
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}} " Coc is an intellisense engine for vim8 & neovim.
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
 Plug 'https://github.com/w0rp/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
 
@@ -949,9 +949,18 @@ if s:has_plugin('vim-wordmotion')
 endif
 
 {{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+{{- $token := "" -}}
+{{- range (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields -}}
+  {{- if eq .n "m2fjl6qwheul3fzg7uwougx6y4" -}}
+    {{- $token = .v -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne $token "" }}
 if s:has_plugin('fugitive-gitlab.vim')
-  source $HOME/.config/nvim/fugitive-gitlab.vim
+  let g:fugitive_gitlab_domains = ['{{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}']
+  let g:gitlab_api_keys = {'{{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}': '{{ $token }}'}
 endif
+{{- end }}
 {{- end }}
 
 " Output the current syntax group
