@@ -161,7 +161,7 @@ Plug 'https://github.com/vim-vdebug/vdebug' " Multi-language DBGP debugger clien
 
 " Terraform
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/juliosueiras/vim-terraform-completion' " Terraform file autocomplete
+" Plug 'https://github.com/juliosueiras/vim-terraform-completion' " Terraform file autocomplete
 
 
 call plug#end()
@@ -837,15 +837,17 @@ if s:has_plugin('ale')
   let g:ale_linters = {
         \ 'php': ['phpcs', 'phpmd'],
         \ 'go': ['gopls', 'gofmt', 'golint', 'golangci-lint'],
-        \ 'sh': ['shell'],
-        \ 'js': ['eslint'],
+        \ 'zsh': ['shell'],
+        \ 'javascript': ['eslint'],
         \ 'jsx': ['eslint'],
+        \ 'terraform': ['terraform'],
         \}
   let g:ale_go_golangci_lint_options = '--fast'
   let g:ale_fixers = {
         \ '*': ['remove_trailing_lines', 'trim_whitespace'],
         \ 'php': ['php_cs_fixer'],
         \ 'go': ['gofmt'],
+        \ 'terraform': ['terraform'],
         \ }
   let g:ale_fix_on_save=1
   let g:ale_fix_on_save_ignore = {

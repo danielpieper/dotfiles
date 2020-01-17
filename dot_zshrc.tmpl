@@ -86,3 +86,7 @@ then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
+if [[ -x "$(command -v chezmoi)" ]]
+then
+  source <(chezmoi completion zsh)
+fi
