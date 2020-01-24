@@ -657,10 +657,7 @@ if s:has_plugin('vim-airline')
   endif
 
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-  let g:airline#extensions#tabline#buffers_label = ''
-  " let g:airline#extensions#tabline#fnamemod = ':t' " Show the filename
-  let g:airline#extensions#tabline#fnamecollapse = 0
-  let g:airline#extensions#tabline#show_tab_nr = 0
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline#extensions#tabline#buffer_nr_show = 0
   let g:airline#extensions#tabline#show_close_button = 0
 
