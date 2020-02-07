@@ -139,7 +139,7 @@ Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx'
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
-Plug 'https://github.com/w0rp/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
+Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
 
 " Docs
@@ -820,13 +820,16 @@ endif
 
 if s:has_plugin('ale')
   let g:ale_completion_enabled = 0
-  let g:ale_php_phpcs_standard = 'PSR12'
+  " let g:ale_php_phpcs_standard = 'PSR12'
+  let g:ale_php_phpcs_standard = 'phpcs.xml'
   let g:ale_php_phpmd_ruleset = 'phpmd.xml'
+
   let g:ale_lint_on_text_changed = 'never'
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_filetype_changed = 1
   let g:ale_lint_on_insert_leave = 0
+
   let g:ale_disable_lsp = 1
   let g:ale_maximum_file_size = 80000 " 80kb?
   let g:ale_echo_msg_format = '%linter%: %code: %%s'
@@ -896,6 +899,7 @@ if s:has_plugin('vim-test')
 
   let g:test#custom_transformations = {'personio': function('PersonioTransform'), 'vagrant': function('VagrantTransform')}
   let g:test#transformation = 'personio'
+
   " make test commands execute using dispatch.vim
   let test#strategy = "dispatch"
 endif
