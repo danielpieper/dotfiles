@@ -61,10 +61,13 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
+  #startup_mode: SimpleFullscreen
+{{- if eq .chezmoi.os "darwin" -}}
   startup_mode: SimpleFullscreen
+{{- end }}
 
   # Window title
-  #title: Alacritty
+  title: Alacritty
 
   # Window class (Linux/BSD only):
   #class:
