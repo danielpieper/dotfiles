@@ -50,7 +50,9 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  {{ if eq .chezmoi.os "darwin" -}}
+  decorations: buttonless
+  {{- end }}
 
   # Startup Mode (changes require restart)
   #
@@ -62,9 +64,6 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   #startup_mode: SimpleFullscreen
-  {{ if eq .chezmoi.os "darwin" -}}
-  startup_mode: SimpleFullscreen
-  {{- end }}
 
   # Window title
   title: Alacritty
