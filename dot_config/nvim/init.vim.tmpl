@@ -993,6 +993,12 @@ augroup file-types
   autocmd BufNewFile,BufRead *.cshtml setlocal filetype=cshtml
   autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.css
 
+  " Override golang template files:
+  autocmd BufNewFile,BufRead *.vim.tmpl setlocal filetype=vim
+  autocmd BufNewFile,BufRead *.json.tmpl setlocal filetype=json
+  autocmd BufNewFile,BufRead *.conf.tmpl setlocal filetype=conf
+  autocmd BufNewFile,BufRead *.yaml.tmpl setlocal filetype=yaml
+
   " Wrap text and turn on spell for markdown files
   autocmd BufNewFile,BufRead *.md setlocal wrap linebreak spell filetype=markdown
 

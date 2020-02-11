@@ -202,5 +202,6 @@ then
 fi
 if [[ -x "$(command -v chezmoi)" ]]
 then
+  alias cm="chezmoi"
   source <(chezmoi completion zsh)
 fi
