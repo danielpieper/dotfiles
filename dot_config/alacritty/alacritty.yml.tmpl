@@ -52,6 +52,8 @@ window:
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   {{ if eq .chezmoi.os "darwin" -}}
   decorations: buttonless
+  {{- else }}
+  #decorations: full
   {{- end }}
 
   # Startup Mode (changes require restart)
@@ -168,9 +170,15 @@ font:
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  {{ if eq .chezmoi.os "darwin" -}}
   offset:
     x: 1
     y: 2
+  {{- else }}
+  offset:
+    x: 0
+    y: 0
+  {{- end }}
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
