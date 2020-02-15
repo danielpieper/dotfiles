@@ -128,6 +128,11 @@ export GITLAB_URL={{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}
 export GITLAB_TOKEN={{ (first (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields).v }}
 {{- end }}
 
+{{- if eq .chezmoi.hostname "falcon9" }}
+# Secrets
+export GITHUB_TOKEN={{ (index (first (onepassword "ieyxgbj5yvg5zombgcxkze56gy").details.sections).fields 1).v }}
+{{- end }}
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_CTYPE=UTF-8
