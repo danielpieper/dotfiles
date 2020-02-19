@@ -881,6 +881,11 @@ if s:has_plugin('vim-startify')
   let g:startify_session_dir = '~/.config/nvim/session'
   let g:startify_session_autoload = 1
   let g:startify_session_delete_buffers = 1
+  let g:startify_session_savevars = [
+    \ 'g:startify_session_savevars',
+    \ 'g:test#transformation'
+    \ ]
+
   let g:startify_change_to_vcs_root = 1
   let g:startify_session_persistence = 1
   let g:startify_change_to_dir = 1
@@ -902,8 +907,8 @@ if s:has_plugin('vim-test')
   nmap <silent> <leader>tv :TestVisit<CR>
 
   function! PersonioTransform(cmd) abort
-    let pod = 'kubectl get pods --selector="app.kubernetes.io/name=web" -o name'
-    return 'kubectl exec $('.pod.') -c fpm-ssh -- '.a:cmd
+    let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o name'
+    return 'kubectl exec $('.pod.') --context=minikube -c fpm-ssh -- '.a:cmd
   endfunction
 
   function! VagrantTransform(cmd) abort
@@ -912,6 +917,7 @@ if s:has_plugin('vim-test')
   endfunction
 
   let g:test#custom_transformations = {'personio': function('PersonioTransform'), 'vagrant': function('VagrantTransform')}
+  " This variable is different for each project so it was added to g:startify_session_savevars:
   let g:test#transformation = 'personio'
 
   " make test commands execute using dispatch.vim
