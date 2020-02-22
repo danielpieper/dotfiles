@@ -11,6 +11,8 @@ call plug#begin(g:plugin_path)
 Plug 'https://github.com/joshdick/onedark.vim' " Atom OneDark
 Plug 'https://github.com/ryanoasis/vim-devicons' " look at beauty icons
 Plug 'https://github.com/psliwka/vim-smoothie' " Smooth scrolling for Vim done right🥤
+Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
+Plug 'https://github.com/camspiers/lens.vim' " A Vim Automatic Window Resizing Plugin
 
 
 " tmux
@@ -421,6 +423,7 @@ noremap <left> <Nop>
 noremap <up> <Nop>
 noremap <down> <Nop>
 
+
 " Delete line but preserve the space
 nnoremap dD S<Esc>
 
@@ -476,6 +479,13 @@ if s:has_plugin('vim-smoothie')
 
   nmap <C-d> <Plug>(SmoothieDownwards)
   nmap <C-u> <Plug>(SmoothieUpwards)
+endif
+
+if s:has_plugin('animate.vim')
+  nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+  nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+  nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
+  nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 endif
 
 if s:has_plugin('vim-textobj-entire')
