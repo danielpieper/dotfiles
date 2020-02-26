@@ -442,11 +442,6 @@ nnoremap <silent> p p`]
 noremap <silent><leader>x :split<cr>
 noremap <silent><leader>v :vsplit<cr>
 
-" Switch buffers
-" TODO: this collides with high/low in file
-" nnoremap <silent>H :silent bp<CR>
-" nnoremap <silent>L :silent bn<CR>
-
 " Spellcheck
 nnoremap <F6> :setlocal spell!<cr>
 " TODO: check if i need this:
@@ -484,8 +479,8 @@ endif
 if s:has_plugin('animate.vim')
   nnoremap <silent> <Up>    :call animate#window_delta_height(-10)<CR>
   nnoremap <silent> <Down>  :call animate#window_delta_height(10)<CR>
-  nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
-  nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+  nnoremap <silent> <Left>  :call animate#window_delta_width(-10)<CR>
+  nnoremap <silent> <Right> :call animate#window_delta_width(10)<CR>
 endif
 
 if s:has_plugin('vim-textobj-entire')
