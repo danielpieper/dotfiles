@@ -232,7 +232,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym $mod+Delete exec i3lock-fancy -- scrot -z
 # END laptop
 
-exec --no-startup-id compton -f
+exec --no-startup-id picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.config/i3/wallpaper/*
 exec dex -ae i3
 
