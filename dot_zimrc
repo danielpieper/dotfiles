@@ -6,6 +6,8 @@
 zmodule environment
 # Provides handy git aliases and functions.
 zmodule git
+# Exposes git repository status information to prompts.
+zmodule git-info
 # Applies correct bindkeys for input events.
 zmodule input
 # Sets a custom terminal title.
