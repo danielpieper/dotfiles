@@ -25,9 +25,10 @@ endif
 
 " Finding and replacing
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'https://github.com/junegunn/fzf.vim' " A command-line fuzzy finder
-Plug 'https://github.com/jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Modern performant generic finder and dispatcher for Vim and NeoVim
+" Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'https://github.com/junegunn/fzf.vim' " A command-line fuzzy finder
+" Plug 'https://github.com/jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list
 Plug 'https://github.com/haya14busa/incsearch.vim' " incrementally highlights ALL pattern matches unlike default 'incsearch'.
 " Plug 'mileszs/ack.vim'
 " Plug 'mhinz/vim-grepper'
@@ -586,6 +587,18 @@ if s:has_plugin('gv.vim')
   nnoremap <c-g> :GV!<cr>
 endif
 
+if s:has_plugin('vim-clap')
+  nnoremap <a-p> :Clap files<cr>
+  nnoremap <c-p> :Clap gfiles<cr>
+  nnoremap <c-space> :Clap buffers<cr>
+  nnoremap <c-t> :Clap lines<cr>
+  nnoremap <c-f> :Ag<space>
+  nnoremap <silent> <BS> :Clap command_history<cr>
+  nnoremap <silent> <F4> :Clap filer<cr>
+
+  let g:clap_theme = 'material_design_dark'
+endif
+
 if s:has_plugin('fzf.vim')
   let g:fzf_height = '40%'
   let g:fzf_commits_log_options = '--color --graph --pretty=format:"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold blue)(%cr) %Cred<%an>%Creset" --abbrev-commit'
@@ -737,9 +750,9 @@ if s:has_plugin('coc.nvim')
         \ 'coc-tsserver',
         \ 'coc-jira-complete',
         \ 'coc-explorer',
-        \ 'coc-lists',
         \ ]
   " TODO: check if coc extensions are used:
+        " \ 'coc-lists',
         " \ 'coc-tabnine',
         " \ 'coc-project',
         " \ 'coc-highlight',
