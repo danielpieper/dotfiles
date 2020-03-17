@@ -86,3 +86,9 @@ endsnippet
 snippet pmdsp "SuppressWarnings: UnusedFormalParameter" b
 @SuppressWarnings(PHPMD.${1:UnusedFormalParameter})
 endsnippet
+
+
+snippet debugmem "debug memory usage" b
+printf("Memory: %s megabytes\n", round(memory_get_usage(true) / 1048576, 2));
+$0
+endsnippet
