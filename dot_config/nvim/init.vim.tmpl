@@ -753,6 +753,7 @@ if s:has_plugin('vim-commentary')
   vnoremap <c-_> :Commentary<cr>
   " Terraform commentary
   autocmd FileType terraform setlocal commentstring=#%s
+  autocmd FileType yaml setlocal commentstring=#%s
 endif
 
 if s:has_plugin('nerdtree')
@@ -775,8 +776,10 @@ if s:has_plugin('coc.nvim')
         \ 'coc-go',
         \ 'coc-pairs',
         \ 'coc-tsserver',
-        \ 'coc-jira-complete',
         \ 'coc-explorer',
+{{- if eq .chezmoi.os "darwin" }}
+        \ 'coc-jira-complete',
+{{- end }}
         \ ]
   " TODO: check if coc extensions are used:
         " \ 'coc-lists',
