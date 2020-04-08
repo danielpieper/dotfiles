@@ -19,7 +19,12 @@ bold_font        auto
 bold_italic_font auto
 
 # Font size (in pts)
+{{- if eq .chezmoi.os "darwin" }}
+font_size        14.0
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
 font_size        12.0
+{{- end }}
 
 # Adjust the cell dimensions.
 # You can use either numbers, which are interpreted as pixels or percentages
