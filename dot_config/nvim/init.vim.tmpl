@@ -25,7 +25,7 @@ endif
 
 " Finding and replacing
 " ------------------------------------------------------------------------------
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Modern performant generic finder and dispatcher for Vim and NeoVim
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' } " Modern performant generic finder and dispatcher for Vim and NeoVim
 " Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'https://github.com/junegunn/fzf.vim' " A command-line fuzzy finder
 " Plug 'https://github.com/jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list
@@ -966,7 +966,7 @@ if s:has_plugin('vim-test')
 
   let g:test#custom_transformations = {'personio': function('PersonioTransform'), 'vagrant': function('VagrantTransform')}
   " This variable is different for each project so it was added to g:startify_session_savevars:
-  let g:test#transformation = 'personio'
+  " let g:test#transformation = 'personio'
 
   " make test commands execute using dispatch.vim
   let test#strategy = "dispatch"

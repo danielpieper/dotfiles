@@ -1,4 +1,9 @@
-snippet debug "debug print" b
+snippet debugp "debug print" b
 debug, _ := json.Marshal($0)
 fmt.Println(string(debug))
+endsnippet
+
+snippet debugpp "debug pretty print" b
+import "github.com/k0kubun/pp"
+pp.Println($0)
 endsnippet
