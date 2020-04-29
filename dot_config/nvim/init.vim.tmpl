@@ -955,7 +955,8 @@ if s:has_plugin('vim-test')
   nmap <silent> <leader>tv :TestVisit<CR>
 
   function! PersonioTransform(cmd) abort
-    let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o name'
+    " let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o name'
+    let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o go-template --template "{{`{{\$item := index .items 0}}{{\$item.metadata.name}}`}}"'
     return 'kubectl exec $('.pod.') --context=minikube -c fpm-ssh -- '.a:cmd
   endfunction
 
@@ -966,7 +967,7 @@ if s:has_plugin('vim-test')
 
   let g:test#custom_transformations = {'personio': function('PersonioTransform'), 'vagrant': function('VagrantTransform')}
   " This variable is different for each project so it was added to g:startify_session_savevars:
-  " let g:test#transformation = 'personio'
+  let g:test#transformation = 'personio'
 
   " make test commands execute using dispatch.vim
   let test#strategy = "dispatch"

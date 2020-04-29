@@ -14,7 +14,7 @@ yabai -m config status_bar_clock_icon        
 
 # global settings
 yabai -m config mouse_follows_focus          on
-yabai -m config focus_follows_mouse          autoraise
+yabai -m config focus_follows_mouse          off
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               off
 yabai -m config window_opacity               off
@@ -47,23 +47,21 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Barrier$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
+
 yabai -m rule --add app="^Google Chrome$" space=1
 yabai -m rule --add app="^Alacritty" space=2
 yabai -m rule --add app="^kitty" space=2
+yabai -m rule --add title="Zoom" space=3
 yabai -m rule --add app="^Firefox$" space=3
+yabai -m rule --add app="^Postman$" space=6
 yabai -m rule --add app="^Slack$" space=4
 yabai -m rule --add title="neovim" space=5
-yabai -m rule --add app="^Spotify$" space=0
-yabai -m rule --add app="^Postman$" space=3
-yabai -m rule --add app="^TablePlus$" space=8
-
 yabai -m rule --add app="PhpStorm" manage=off space=7
 yabai -m rule --add app="PhpStorm" title="~/projects/" manage=on space=7
-
 yabai -m rule --add app="^intelliJ IDEA Community$" manage=off space=7
 yabai -m rule --add app="^intelliJ IDEA Community$" title="~/projects/" manage=on space=7
-
-yabai -m rule --add app="zoom.us" manage=off
+yabai -m rule --add app="^TablePlus$" space=8
+yabai -m rule --add app="^Spotify$" space=0
 
 echo "yabai configuration loaded.."
 {{- end -}}
