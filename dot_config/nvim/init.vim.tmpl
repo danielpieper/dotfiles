@@ -967,7 +967,10 @@ if s:has_plugin('vim-test')
 
   let g:test#custom_transformations = {'personio': function('PersonioTransform'), 'vagrant': function('VagrantTransform')}
   " This variable is different for each project so it was added to g:startify_session_savevars:
+
+{{- if eq .chezmoi.os "darwin" }}
   let g:test#transformation = 'personio'
+{{- end }}
 
   " make test commands execute using dispatch.vim
   let test#strategy = "dispatch"
