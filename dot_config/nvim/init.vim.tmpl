@@ -591,7 +591,7 @@ if s:has_plugin('vim-clap')
   nnoremap <a-p> :Clap files<cr>
   nnoremap <c-p> :Clap gfiles<cr>
   nnoremap <c-space> :Clap buffers<cr>
-  nnoremap <c-t> :Clap tmux<cr>
+  nnoremap <c-t> :Clap tmuxinator<cr>
   nnoremap <c-l> :Clap lines<cr>
   nnoremap <c-f> :Clap grep<cr>
   nnoremap <silent> <BS> :Clap command_history<cr>
@@ -622,6 +622,11 @@ if s:has_plugin('vim-clap')
   let g:clap_provider_tmux = {
         \ 'source': split(system('tmux list-sessions -F "#{session_name}"'), '\n'),
         \ 'sink': { selected -> execute('silent !tmux switch-client -t ' . selected, '')},
+        \ }
+
+  let g:clap_provider_tmuxinator = {
+        \ 'source': split(system('tmuxinator list | tail -n +2 | tr -s "[:space:]" "\n"'), '\n'),
+        \ 'sink': { selected -> execute('silent !tmuxinator ' . selected, '')},
         \ }
 
 endif
