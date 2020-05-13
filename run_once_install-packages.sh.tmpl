@@ -15,7 +15,7 @@ yay="yay -S --needed --noconfirm"
 
 # essential tools
 $yay bat diff-so-fancy exa htop iotop powertop httpie jq \
-  mc ncdu unzip wget make ranger nano
+  mc ncdu unzip wget make ranger nano ytop
 
 # other tools
 $yay 1password-cli aws-cli hostsctl weechat \
@@ -56,9 +56,10 @@ $yay acpilight laptop-mode-tools thermald upower
 {{ end -}}
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
+brew tap cjbassi/ytop
 # homebrew returns error if the formula is installed and outdated
 brew install bat exa awscli composer ctop diff-so-fancy fzy go go-jira \
   gradle helm htop httpie jenv jq midnight-commander ncdu neovim pre-commit \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
-  tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh || true
+  tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop || true
 {{ end -}}
