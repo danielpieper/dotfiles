@@ -246,7 +246,8 @@ set noshowmode
 set synmaxcol=500
 
 " Highlight current line
-set cursorline
+" Commented out as it slows down syntax highlighting
+" set cursorline
 
 " Indent using two spaces.
 set softtabstop=2
@@ -593,7 +594,7 @@ if s:has_plugin('vim-clap')
   nnoremap <c-space> :Clap buffers<cr>
   nnoremap <c-t> :Clap tmuxinator<cr>
   nnoremap <c-l> :Clap lines<cr>
-  nnoremap <c-f> :Clap grep<cr>
+  nnoremap <c-f> :Clap grep2<cr>
   nnoremap <silent> <BS> :Clap command_history<cr>
   nnoremap <silent> <F4> :Clap filer<cr>
 
@@ -975,6 +976,7 @@ if s:has_plugin('vim-test')
 
 {{- if eq .chezmoi.os "darwin" }}
   let g:test#transformation = 'personio'
+  let test#php#phpunit#executable = 'vendor/bin/phpunit'
 {{- end }}
 
   " make test commands execute using dispatch.vim
