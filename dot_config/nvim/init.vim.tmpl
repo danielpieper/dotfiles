@@ -246,8 +246,7 @@ set noshowmode
 set synmaxcol=500
 
 " Highlight current line
-" Commented out as it slows down syntax highlighting
-" set cursorline
+set cursorline
 
 " Indent using two spaces.
 set softtabstop=2
@@ -1088,6 +1087,9 @@ augroup file-types
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
+
+  " disable cursorline for php as syntax highlighting slows down vim
+  autocmd FileType php setlocal nocursorline
 
   " Use JS snippets in TS
   autocmd FileType typescript,typescript.tsx call UltiSnips#AddFiletypes('javascript.typescript')
