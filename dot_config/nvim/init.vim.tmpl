@@ -977,7 +977,7 @@ if s:has_plugin('vim-test')
 
 {{- if eq .chezmoi.os "darwin" }}
   let g:test#transformation = 'personio'
-  let test#php#phpunit#executable = 'vendor/bin/phpunit'
+  let test#php#phpunit#executable = 'vendor/bin/paratest'
 {{- end }}
 
   " make test commands execute using dispatch.vim
