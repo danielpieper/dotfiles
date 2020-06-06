@@ -211,7 +211,9 @@ set nowb
 set binary
 
 " Enable term 24 bit colour
-set termguicolors
+if has("termguicolors")
+  set termguicolors
+endif
 
 " Make it obvious where 80 characters is
 " set textwidth=80
