@@ -121,8 +121,8 @@ Plug 'https://github.com/honza/vim-snippets' " snippets for various programming 
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/tpope/vim-fugitive' " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugitive.vim for gitlab support
-Plug 'https://github.com/junegunn/gv.vim' " A git commit browser.
-Plug 'https://github.com/mhinz/vim-signify' " Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+" Plug 'https://github.com/junegunn/gv.vim' " A git commit browser.
+" Plug 'https://github.com/mhinz/vim-signify' " Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
 
 
 " HTML/CSS
@@ -776,29 +776,30 @@ endif
 
 if s:has_plugin('coc.nvim')
   let g:coc_global_extensions = [
-        \ 'coc-json',
-        \ 'coc-html',
         \ 'coc-css',
-        \ 'coc-phpls',
-        \ 'coc-yaml',
-        \ 'coc-snippets',
-        \ 'coc-go',
-        \ 'coc-pairs',
-        \ 'coc-tsserver',
         \ 'coc-explorer',
+        \ 'coc-git',
+        \ 'coc-go',
+        \ 'coc-html',
 {{- if eq .chezmoi.os "darwin" }}
         \ 'coc-jira-complete',
 {{- end }}
+        \ 'coc-json',
+        \ 'coc-markdownlint',
+        \ 'coc-phpls',
+        \ 'coc-python',
+        \ 'coc-snippets',
+        \ 'coc-tslint-plugin',
+        \ 'coc-tsserver',
+        \ 'coc-yaml',
         \ ]
   " TODO: check if coc extensions are used:
+        " \ 'coc-pairs',
         " \ 'coc-lists',
         " \ 'coc-tabnine',
         " \ 'coc-project',
         " \ 'coc-highlight',
         " \ 'coc-yank',
-        " \ 'coc-git',
-        " \ 'coc-python',
-        " \ 'coc-tslint-plugin',
         " \ ]
   " Remap keys for gotos
   nmap <silent> <leader>gd <Plug>(coc-definition)
