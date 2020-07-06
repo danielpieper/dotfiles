@@ -584,7 +584,7 @@ if s:has_plugin('vim-bbye')
 endif
 
 if s:has_plugin('vim-bufonly')
-  nnoremap <leader>QQ :BufOnly<cr>
+  nnoremap Q :BufOnly<cr>
 endif
 
 if s:has_plugin('gv.vim')
@@ -892,8 +892,8 @@ endif
 
 if s:has_plugin('ale')
   let g:ale_completion_enabled = 0
-  " let g:ale_php_phpcs_standard = 'PSR12'
-  let g:ale_php_phpcs_standard = 'phpcs.xml'
+  let g:ale_php_phpcs_standard = 'PSR12'
+  " let g:ale_php_phpcs_standard = 'phpcs.xml'
   let g:ale_php_phpmd_ruleset = 'phpmd.xml'
 
   let g:ale_lint_on_text_changed = 'never'
