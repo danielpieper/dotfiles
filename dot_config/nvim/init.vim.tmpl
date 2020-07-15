@@ -602,6 +602,9 @@ if s:has_plugin('vim-clap')
   nnoremap <silent> <F4> :Clap filer<cr>
 
   let g:clap_theme = 'atom_dark'
+  " let g:clap_theme = 'solarized_dark'
+  " let g:clap_theme = 'material_design_dark'
+  let g:clap_layout = { 'relative': 'editor' }
 
   autocmd FileType clap_input call s:clap_mappings()
 
@@ -981,10 +984,12 @@ if s:has_plugin('vim-test')
 {{- if eq .chezmoi.os "darwin" }}
   let g:test#transformation = 'personio'
   let test#php#phpunit#executable = 'vendor/bin/paratest'
+  " let test#php#phpunit#executable = 'vendor/bin/phpunit'
 {{- end }}
 
   " make test commands execute using dispatch.vim
-  let test#strategy = "dispatch"
+  " let test#strategy = "dispatch"
+  let test#strategy = "neovim"
 endif
 
 if s:has_plugin('vim-devicons')

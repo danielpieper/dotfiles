@@ -92,3 +92,24 @@ snippet debugmem "debug memory usage" b
 printf("Memory: %s megabytes\n", round(memory_get_usage(true) / 1048576, 2));
 $0
 endsnippet
+
+snippet debugdb "debug database queries" b
+\Illuminate\Support\Facades\DB::listen(function ($query) {
+		\Illuminate\Support\Facades\Log::info(
+				$query->sql,
+				$query->bindings,
+				$query->time
+		);
+});
+$0
+endsnippet
+
+snippet debugtime "debug execution time" b
+$time_start = microtime(true);
+
+$0
+
+$time_end = microtime(true);
+$time = $time_end - $time_start;
+echo "execution took $time seconds\n";
+endsnippet
