@@ -142,7 +142,7 @@ Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx'
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
-Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
+" Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
 
 " Docs
@@ -785,7 +785,6 @@ if s:has_plugin('coc.nvim')
         \ 'coc-jira-complete',
 {{- end }}
         \ 'coc-json',
-        \ 'coc-markdownlint',
         \ 'coc-phpls',
         \ 'coc-python',
         \ 'coc-snippets',
@@ -793,6 +792,7 @@ if s:has_plugin('coc.nvim')
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-yank',
+        \ 'coc-diagnostic',
         \ ]
   " TODO: check if coc extensions are used:
         " \ 'coc-pairs',
