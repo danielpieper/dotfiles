@@ -11,3 +11,4 @@ _ide_helper_models.php
 .jira.d
 .DS_Store
 .vim
+phpstan.neon
