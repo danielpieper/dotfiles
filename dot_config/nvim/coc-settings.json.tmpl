@@ -16,10 +16,65 @@
   "explorer.width": 70,
   "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": false,
+  "diagnostic-languageserver.linters": {
+    "phpcs": {
+      "command": "phpcs",
+      "debounce": 100,
+      "rootPatterns": [ "composer.json", "composer.lock", "vendor", ".git" ],
+      "args": [ "--standard=PSR12", "--report=emacs", "-s", "-" ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "phpcs",
+      "formatLines": 1,
+      "formatPattern": [
+        "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": 4,
+          "security": 3
+        }
+      ],
+      "securities": {
+        "error": "error",
+        "warning": "warning"
+      }
+    },
+    "phpmd": {
+      "command": "phpmd",
+      "debounce": 100,
+      "rootPatterns": [ "composer.json", "composer.lock", "vendor", ".git" ],
+      "args": [ "%file", "json", "phpmd.xml" ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "phpmd",
+      "parseJson": {
+        "errorsRoot": "files[0].violations",
+        "line": "beginLine",
+        "endLine": "endLine",
+        "security": "priority",
+        "message": "${rule}: ${description} (${ruleSet})"
+      },
+      "securities": {
+        "1": "error",
+        "2": "warning",
+        "3": "info"
+      }
+    }
+  },
   "diagnostic-languageserver.filetypes": {
-    "php": ["phpcs", "phpstan"],
-    "go": "golangci-lint",
+    "php": ["phpcs", "phpstan", "phpmd"],
     "javascript": "eslint",
     "markdown": "markdownlint"
+  },
+  "diagnostic-languageserver.formatters": {
+    "gofumpt": {
+      "command": "gofumpt",
+      "args": ["-s", "-extra"],
+      "rootPatterns": ["go.mod", ".git"]
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "go": "gofumpt"
   }
 }
