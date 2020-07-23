@@ -83,8 +83,8 @@ foreach (${1:iterable} as ${2:key} => ${3:value}) {
 }
 endsnippet
 
-snippet pmdsp "SuppressWarnings: UnusedFormalParameter" b
-@SuppressWarnings(PHPMD.${1:UnusedFormalParameter})
+snippet suppressWarnings "PHPMD SuppressWarnings: CouplingBetweenObjects"
+@SuppressWarnings(PHPMD.${1:CouplingBetweenObjects}) $0
 endsnippet
 
 
@@ -95,11 +95,11 @@ endsnippet
 
 snippet debugdb "debug database queries" b
 \Illuminate\Support\Facades\DB::listen(function ($query) {
-		\Illuminate\Support\Facades\Log::info(
-				$query->sql,
-				$query->bindings,
-				$query->time
-		);
+	\Illuminate\Support\Facades\Log::info(
+		$query->sql,
+		$query->bindings,
+		$query->time
+	);
 });
 $0
 endsnippet

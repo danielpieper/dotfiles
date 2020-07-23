@@ -60,12 +60,46 @@
         "2": "warning",
         "3": "info"
       }
+    },
+    "golint": {
+      "command": "golint",
+      "rootPatterns": [ ".git", "go.mod" ],
+      "debounce": 100,
+      "args": [ "%file" ],
+      "sourceName": "golint",
+      "formatLines": 1,
+      "formatPattern": [
+        "^([^:]+):(\\d+):(\\d+):\\s+(.*)$",
+        {
+          "sourceName": 1,
+          "line": 2,
+          "column": 3,
+          "endLine": 2,
+          "endColumn": 3,
+          "message": [4]
+        }
+      ]
+    },
+    "golangci-lint": {
+      "command": "golangci-lint",
+      "rootPatterns": [ ".git", "go.mod" ],
+      "debounce": 100,
+      "args": [ "run", "--out-format", "json", "--enable-all", "%filepath" ],
+      "sourceName": "golangci-lint",
+      "parseJson": {
+        "errorsRoot": "Issues",
+        "sourceName": "Pos.Filename",
+        "line": "Pos.Line",
+        "column": "Pos.Column",
+        "message": "${Text} [${FromLinter}]"
+      }
     }
   },
   "diagnostic-languageserver.filetypes": {
     "php": ["phpcs", "phpstan", "phpmd"],
     "javascript": "eslint",
-    "markdown": "markdownlint"
+    "markdown": "markdownlint",
+    "go": ["golint", "golangci-lint"]
   },
   "diagnostic-languageserver.formatters": {
     "gofumpt": {
