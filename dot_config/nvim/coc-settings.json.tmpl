@@ -5,6 +5,7 @@
   "codeLens.enable": true,
   "suggest.timeout": 5000,
   "coc.preferences.formatOnType": true,
+  "coc.preferences.messageLevel": "more",
   "go.enable": true,
   "go.goplsOptions": {
     "completeUnimported": true
@@ -16,6 +17,8 @@
   "explorer.width": 70,
   "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": false,
+  "diagnostic-languageserver.debug": false,
+  "diagnostic-languageserver.trace.server": "off",
   "diagnostic-languageserver.linters": {
     "phpcs": {
       "command": "phpcs",
@@ -80,7 +83,26 @@
         }
       ]
     },
-    "golangci-lint": {
+    "golangci-lint-2": {
+      "command": "golangci-lint",
+      "rootPatterns": [ ".git", "go.mod" ],
+      "debounce": 100,
+      "args": [ "run", "--out-format", "line-number", "--enable-all" ],
+      "sourceName": "golangci-lint",
+      "formatLines": 3,
+      "formatPattern": [
+        "^([^:]+):(\\d+):(\\d+):\\s+(.*)$",
+        {
+          "sourceName": 1,
+          "line": 2,
+          "column": 3,
+          "endLine": 2,
+          "endColumn": 3,
+          "message": [4]
+        }
+      ]
+    },
+    "golangci-lint-json": {
       "command": "golangci-lint",
       "rootPatterns": [ ".git", "go.mod" ],
       "debounce": 100,
@@ -89,9 +111,9 @@
       "parseJson": {
         "errorsRoot": "Issues",
         "sourceName": "Pos.Filename",
-        "line": "Pos.Line",
-        "column": "Pos.Column",
-        "message": "${Text} [${FromLinter}]"
+        "line": "LineRange.From",
+        "endLine": "LineRange.To",
+        "message": "${Text} (${FromLinter})"
       }
     }
   },
@@ -99,7 +121,7 @@
     "php": ["phpcs", "phpstan", "phpmd"],
     "javascript": "eslint",
     "markdown": "markdownlint",
-    "go": ["golint", "golangci-lint"]
+    "go": "golangci-lint"
   },
   "diagnostic-languageserver.formatters": {
     "gofumpt": {
