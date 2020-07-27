@@ -1039,7 +1039,8 @@ if s:has_plugin('vim-wordmotion')
   let g:wordmotion_prefix = '<Leader>'
 endif
 
-{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
+
+{{- if eq .chezmoi.hostname "Daniels-MBP" }}
 {{- $token := "" -}}
 {{- range (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields -}}
   {{- if eq .n "m2fjl6qwheul3fzg7uwougx6y4" -}}
