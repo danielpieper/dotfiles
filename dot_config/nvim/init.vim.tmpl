@@ -597,7 +597,7 @@ if s:has_plugin('vim-clap')
   nnoremap <c-space> :Clap buffers<cr>
   nnoremap <c-t> :Clap tmuxinator<cr>
   nnoremap <c-l> :Clap lines<cr>
-  nnoremap <c-f> :Clap grep2<cr>
+  nnoremap <c-f> :Clap grep<cr>
   nnoremap <silent> <BS> :Clap command_history<cr>
   nnoremap <silent> <F4> :Clap filer<cr>
 
@@ -1040,7 +1040,7 @@ if s:has_plugin('vim-wordmotion')
 endif
 
 
-{{- if eq .chezmoi.hostname "Daniels-MBP" }}
+{{- if eq .chezmoi.hostname "Daniels-MacBook-Pro" }}
 {{- $token := "" -}}
 {{- range (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields -}}
   {{- if eq .n "m2fjl6qwheul3fzg7uwougx6y4" -}}
