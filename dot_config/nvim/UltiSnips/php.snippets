@@ -1,23 +1,31 @@
 snippet cls "class" b
-<?php declare(strict_types=1);
+<?php
 
-class $1
+declare(strict_types=1);
+
+namespace $1
+
+class $2
 {
 		$0
-		public function __construct($2)
+		public function __construct($3)
 		{
-				$3
+				$4
 		}
 }
 
 endsnippet
 
 snippet ifa "interface" b
-<?php declare(strict_types=1);
+<?php 
 
-interface $1
+declare(strict_types=1);
+
+namespace $1
+
+interface $2
 {
-		public function $2($3);
+		public function $3($4);
 		$0
 }
 
