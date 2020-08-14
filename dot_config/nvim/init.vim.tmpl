@@ -12,7 +12,6 @@ Plug 'https://github.com/joshdick/onedark.vim' " Atom OneDark
 Plug 'https://github.com/ryanoasis/vim-devicons' " look at beauty icons
 Plug 'https://github.com/psliwka/vim-smoothie' " Smooth scrolling for Vim done right🥤
 Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
-" Plug 'https://github.com/camspiers/lens.vim' " A Vim Automatic Window Resizing Plugin
 
 
 " tmux
@@ -26,18 +25,11 @@ endif
 " Finding and replacing
 " ------------------------------------------------------------------------------
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' } " Modern performant generic finder and dispatcher for Vim and NeoVim
-" Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'https://github.com/junegunn/fzf.vim' " A command-line fuzzy finder
-" Plug 'https://github.com/jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list
 Plug 'https://github.com/haya14busa/incsearch.vim' " incrementally highlights ALL pattern matches unlike default 'incsearch'.
-" Plug 'mileszs/ack.vim'
-" Plug 'mhinz/vim-grepper'
 
 
 " File management
 " ------------------------------------------------------------------------------
-" Plug 'https://github.com/scrooloose/nerdtree' " The NERDTree is a file system explorer for the Vim editor.
-" Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status flags.
 Plug 'https://github.com/mbbill/undotree' " Undo visualise
 
 
@@ -56,9 +48,6 @@ Plug 'https://github.com/sheerun/vim-polyglot' " A collection of language packs 
 " ------------------------------------------------------------------------------
 Plug 'tpope/vim-repeat' " Repeat.vim remaps . in a way that plugins can tap into it
 Plug 'tpope/vim-commentary' " for multiline became to comment lines
-" Plug 'https://github.com/junegunn/goyo.vim' " Distraction-free writing in Vim.
-" Plug 'tpope/vim-speeddating' " a Ctrl-a/Ctrl-x command to increment / decrement a line of Date
-" Plug 'https://github.com/junegunn/vim-easy-align' " indent multi text ( easy align : so many feature )
 
 
 " Text objects
@@ -71,7 +60,6 @@ Plug 'https://github.com/kana/vim-textobj-entire' " Text objects for functions, 
 Plug 'https://github.com/kana/vim-textobj-line' " Text objects for functions, build error ??!
 Plug 'https://github.com/kana/vim-textobj-fold' " provides text objects for fold , eg. yaz to yank arround fold
 Plug 'https://github.com/kana/vim-textobj-indent' " Text objects for indented blocks of lines, eg. y- yank of blocks of lines
-" Plug 'https://github.com/easymotion/vim-easymotion' " EasyMotion provides a much simpler way to use some motions in vim.
 
 
 " General
@@ -79,7 +67,6 @@ Plug 'https://github.com/kana/vim-textobj-indent' " Text objects for indented bl
 Plug 'https://github.com/myusuf3/numbers.vim' " intelligently toggling line numbers
 Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin for Vim http://editorconfig.org
 Plug 'tpope/vim-unimpaired' " [a cursor to previous a, ]x cursor to next x
-" Plug 'https://github.com/ntpeters/vim-better-whitespace' " Better whitespace highlighting for Vim
 Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands that need it the most.
 
 
@@ -90,7 +77,6 @@ Plug 'tpope/vim-surround' " ysiw' | ds{ds)  provides mappings to easily delete, 
 
 " Copy/Paste behaviour
 " ------------------------------------------------------------------------------
-" Plug 'https://github.com/svermeulen/vim-easyclip' " Stop everything saving to a register and instead rely on just `m` for cut
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste' " Improve pasting code from the clipboard
 
 
@@ -105,32 +91,21 @@ Plug 'https://github.com/vim-airline/vim-airline' " Lean & mean status/tabline f
 Plug 'https://github.com/edkolev/tmuxline.vim' " tmux airline theming
 
 
-" Tabs
-" ------------------------------------------------------------------------------
-" Plug 'gcmt/taboo.vim' " Make managing tabs easier with rename, add, delete etc
-" Plug 'troydm/zoomwintab.vim' " Allow a window to be fully viewed. Useful when multiple splits are in use
-
-
 " Snippets
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/honza/vim-snippets' " snippets for various programming languages
-" Plug 'https://github.com/sirver/UltiSnips' " UltiSnips - The ultimate snippet solution for Vim.
 
 
 " Git
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/tpope/vim-fugitive' " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugitive.vim for gitlab support
-" Plug 'https://github.com/junegunn/gv.vim' " A git commit browser.
-" Plug 'https://github.com/mhinz/vim-signify' " Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
 
 
 " HTML/CSS
 " ------------------------------------------------------------------------------
-" Plug 'https://github.com/lilydjwg/colorizer', { 'on': 'ColorToggle' } " #aaa to Colorize
 Plug 'https://github.com/alvan/vim-closetag' " Automatically add a closing HTML tag
 Plug 'https://github.com/tpope/vim-haml' " Better Scss highlighting than polyglot
-" Plug 'https://github.com/mattn/emmet-vim' " provides support for expanding abbreviations similar to emmet
 
 
 " JavaScript
@@ -144,12 +119,6 @@ Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx'
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
 " Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
-
-" Docs
-" ------------------------------------------------------------------------------
-" Plug 'https://github.com/rhysd/devdocs.vim' " This is a Vim plugin for devdocs, which is an awesome multiple API documentation service. You can open and search devdocs from Vim.
-
-
 " Testing & debugging
 " ------------------------------------------------------------------------------
 Plug 'https://github.com/tpope/vim-dispatch' " Asynchronous build and test dispatcher
@@ -160,12 +129,6 @@ Plug 'https://github.com/janko/vim-test' " Run your tests at the speed of though
 " Golang
 " ------------------------------------------------------------------------------
 " Plug 'https://github.com/fatih/vim-go' " Go development plugin for Vim
-
-
-" Terraform
-" ------------------------------------------------------------------------------
-" Plug 'https://github.com/juliosueiras/vim-terraform-completion' " Terraform file autocomplete
-
 
 call plug#end()
 
@@ -497,27 +460,6 @@ if s:has_plugin('vim-textobj-entire')
   omap iE <Plug>(textobj-entire-i)
 endif
 
-if s:has_plugin('ultisnips')
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-  let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-endif
-
-if s:has_plugin('vim-easyclip')
-  let g:EasyClipUseSubstituteDefaults = 0
-  let g:EasyClipUsePasteDefaults = 0
-  let g:EasyClipAutoFormat = 1
-  " nmap <c-y> <plug>EasyClipSwapPasteForward
-  " nmap <c-h> <plug>EasyClipSwapPasteBackwards
-  nmap s <plug>SubstituteOverMotionMap
-  xmap s <plug>XEasyClipPaste
-  imap <c-v> <plug>EasyClipInsertModePaste
-  nmap M <Plug>MoveMotionEndOfLinePlug
-  " Place a mark (m taken by easyclip)
-  nnoremap gm m
-endif
-
 if s:has_plugin('undotree')
   nnoremap <F5> :UndotreeToggle<cr>
   let g:undotree_SplitWidth = 45
@@ -526,45 +468,6 @@ endif
 if s:has_plugin('vim-javascript')
   let g:javascript_plugin_flow=1
   let g:javascript_plugin_jsdoc=1
-endif
-
-if s:has_plugin('goyo.vim')
-  function! s:goyo_enter()
-    if executable('tmux') && strlen($TMUX)
-      silent !tmux set status off
-      silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-    endif
-    set noshowmode
-    set noshowcmd
-    set norelativenumber
-    set scrolloff=999
-
-    autocmd InsertEnter * setlocal nonumber norelativenumber
-    autocmd InsertLeave * setlocal norelativenumber nonumber
-  endfunction
-
-  function! s:goyo_leave()
-    if executable('tmux') && strlen($TMUX)
-      silent !tmux set status on
-      silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-    endif
-    set showcmd
-    set relativenumber
-    set scrolloff=3
-
-    autocmd InsertEnter * setlocal number norelativenumber nocursorline
-    autocmd InsertLeave * setlocal relativenumber cursorline
-  endfunction
-
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call <SID>goyo_leave()
-endif
-
-if s:has_plugin('vim-better-whitespace')
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-  highlight ExtraWhitespace ctermbg=red guibg = #e06c75
-  " let g:strip_only_modified_lines=1
-  let g:strip_whitespace_confirm=0
 endif
 
 if s:has_plugin('vim-polyglot')
@@ -588,10 +491,6 @@ endif
 
 if s:has_plugin('vim-bufonly')
   nnoremap Q :BufOnly<cr>
-endif
-
-if s:has_plugin('gv.vim')
-  nnoremap <c-g> :GV!<cr>
 endif
 
 if s:has_plugin('vim-clap')
@@ -639,76 +538,6 @@ if s:has_plugin('vim-clap')
         \ 'sink': { selected -> execute('silent !tmuxinator ' . selected, '')},
         \ }
 
-endif
-
-if s:has_plugin('fzf.vim')
-  let g:fzf_height = '40%'
-  let g:fzf_commits_log_options = '--color --graph --pretty=format:"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold blue)(%cr) %Cred<%an>%Creset" --abbrev-commit'
-
-  nnoremap <a-p> :Files<cr>
-  nnoremap <c-p> :GFiles<cr>
-  nnoremap <c-space> :Buffers<cr>
-  nnoremap <c-t> :Lines<cr>
-  nnoremap <c-f> :Ag<space>
-  nnoremap <silent> <BS> :History:<cr>
-
-  " Allow options to be passed to FZF :Ag
-  " Probably quite hacky until a better solution appears
-  " https://github.com/junegunn/fzf.vim/issues/92#issuecomment-191248596
-  function! s:ag_with_opts(arg, bang)
-    let tokens  = split(a:arg)
-    let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-    let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-    call fzf#vim#ag(query, '--hidden --ignore .git', a:bang ? {} : {'down': '40%', 'options': '--layout=default'})
-  endfunction
-
-  command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --pretty --no-heading '.shellescape(<q-args>), 1, <bang>0)
-  command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-  command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-  if has('autocmd')
-    autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
-  endif
-
-  let $FZF_DEFAULT_OPTS='--layout=reverse'
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-  function! FloatingFZF()
-    let buf = nvim_create_buf(v:false, v:true)
-    call setbufvar(buf, '&signcolumn', 'no')
-
-    let height = float2nr(40)
-    let width = float2nr(160)
-    let horizontal = float2nr((&columns - width) / 2)
-    let vertical = 5
-
-    let opts = {
-          \ 'relative': 'editor',
-          \ 'row': vertical,
-          \ 'col': horizontal,
-          \ 'width': width,
-          \ 'height': height,
-          \ 'style': 'minimal'
-          \ }
-
-    call nvim_open_win(buf, v:true, opts)
-  endfunction
-
-" Customize fzf colors to match your color scheme
-  let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
-    \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'Boolean'],
-    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    \ 'hl+':     ['fg', 'Statement'],
-    \ 'info':    ['fg', 'PreProc'],
-    \ 'border':  ['fg', 'Ignore'],
-    \ 'prompt':  ['fg', 'Conditional'],
-    \ 'pointer': ['fg', 'Exception'],
-    \ 'marker':  ['fg', 'Keyword'],
-    \ 'spinner': ['fg', 'Label'],
-    \ 'header':  ['fg', 'Comment'] }
 endif
 
 if s:has_plugin('vim-airline')
@@ -769,15 +598,6 @@ if s:has_plugin('vim-commentary')
   " Terraform commentary
   autocmd FileType terraform setlocal commentstring=#%s
   autocmd FileType yaml setlocal commentstring=#%s
-endif
-
-if s:has_plugin('nerdtree')
-  nnoremap <silent><f3> :NERDTreeToggle<cr>
-  nnoremap <silent><leader><f3> :NERDTreeFind<cr>
-  let g:NERDTreeWinPos = 'right'
-  let g:NERDTreeQuitOnOpen = 1
-  let g:NERDTreeShowHidden = 1
-  let g:NERDTreeMinimalUI = 1
 endif
 
 if s:has_plugin('coc.nvim')
@@ -935,12 +755,6 @@ if s:has_plugin('ale')
   nnoremap <Leader>ff :ALEFix<CR>
 endif
 
-if s:has_plugin('colorizer')
-  " disable colorizer at startup
-  let g:colorizer_startup = 0
-  let g:colorizer_nomap = 1
-endif
-
 if s:has_plugin('vim-startify')
   let g:startify_session_dir = '~/.config/nvim/session'
   let g:startify_session_autoload = 1
@@ -1000,10 +814,6 @@ if s:has_plugin('vim-devicons')
   if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
   endif
-endif
-
-if s:has_plugin('devdocs.vim')
-  nmap <leader>K <Plug>(devdocs-under-cursor)
 endif
 
 if s:has_plugin('editorconfig-vim')
