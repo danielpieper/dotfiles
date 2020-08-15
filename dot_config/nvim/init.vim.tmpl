@@ -43,10 +43,6 @@ Plug 'https://github.com/schickling/vim-bufonly' " Delete all the buffers except
 " ------------------------------------------------------------------------------
 " Plug 'https://github.com/sheerun/vim-polyglot' " A collection of language packs for Vim.
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/lsp-status.nvim'
-Plug 'nathunsmitty/diagnostic-nvim'
-Plug 'nvim-lua/completion-nvim'
 
 " Editing
 " ------------------------------------------------------------------------------
@@ -97,7 +93,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim' " tmux airline theming
 
 " Snippets
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/honza/vim-snippets' " snippets for various programming languages
+" Plug 'https://github.com/honza/vim-snippets' " snippets for various programming languages
 
 
 " Git
@@ -122,6 +118,11 @@ Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugiti
 " ------------------------------------------------------------------------------
 " Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
 " Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/lsp-status.nvim'
+Plug 'nathunsmitty/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'steelsojka/completion-buffers'
 
 " Testing & debugging
 " ------------------------------------------------------------------------------
@@ -163,7 +164,7 @@ silent! colorscheme onedark
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags='li\|p'
 
-" Set <space> to leader
+" Set , to leader
 let mapleader=','
 let maplocalleader='\'
 
@@ -489,8 +490,45 @@ endif
 if s:has_plugin('nvim-lsp')
   " LSP config, in lua
   lua require("lsp")
+endif
 
-  setlocal omnifunc=v:lua.vim.lsp.omnifunc
+if s:has_plugin('diagnostic-nvim')
+  let g:diagnostic_enable_virtual_text = 1
+  let g:diagnostic_virtual_text_prefix = ''
+  let g:diagnostic_insert_delay = 1
+  let g:diagnostic_show_sign = 1
+endif
+
+if s:has_plugin('completion-nvim')
+  " Use <Tab> and <S-Tab> to navigate through popup menu
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ completion#trigger_completion()
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+  " Set completeopt to have a better completion experience
+  set completeopt=menuone,noinsert,noselect
+
+  " Avoid showing message extra message when using completion
+  set shortmess+=c
+
+  " Complete parentheses for functions
+  let g:completion_enable_auto_paren = 1
+
+  if s:has_plugin('completion-buffers')
+    let g:completion_chain_complete_list = [
+          \{'complete_items': ['lsp']},
+          \{'complete_items': ['buffers']},
+          \{'mode': '<c-p>'},
+          \{'mode': '<c-n>'}
+          \]
+  endif
 endif
 
 if s:has_plugin('vim-closetag')
@@ -949,11 +987,11 @@ augroup auto-resize
 augroup END
 
 " Autocomplete
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup endif
+" augroup omnifuncs
+"   autocmd!
+"   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" augroup endif
