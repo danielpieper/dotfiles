@@ -30,6 +30,8 @@ Plug 'https://github.com/haya14busa/incsearch.vim' " incrementally highlights AL
 
 " File management
 " ------------------------------------------------------------------------------
+Plug 'https://github.com/scrooloose/nerdtree' " The NERDTree is a file system explorer for the Vim editor.
+Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status flags.
 Plug 'https://github.com/mbbill/undotree' " Undo visualise
 
 
@@ -650,6 +652,15 @@ if s:has_plugin('vim-commentary')
   " Terraform commentary
   autocmd FileType terraform setlocal commentstring=#%s
   autocmd FileType yaml setlocal commentstring=#%s
+endif
+
+if s:has_plugin('nerdtree')
+  nnoremap <silent><f3> :NERDTreeToggle<cr>
+  nnoremap <silent><leader><f3> :NERDTreeFind<cr>
+  let g:NERDTreeWinPos = 'right'
+  let g:NERDTreeQuitOnOpen = 1
+  let g:NERDTreeShowHidden = 1
+  let g:NERDTreeMinimalUI = 1
 endif
 
 if s:has_plugin('coc.nvim')
