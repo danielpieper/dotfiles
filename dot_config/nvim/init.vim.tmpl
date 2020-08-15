@@ -948,12 +948,13 @@ augroup file-types
   autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.css
   autocmd BufNewFile,BufRead *.neon setlocal filetype=yaml
 
-  " Override golang template files:
+  " Override golang template files (mainly for chezmoi):
   autocmd BufNewFile,BufRead *.vim.tmpl setlocal filetype=vim
   autocmd BufNewFile,BufRead *.json.tmpl setlocal filetype=json
   autocmd BufNewFile,BufRead *.conf.tmpl setlocal filetype=conf
   autocmd BufNewFile,BufRead *.yaml.tmpl setlocal filetype=yaml
   autocmd BufNewFile,BufRead *.yml.tmpl setlocal filetype=yaml
+  autocmd BufNewFile,BufRead *.lua.tmpl setlocal filetype=lua
 
   " Wrap text and turn on spell for markdown files
   autocmd BufNewFile,BufRead *.md setlocal wrap linebreak spell filetype=markdown

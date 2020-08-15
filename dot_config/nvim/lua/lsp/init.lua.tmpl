@@ -34,12 +34,21 @@ end
 --   indicator_ok = 'ok',
 -- })
 
+{{- $licenseKey := "" -}}
+{{- range (first (onepassword "ucpdges4uyo3uaj2kmhe4e5diq").details.sections).fields -}}
+  {{- if eq .n "reg_code" -}}
+    {{- $licenseKey = .v -}}
+  {{- end -}}
+{{- end }}
+
 nvim_lsp.intelephense.setup{
   on_attach = on_attach,
   -- capabilities = lsp_status.capabilities
-  -- init_options = {
-  --   licenceKey = get from 1password
-  -- },
+{{- if ne $licenseKey "" }}
+  init_options = {
+    licenceKey = "{{ $licenseKey }}"
+  },
+{{- end }}
 }
 
 nvim_lsp.jsonls.setup{
