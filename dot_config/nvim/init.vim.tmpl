@@ -121,13 +121,13 @@ Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugiti
 
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
-" Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
-" Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/lsp-status.nvim'
-Plug 'nathunsmitty/diagnostic-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'steelsojka/completion-buffers'
+" Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
+" Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
 " Testing & debugging
 " ------------------------------------------------------------------------------
@@ -330,7 +330,7 @@ set noerrorbells
 " Don't show the intro message when starting Vim
 " Also suppress several 'Press Enter to continue messages' especially
 " with FZF
-set shortmess=aoOtIWcFs
+set shortmess=aotIWcF
 
 " Show the current mode
 set title
@@ -524,15 +524,29 @@ if s:has_plugin('completion-nvim')
   set shortmess+=c
 
   " Complete parentheses for functions
-  let g:completion_enable_auto_paren = 1
+  let g:completion_enable_auto_paren = 0
 
   if s:has_plugin('completion-buffers')
-    let g:completion_chain_complete_list = [
-          \{'complete_items': ['lsp']},
-          \{'complete_items': ['buffers']},
-          \{'mode': '<c-p>'},
-          \{'mode': '<c-n>'}
-          \]
+    let g:completion_chain_complete_list = {
+            \ 'default' : {
+            \   'default': [
+            \       {'complete_items': ['lsp']},
+            \       {'complete_items': ['buffers']},
+            \       {'complete_items': ['path']},
+            \       {'mode': '<c-p>'},
+            \       {'mode': '<c-n>'}
+            \   ]
+            \ },
+            \ 'php' : {
+            \   'default': [
+            \       {'complete_items': ['lsp']},
+            \       {'complete_items': ['buffers']},
+            \       {'complete_items': ['path']},
+            \       {'mode': '<c-p>'},
+            \       {'mode': '<c-n>'}
+            \    ]
+            \ }
+            \ }
   endif
 endif
 
@@ -621,14 +635,14 @@ if s:has_plugin('fzf.vim')
 endif
 
 if s:has_plugin('vim-clap')
-  nnoremap <a-p> :Clap files<cr>
-  nnoremap <c-p> :Clap gfiles<cr>
-  nnoremap <c-space> :Clap buffers<cr>
-  nnoremap <c-t> :Clap tmuxinator<cr>
-  nnoremap <c-l> :Clap lines<cr>
-  nnoremap <c-f> :Clap grep<cr>
+  nnoremap <silent> <a-p> :Clap files<cr>
+  nnoremap <silent> <c-p> :Clap gfiles<cr>
+  nnoremap <silent> <c-space> :Clap buffers<cr>
+  nnoremap <silent> <c-t> :Clap tmuxinator<cr>
+  nnoremap <silent> <c-l> :Clap lines<cr>
+  nnoremap <silent> <c-f> :Clap grep<cr>
   nnoremap <silent> <BS> :Clap command_history<cr>
-  nnoremap <silent> <F4> :Clap filer<cr>
+  nnoremap <silent> <F4> :Clap git_diff_files<cr>
 
   let g:clap_theme = 'atom_dark'
   " let g:clap_theme = 'solarized_dark'

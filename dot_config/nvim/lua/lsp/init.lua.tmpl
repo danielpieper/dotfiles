@@ -6,6 +6,10 @@ local configs = require('nvim_lsp/configs')
 local util = require('nvim_lsp/util')
 
 local on_attach = function(client, bufnr)
+  -- lsp_status.on_attach(client, bufnr)
+  diagnostic.on_attach(client, bufnr)
+  completion.on_attach(client, bufnr)
+
   -- Set the omnifunc for this buffer.
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -19,10 +23,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-
-  -- lsp_status.on_attach(client, bufnr)
-  diagnostic.on_attach(client, bufnr)
-  completion.on_attach(client, bufnr)
 end
 -- lsp_status.register_progress()
 -- lsp_status.config({
@@ -44,10 +44,13 @@ end
 nvim_lsp.intelephense.setup{
   on_attach = on_attach,
   -- capabilities = lsp_status.capabilities
+  log_level = vim.lsp.protocol.MessageType.Log,
+  message_level = vim.lsp.protocol.MessageType.Log,
 {{- if ne $licenseKey "" }}
   init_options = {
-    licenceKey = "{{ $licenseKey }}"
-  },
+    licenceKey = "{{ $licenseKey }}",
+    -- clearCache = true,
+  }
 {{- end }}
 }
 
