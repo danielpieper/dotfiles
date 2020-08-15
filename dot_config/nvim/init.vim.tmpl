@@ -41,8 +41,12 @@ Plug 'https://github.com/schickling/vim-bufonly' " Delete all the buffers except
 
 " Language pack
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/sheerun/vim-polyglot' " A collection of language packs for Vim.
-
+" Plug 'https://github.com/sheerun/vim-polyglot' " A collection of language packs for Vim.
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/lsp-status.nvim'
+Plug 'nathunsmitty/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
 
 " Editing
 " ------------------------------------------------------------------------------
@@ -104,19 +108,19 @@ Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugiti
 
 " HTML/CSS
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/alvan/vim-closetag' " Automatically add a closing HTML tag
-Plug 'https://github.com/tpope/vim-haml' " Better Scss highlighting than polyglot
+" Plug 'https://github.com/alvan/vim-closetag' " Automatically add a closing HTML tag
+" Plug 'https://github.com/tpope/vim-haml' " Better Scss highlighting than polyglot
 
 
 " JavaScript
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']} " Vastly improved Javascript indentation and syntax support in Vim.
-Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx', 'json']} " gf to jump to source and module files, :Nedit {module_name} to edit the main file of a module
+" Plug 'https://github.com/pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']} " Vastly improved Javascript indentation and syntax support in Vim.
+" Plug 'https://github.com/moll/vim-node', {'for': ['javascript', 'javascript.jsx', 'json']} " gf to jump to source and module files, :Nedit {module_name} to edit the main file of a module
 
 
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
+" Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'} " Coc is an intellisense engine for vim8 & neovim.
 " Plug 'https://github.com/dense-analysis/ale' " ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim 0.2.0+ and Vim 8 while you edit your text files.
 
 " Testing & debugging
@@ -234,9 +238,8 @@ set complete+=kspell " TODO: what is kspell?
 " Prevent autocomplete options opening in scratchpad
 set completeopt-=preview
 
-" This is set low so that gitgutter updates reasonably quickly
-" https://github.com/airblade/vim-gitgutter#when-are-the-signs-updated
-set updatetime=300 " TODO: is this required as i don't use gitgutter?
+" Show errors after 1 second
+set updatetime=1000
 
 " Don't wrap lines
 set nowrap
@@ -477,6 +480,17 @@ if s:has_plugin('vim-polyglot')
   let g:csv_move_folds = 1
   let g:go_highlight_functions = 1
   let g:go_highlight_extra_types = 1
+endif
+
+if s:has_plugin('nvim-treesitter')
+  lua require("treesitter")
+endif
+
+if s:has_plugin('nvim-lsp')
+  " LSP config, in lua
+  lua require("lsp")
+
+  setlocal omnifunc=v:lua.vim.lsp.omnifunc
 endif
 
 if s:has_plugin('vim-closetag')
