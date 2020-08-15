@@ -238,6 +238,9 @@ set showmatch
 " will not cause the screen to redraw
 set lazyredraw
 
+" Increase redraw time for large files ...
+set redrawtime=10000
+
 " Don't display the current mode (Insert, Visual, Replace)
 " in the status line. This info is already shown in the
 " Airline status bar.
@@ -721,7 +724,7 @@ if s:has_plugin('vim-airline')
         \ 'right_alt' : '',
         \ 'space' : ' '}
   endif
-
+  let g:airline_highlighting_cache = 1 " enable caching of the various syntax highlighting groups
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline#extensions#tabline#buffer_nr_show = 0
