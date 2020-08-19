@@ -18,6 +18,8 @@
   "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": false,
   "diagnostic.messageTarget": "echo",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic-languageserver.debug": false,
   "diagnostic-languageserver.trace.server": "off",
   "diagnostic-languageserver.linters": {
@@ -25,7 +27,7 @@
       "command": "phpcs",
       "debounce": 100,
       "rootPatterns": [ "composer.json", "composer.lock", "vendor", ".git" ],
-      "args": [ "--standard=phpcs.xml", "--report=emacs", "-s", "-" ],
+      "args": [ "--standard=phpcs.xml", "--report=emacs", "-s", "%file" ],
       "offsetLine": 0,
       "offsetColumn": 0,
       "sourceName": "phpcs",
@@ -119,7 +121,7 @@
     }
   },
   "diagnostic-languageserver.filetypes": {
-    "php": ["phpcs", "phpstan", "phpmd"],
+    "php": ["phpcs", "phpmd", "phpstan"],
     "javascript": "eslint",
     "markdown": "markdownlint",
     "go": "golangci-lint"

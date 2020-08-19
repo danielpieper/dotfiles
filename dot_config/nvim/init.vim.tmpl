@@ -60,11 +60,11 @@ Plug 'tpope/vim-commentary' " for multiline became to comment lines
 Plug 'https://github.com/chaoren/vim-wordmotion' " More useful word motions for Vim
 Plug 'https://github.com/wellle/targets.vim' " Vim plugin that provides additional text objects: ci' to (cut in single quote), also support (I l L a A n N) for (In Last last in  .. next Next)
 Plug 'https://github.com/kana/vim-textobj-user' " create your own text objects without pain, eg. call textobj#user#plugin('datetime', { ...
-Plug 'https://github.com/kana/vim-textobj-function' " Text objects for functions, build error ??!
+" Plug 'https://github.com/kana/vim-textobj-function' " Text objects for functions, build error ??!
 Plug 'https://github.com/kana/vim-textobj-entire' " Text objects for functions, build error ??!
-Plug 'https://github.com/kana/vim-textobj-line' " Text objects for functions, build error ??!
-Plug 'https://github.com/kana/vim-textobj-fold' " provides text objects for fold , eg. yaz to yank arround fold
-Plug 'https://github.com/kana/vim-textobj-indent' " Text objects for indented blocks of lines, eg. y- yank of blocks of lines
+" Plug 'https://github.com/kana/vim-textobj-line' " Text objects for functions, build error ??!
+" Plug 'https://github.com/kana/vim-textobj-fold' " provides text objects for fold , eg. yaz to yank arround fold
+" Plug 'https://github.com/kana/vim-textobj-indent' " Text objects for indented blocks of lines, eg. y- yank of blocks of lines
 
 
 " General
@@ -82,7 +82,7 @@ Plug 'tpope/vim-surround' " ysiw' | ds{ds)  provides mappings to easily delete, 
 
 " Copy/Paste behaviour
 " ------------------------------------------------------------------------------
-Plug 'https://github.com/ConradIrwin/vim-bracketed-paste' " Improve pasting code from the clipboard
+" Plug 'https://github.com/ConradIrwin/vim-bracketed-paste' " Improve pasting code from the clipboard
 
 
 " Sessions
@@ -204,7 +204,7 @@ set hidden
 set sessionoptions+=tabpages,globals
 
 " Briefly move the cursor to the matching brace
-set showmatch
+" set showmatch
 
 " Lazyredraw attempts to solve Vim lag by reducing the amount of
 " processing required. When enabled, any action that is not typed
@@ -224,7 +224,7 @@ set noshowmode
 set synmaxcol=500
 
 " Highlight current line
-set cursorline
+set nocursorline
 
 " Indent using two spaces.
 set softtabstop=2
@@ -1063,9 +1063,6 @@ augroup file-types
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
-
-  " disable cursorline for php as syntax highlighting slows down vim
-  autocmd FileType php setlocal nocursorline
 
   " Use JS snippets in TS
   autocmd FileType typescript,typescript.tsx call UltiSnips#AddFiletypes('javascript.typescript')
