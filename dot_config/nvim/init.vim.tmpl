@@ -95,7 +95,7 @@ Plug 'https://github.com/mhinz/vim-startify' " This plugin provides a start scre
 " Plug 'https://github.com/vim-airline/vim-airline' " Lean & mean status/tabline for vim that's light as air
 Plug 'https://github.com/itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'https://github.com/mengelbrecht/lightline-bufferline' " This plugin provides bufferline functionality for the lightline vim plugin.
-Plug 'https://github.com/edkolev/tmuxline.vim' " tmux airline theming
+" Plug 'https://github.com/edkolev/tmuxline.vim' " tmux airline theming
 
 
 " Snippets
@@ -776,19 +776,21 @@ if s:has_plugin('lightline.vim')
 
 endif
 
+if s:has_plugin('tmuxline.vim')
+  let g:tmuxline_separators = {
+      \ 'left' : '',
+      \ 'left_alt': '',
+      \ 'right' : '',
+      \ 'right_alt' : '',
+      \ 'space' : ' '}
+
+endif
+
 if s:has_plugin('vim-airline')
   if s:has_plugin('onedark.vim')
     let g:airline_theme = 'onedark'
   endif
 
-  if s:has_plugin('tmuxline.vim')
-    let g:tmuxline_separators = {
-        \ 'left' : '',
-        \ 'left_alt': '',
-        \ 'right' : '',
-        \ 'right_alt' : '',
-        \ 'space' : ' '}
-  endif
   let g:airline_highlighting_cache = 1 " enable caching of the various syntax highlighting groups
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
