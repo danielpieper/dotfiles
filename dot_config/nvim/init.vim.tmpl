@@ -706,7 +706,8 @@ if s:has_plugin('lightline.vim')
     \     'readonly': 'LightlineReadonly',
     \     'gitbranch': 'LightlineFugitive',
     \     'fileformat': 'LightlineFileformat',
-    \     'filetype': 'LightlineFiletype'
+    \     'filetype': 'LightlineFiletype',
+    \     'fileencoding': 'LightlineFileencoding'
     \   }
     \ }
 
@@ -724,11 +725,15 @@ if s:has_plugin('lightline.vim')
   endfunction
 
   function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 100 ? &fileformat : ''
+  endfunction
+
+  function! LightlineFileencoding()
+    return winwidth(0) > 100 ? &fileencoding : ''
   endfunction
 
   function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
 
   " let g:lightline.separator    = {'left': '', 'right': ''}
@@ -780,15 +785,13 @@ if s:has_plugin('lightline.vim')
 
   if s:has_plugin('vim-devicons')
     let g:lightline#bufferline#enable_devicons = 1
-    let g:lightline.component_function.filetype = 'MyFiletype'
-    let g:lightline.component_function.fileformat = 'MyFileformat'
 
-    function! MyFiletype()
-      return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+    function! LightlineFiletype()
+      return winwidth(0) > 100 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
     endfunction
 
-    function! MyFileformat()
-      return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    function! LightlineFileformat()
+      return winwidth(0) > 100 ? (WebDevIconsGetFileFormatSymbol() . ' ' . &fileformat) : ''
     endfunction
   endif
 
