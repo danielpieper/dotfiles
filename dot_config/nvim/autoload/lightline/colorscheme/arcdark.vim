@@ -1,4 +1,3 @@
-
 " Common colors
 let s:blue   = [ '#61afef', 75 ]
 let s:green  = [ '#98c379', 76 ]
@@ -25,13 +24,15 @@ else
   " Dark variant
   let s:fg    = [ '#abb2bf', 145 ]
   let s:bg    = [ '#282c34', 235 ]
-  let s:gray1 = [ '#2c323d', 241 ]
+  let s:gray1 = [ '#5c6370', 241 ]
+  " let s:gray2 = [ '#2c323d', 235 ]
   let s:gray2 = [ '#1D1F21', 235 ]
-  let s:gray3 = [ '#3e4452', 240 ]
+  " let s:gray3 = [ '#3e4452', 240 ]
+  let s:gray3 = [ '#1D1F21', 235 ]
 
-  let s:p.inactive.left   = [ [ s:gray1,  s:bg ], [ s:gray1, s:bg ] ]
+  let s:p.inactive.left   = [ [ s:gray1,  s:gray2 ], [ s:gray1, s:gray2 ] ]
   let s:p.inactive.middle = [ [ s:gray1, s:gray2 ] ]
-  let s:p.inactive.right  = [ [ s:gray1, s:bg ] ]
+  let s:p.inactive.right  = [ [ s:gray1, s:gray2 ] ]
 endif
 
 " Common
@@ -47,8 +48,8 @@ let s:p.replace.left   = [ [ s:bg, s:red1, 'bold' ], [ s:fg, s:gray3 ] ]
 let s:p.visual.right   = [ [ s:bg, s:purple, 'bold' ], [ s:fg, s:gray3 ] ]
 let s:p.visual.left    = [ [ s:bg, s:purple, 'bold' ], [ s:fg, s:gray3 ] ]
 let s:p.tabline.left   = [ [ s:fg, s:gray3 ] ]
-let s:p.tabline.tabsel = [ [ s:bg, s:purple, 'bold' ] ]
+let s:p.tabline.tabsel = [ [ s:bg, s:blue, 'bold' ] ]
 let s:p.tabline.middle = [ [ s:gray3, s:gray2 ] ]
-let s:p.tabline.right  = copy(s:p.normal.right)
+let s:p.tabline.right  = [ [ s:fg, s:gray3, 'bold' ], [ s:fg, s:gray3 ] ]
 
 let g:lightline#colorscheme#arcdark#palette = lightline#colorscheme#flatten(s:p)

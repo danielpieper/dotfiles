@@ -691,12 +691,22 @@ if s:has_plugin('lightline.vim')
     \              [ 'gitbranch', 'readonly', 'relativepath', 'modified' ]
     \     ]
     \   },
+    \   'inactive': {
+    \     'left': [ [ 'relativepath' ] ],
+    \     'right': [ [ 'lineinfo' ], [ 'percent' ] ] 
+    \   },
+    \   'tab': {
+    \     'active': [ 'tabnum' ],
+    \     'inactive': [ 'tabnum' ] 
+    \   },
     \   'component': {
     \     'lineinfo': ' %3l:%-2v',
     \   },
     \   'component_function': {
     \     'readonly': 'LightlineReadonly',
-    \     'gitbranch': 'LightlineFugitive'
+    \     'gitbranch': 'LightlineFugitive',
+    \     'fileformat': 'LightlineFileformat',
+    \     'filetype': 'LightlineFiletype'
     \   }
     \ }
 
@@ -711,6 +721,14 @@ if s:has_plugin('lightline.vim')
       return branch !=# '' ? ''.branch : ''
     endif
     return ''
+  endfunction
+
+  function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+  endfunction
+
+  function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
 
   " let g:lightline.separator    = {'left': '', 'right': ''}

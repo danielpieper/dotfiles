@@ -7,8 +7,8 @@ local util = require('nvim_lsp/util')
 
 local on_attach = function(client, bufnr)
   -- lsp_status.on_attach(client, bufnr)
-  diagnostic.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
+  diagnostic.on_attach(client, bufnr)
 
   -- Set the omnifunc for this buffer.
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -44,8 +44,8 @@ end
 nvim_lsp.intelephense.setup{
   on_attach = on_attach,
   -- capabilities = lsp_status.capabilities
-  log_level = vim.lsp.protocol.MessageType.Log,
-  message_level = vim.lsp.protocol.MessageType.Log,
+  -- log_level = vim.lsp.protocol.MessageType.Log,
+  -- message_level = vim.lsp.protocol.MessageType.Log,
 {{- if ne $licenseKey "" }}
   init_options = {
     licenceKey = "{{ $licenseKey }}",
