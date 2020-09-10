@@ -449,6 +449,15 @@ endif
 "  Plugin config
 " ------------------------------------------------------------------------------
 
+if s:has_plugin('vim-polyglot')
+  let g:polyglot_disabled = ['markdown', 'scss']
+  let g:vue_disable_pre_processors = 1
+  let g:jsx_ext_required = 0
+  let g:csv_move_folds = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_extra_types = 1
+endif
+
 if s:has_plugin('vim-smoothie')
   let g:smoothie_use_default_mappings = v:false
 
@@ -479,15 +488,6 @@ endif
 if s:has_plugin('vim-javascript')
   let g:javascript_plugin_flow=1
   let g:javascript_plugin_jsdoc=1
-endif
-
-if s:has_plugin('vim-polyglot')
-  let g:polyglot_disabled = ['markdown', 'scss']
-  let g:vue_disable_pre_processors = 1
-  let g:jsx_ext_required = 0
-  let g:csv_move_folds = 1
-  let g:go_highlight_functions = 1
-  let g:go_highlight_extra_types = 1
 endif
 
 if s:has_plugin('nvim-treesitter')
