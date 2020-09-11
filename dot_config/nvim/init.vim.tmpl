@@ -1072,6 +1072,10 @@ if s:has_plugin('vim-test')
 endif
 
 if s:has_plugin('vim-devicons')
+{{- if eq .chezmoi.os "darwin" }}
+  let g:WebDevIconsOS = 'Darwin'
+{{- end }}
+
   " after a re-source, fix syntax matching issues (concealing brackets):
   if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
