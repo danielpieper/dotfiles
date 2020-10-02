@@ -897,11 +897,22 @@ if s:has_plugin('coc.nvim')
   nmap <silent> <leader>gr <Plug>(coc-references)
   nmap <silent> <leader>rr <Plug>(coc-rename)
   nmap <silent> <leader>gl <Plug>(coc-codelens-action)
-  nmap <silent> <leader>ga <Plug>(coc-codeaction)
+
+  " Remap keys for applying codeAction to the current buffer.
+  nmap <leader>ac  <Plug>(coc-codeaction)
+  " Apply AutoFix to problem on the current line.
+  nmap <leader>qf  <Plug>(coc-fix-current)
 
   " Use `[c` and `]c` to navigate diagnostics
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+  " Formatting selected code.
+  " xmap <leader>ff  <Plug>(coc-format-selected)
+  " nmap <leader>ff  <Plug>(coc-format-selected)
+
+  " Add `:Format` command to format current buffer.
+  " command! -nargs=0 Format :call CocAction('format')
 
   " Using CocList
   nnoremap <silent> <space>l  :<C-u>CocList<cr>
