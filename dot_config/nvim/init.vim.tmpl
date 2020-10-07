@@ -123,7 +123,7 @@ Plug 'https://github.com/shumphrey/fugitive-gitlab.vim' " An extension to fugiti
 
 " Autocomplete & linting
 " ------------------------------------------------------------------------------
-" Plug 'neovim/nvim-lsp'
+" Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/lsp-status.nvim'
 " Plug 'nvim-lua/diagnostic-nvim'
 " Plug 'nvim-lua/completion-nvim'
@@ -494,7 +494,7 @@ if s:has_plugin('nvim-treesitter')
   lua require("treesitter")
 endif
 
-if s:has_plugin('nvim-lsp')
+if s:has_plugin('nvim-lspconfig')
   " LSP config, in lua
   lua require("lsp")
 endif
@@ -527,6 +527,8 @@ if s:has_plugin('completion-nvim')
 
   " Complete parentheses for functions
   let g:completion_enable_auto_paren = 0
+
+  let g:completion_enable_snippet = 'UltiSnips'
 
   if s:has_plugin('completion-buffers')
     let g:completion_chain_complete_list = {

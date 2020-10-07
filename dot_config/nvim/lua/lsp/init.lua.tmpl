@@ -54,71 +54,10 @@ nvim_lsp.intelephense.setup{
 {{- end }}
 }
 
-nvim_lsp.jsonls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.clangd.setup{
-  -- callbacks = lsp_status.extensions.clangd.setup(),
-  init_options = {
-    clangdFileStatus = true
-  },
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.pyls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.sumneko_lua.setup{
-  on_attach = on_attach,
-}
-
-nvim_lsp.vimls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.tsserver.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.html.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.cssls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities,
-  settings = {
-    css = {
-      validate = false
-    },
-    less = {
-      validate = true
-    },
-    scss = {
-      validate = true
-    }
+local servers = {'cssls', 'bashls', 'diagnosticls', 'dockerls', 'flow', 'ghcide', 'gopls', 'hie', 'html', 'tsserver', 'jsonls', 'kotlin_language_server', 'pyls', 'rls', 'rust_analyzer', 'sourcekit', 'vimls', 'vuels'}
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
   }
-}
+end
 
-nvim_lsp.rust_analyzer.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.elixirls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
-
-nvim_lsp.gopls.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-}
