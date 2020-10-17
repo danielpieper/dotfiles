@@ -684,7 +684,7 @@ if s:has_plugin('lightline.vim')
     \   'colorscheme': 'arcdark',
     \   'active': {
     \     'left':[ [ 'mode', 'paste' ],
-    \              [ 'gitbranch', 'readonly', 'relativepath', 'modified' ]
+    \              [ 'gitbranch', 'readonly', 'relativepath', 'modified', 'cocstatus', 'currentfunction' ]
     \     ]
     \   },
     \   'inactive': {
@@ -703,7 +703,9 @@ if s:has_plugin('lightline.vim')
     \     'gitbranch': 'LightlineFugitive',
     \     'fileformat': 'LightlineFileformat',
     \     'filetype': 'LightlineFiletype',
-    \     'fileencoding': 'LightlineFileencoding'
+    \     'fileencoding': 'LightlineFileencoding',
+    \     'cocstatus': 'coc#status',
+    \     'currentfunction': 'LightlineCocCurrentFunction'
     \   }
     \ }
 
@@ -730,6 +732,10 @@ if s:has_plugin('lightline.vim')
 
   function! LightlineFiletype()
     return winwidth(0) > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endfunction
+
+  function! LightlineCocCurrentFunction()
+      return get(b:, 'coc_current_function', '')
   endfunction
 
   " let g:lightline.separator    = {'left': '', 'right': ''}
@@ -1079,8 +1085,8 @@ if s:has_plugin('vim-test')
 {{- end }}
 
   " make test commands execute using dispatch.vim
-  " let test#strategy = "dispatch"
-  let test#strategy = "neovim"
+  let test#strategy = "dispatch"
+  " let test#strategy = "neovim"
 endif
 
 if s:has_plugin('vim-devicons')

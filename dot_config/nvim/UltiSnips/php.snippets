@@ -121,3 +121,8 @@ $time_end = microtime(true);
 $time = $time_end - $time_start;
 echo "execution took $time seconds\n";
 endsnippet
+
+snippet debugtest "debug print for tests" b
+$debug = $0;
+\Illuminate\Support\Facades\Log::info(var_export($debug, true));
+endsnippet
