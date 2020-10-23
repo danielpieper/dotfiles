@@ -1,9 +1,26 @@
+local utils = require('utils')
 -- local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
 local configs = require('nvim_lsp/configs')
-local util = require('nvim_lsp/util')
+
+-- vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
+-- vim.g.completion_matching_ignore_case = 1
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noinsert,noselect"
+
+-- Avoid showing message extra message when using completion
+vim.o.shortmess = vim.o.shortmess .. "c"
+
+utils.map("i", "<Tab>", [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {expr = true})
+utils.map(
+  "i",
+  "<S-Tab>",
+  [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]],
+  {expr = true}
+)
 
 local on_attach = function(client, bufnr)
   -- lsp_status.on_attach(client, bufnr)
@@ -46,7 +63,7 @@ nvim_lsp.intelephense.setup{
   -- capabilities = lsp_status.capabilities
   -- log_level = vim.lsp.protocol.MessageType.Log,
   -- message_level = vim.lsp.protocol.MessageType.Log,
-{{- if ne $licenseKey "" }}
+ {{- if ne $licenseKey "" }}
   init_options = {
     licenceKey = "{{ $licenseKey }}",
     -- clearCache = true,
@@ -54,7 +71,26 @@ nvim_lsp.intelephense.setup{
 {{- end }}
 }
 
-local servers = {'cssls', 'bashls', 'diagnosticls', 'dockerls', 'flow', 'ghcide', 'gopls', 'hie', 'html', 'tsserver', 'jsonls', 'kotlin_language_server', 'pyls', 'rls', 'rust_analyzer', 'sourcekit', 'vimls', 'vuels'}
+local servers = {
+  'cssls',
+  'bashls',
+--  'diagnosticls',
+  'dockerls',
+  'flow',
+  'ghcide',
+  'gopls',
+  'hie',
+  'html',
+  'tsserver',
+  'jsonls',
+  'kotlin_language_server',
+  'pyls',
+  'rls',
+  'rust_analyzer',
+  'sourcekit',
+  'vimls',
+  'vuels'
+}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

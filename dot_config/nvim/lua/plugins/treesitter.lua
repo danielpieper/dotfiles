@@ -66,22 +66,23 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   -- one of "all", "language", or a list of languages
-  ensure_installed = {
-    "java",
-    "python",
-    "lua",
-    "go",
-    "yaml",
-    "json",
-    "markdown",
-    "html",
-    "typescript",
-    "query",
-    "vue",
-    "bash",
-    "css",
-    "php",
-    "javascript",
-    "regex"
-  }
+  ensure_installed = "all"
+--  ensure_installed = {
+--    "java",
+--    "python",
+--    "lua",
+--    "go",
+--    "yaml",
+--    "json",
+--    "markdown",
+--    "html",
+--    "typescript",
+--    "query",
+--    "vue",
+--    "bash",
+--    "css",
+--    "php",
+--    "javascript",
+--    "regex"
+--  }
 }
