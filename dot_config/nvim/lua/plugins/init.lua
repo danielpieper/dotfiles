@@ -50,7 +50,8 @@ return require('packer').startup {
     -- Git
     use {
       'https://github.com/tpope/vim-fugitive',
-      requires = 'https://github.com/shumphrey/fugitive-gitlab.vim' -- An extension to fugitive.vim for gitlab support
+      requires = 'https://github.com/shumphrey/fugitive-gitlab.vim', -- An extension to fugitive.vim for gitlab support
+      config = 'require("plugins.vim-fugitive")',
     } -- fugitive.vim: A Git wrapper so awesome, it should be illegal
 
     -- General

@@ -17,25 +17,22 @@ endfunction
 ]])
 
 vim.api.nvim_command([[
-  function! VagrantTransform(cmd) abort
-    let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
-    return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
-  endfunction
+function! VagrantTransform(cmd) abort
+  let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+  return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
+endfunction
 ]])
 
-vim.api.set_set_var(
-  'test#custom_transformations',
-  {
-    personio = [[function('PersonioTransform')]],
-    vagrant = [[function('VagrantTransform')]]
-  }
-)
+vim.api.nvim_set_var('test#custom_transformations', {
+  personio = [[function('PersonioTransform')]],
+  vagrant = [[function('VagrantTransform')]]
+})
 
 {{- if eq .chezmoi.os "darwin" }}
-vim.api.set_set_var('test#transformation', 'personio')
-vim.api.set_set_var('test#php#phpunit#executable', 'vendor/bin/phpunit')
+vim.api.nvim_set_var('test#transformation', 'personio')
+vim.api.nvim_set_var('test#php#phpunit#executable', 'vendor/bin/phpunit')
 {{- end }}
 
-" make test commands execute using dispatch.vim
-vim.api.set_set_var('test#strategy', 'dispatch')
+-- make test commands execute using dispatch.vim
+vim.api.nvim_set_var('test#strategy', 'dispatch')
 -- vim.api.set_set_var('test#strategy', 'neovim')
