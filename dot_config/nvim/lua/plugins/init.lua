@@ -84,6 +84,14 @@ return require('packer').startup {
 --    use 'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
 --    use {'https://github.com/mbbill/undotree', cmd = 'UndotreeToggle'} -- Undo visualise
 
+    -- Finding and replacing
+    use {
+      'https://github.com/liuchengxu/vim-clap',
+      run = ':Clap install-binary!',
+      config = 'require("plugins.vim-clap")',
+    } -- Modern performant generic finder and dispatcher for Vim and NeoVim
+    -- use 'https://github.com/haya14busa/incsearch.vim' -- incrementally highlights ALL pattern matches unlike default 'incsearch'.
+
     -- Completion and linting
     use {
       'https://github.com/neovim/nvim-lspconfig',
