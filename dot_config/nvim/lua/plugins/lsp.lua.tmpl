@@ -1,5 +1,5 @@
 local utils = require('utils')
--- local lsp_status = require('lsp-status')
+local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
@@ -23,7 +23,7 @@ utils.map(
 )
 
 local on_attach = function(client, bufnr)
-  -- lsp_status.on_attach(client, bufnr)
+  lsp_status.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
   diagnostic.on_attach(client, bufnr)
 
@@ -89,7 +89,8 @@ local servers = {
   'rust_analyzer',
   'sourcekit',
   'vimls',
-  'vuels'
+  'vuels',
+  'sumneko_lua',
 }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {

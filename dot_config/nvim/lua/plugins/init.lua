@@ -62,7 +62,10 @@ return require('packer').startup {
     use {
       'https://github.com/itchyny/lightline.vim',
       config = 'require("plugins.lightline")',
-      requires = 'https://github.com/mengelbrecht/lightline-bufferline' -- This plugin provides bufferline functionality for the lightline vim plugin.
+      requires = {
+        'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
+        'https://github.com/ryanoasis/vim-devicons'
+      }
     } -- A light and configurable statusline/tabline plugin for Vim
    
     -- File management
@@ -89,7 +92,7 @@ return require('packer').startup {
 --          {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
 --          {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
           }
-        }
+        },
       }
     }
   end
