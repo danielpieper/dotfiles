@@ -26,4 +26,9 @@ function M.get_color(synID, what, mode)
   return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(synID)), what, mode)
 end
 
+function M.dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
+end
+
 return M
