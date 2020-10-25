@@ -47,6 +47,12 @@ return require('packer').startup {
     use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
     use 'https://github.com/tpope/vim-commentary' -- Comment stuff out.
 
+    -- Git
+    use {
+      'https://github.com/tpope/vim-fugitive',
+      requires = 'https://github.com/shumphrey/fugitive-gitlab.vim' -- An extension to fugitive.vim for gitlab support
+    } -- fugitive.vim: A Git wrapper so awesome, it should be illegal
+
     -- General
     use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
     use 'https://github.com/editorconfig/editorconfig-vim' -- EditorConfig plugin for Vim http://editorconfig.org
@@ -56,7 +62,7 @@ return require('packer').startup {
     use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
 
     -- Sessions
-    use 'https://github.com/mhinz/vim-startify' -- This plugin provides a start screen for Vim and Neovim.
+    use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
 
     -- Status Bar
     use {
@@ -64,7 +70,8 @@ return require('packer').startup {
       config = 'require("plugins.lightline")',
       requires = {
         'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
-        'https://github.com/ryanoasis/vim-devicons'
+        'https://github.com/ryanoasis/vim-devicons',
+        'https://github.com/tpope/vim-fugitive',
       }
     } -- A light and configurable statusline/tabline plugin for Vim
    

@@ -41,18 +41,26 @@ g.lightline = {
   },
   component_function = {
     readonly = 'LightlineReadonly',
---    gitbranch =  'LightlineFugitive',
+    gitbranch =  'LightlineFugitive',
     fileformat = 'LightlineFileformat',
     filetype = 'LightlineFiletype',
     fileencoding = 'LightlineFileencoding',
---    cocstatus = 'coc#status',
---    currentfunction = 'LightlineCocCurrentFunction'
   }
 }
 
 vim.api.nvim_command([[
   function! LightlineReadonly()
     return &readonly ? '' : ''
+  endfunction
+]])
+
+vim.api.nvim_command([[
+  function! LightlineFugitive()
+    if exists('*FugitiveHead')
+      let branch = FugitiveHead()
+      return branch !=# '' ? ''.branch : ''
+    endif
+    return ''
   endfunction
 ]])
 
