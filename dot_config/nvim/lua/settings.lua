@@ -1,92 +1,154 @@
+local utils = require("utils")
 local wo = vim.wo
 local o = vim.o
 local bo = vim.bo
 local g = vim.g
--- local home = vim.fn.expand("$XDG_CONFIG_HOME")
+local M = {}
 
-g.mapleader = ","
+function M.createdir()
+  local data_dir = {
+    'backup',
+    'session',
+    'swap',
+    'tags',
+    'undo'
+  }
+  for _,v in pairs(data_dir) do
+    local d = utils.cache_dir .. utils.path_sep .. v
+    if not utils.isdir(d) then
+      os.execute("mkdir -p " .. d)
+    end
+  end
+end
 
--- line numbers
-wo.number = true
-wo.relativenumber = true
-wo.signcolumn = "number"
+function M.disable_distribution_plugins()
+  g.loaded_gzip              = 1
+  g.loaded_tar               = 1
+  g.loaded_tarPlugin         = 1
+  g.loaded_zip               = 1
+  g.loaded_zipPlugin         = 1
+  g.loaded_getscript         = 1
+  g.loaded_getscriptPlugin   = 1
+  g.loaded_vimball           = 1
+  g.loaded_vimballPlugin     = 1
+  g.loaded_matchit           = 1
+  g.loaded_matchparen        = 1
+  g.loaded_2html_plugin      = 1
+  g.loaded_logiPat           = 1
+  g.loaded_rrhelper          = 1
+  g.loaded_netrw             = 1
+  g.loaded_netrwPlugin       = 1
+  g.loaded_netrwSettings     = 1
+  g.loaded_netrwFileHandlers = 1
+end
 
--- wo.colorcolumn = "80"
-o.termguicolors = true
+function M.leader_map()
+  g.mapleader = ","
+  utils.map('n', ' ', '', {noremap = true})
+  utils.map('x', ' ', '', {noremap = true})
+end
 
-o.smartindent = true
-bo.smartindent = true
-
-o.tabstop = 2
-bo.tabstop = 2
-
-o.shiftwidth = 2
-bo.shiftwidth = 2
-
--- Use spaces, not tabs
-o.expandtab = true
-bo.expandtab = true
-
-o.updatetime = 50
-
--- Briefly move the cursor to the matching brace
-o.showmatch = true
-
--- With :set hidden, opening a new file when the current buffer has unsaved
-o.hidden = true
-
--- Don't wrap lines
-wo.wrap = false
-
-o.splitbelow = true
-o.splitright = true
-
-o.ignorecase = true
-o.smartcase = true
-
-o.clipboard = "unnamedplus"
-
+function M.line_numbers()
+  wo.number = true
+  wo.relativenumber = true
+  wo.signcolumn = "number"
+end
 
 -- Backup, undo, swap options
--- o.undofile = true
--- o.backup = true
--- o.writebackup = true
--- o.backupdir = home .. "/nvim/tmp/dir_backup/"
--- o.directory = home .. "/nvim/tmp/dir_swap/," .. o.directory
--- o.undodir = home .. "/nvim/tmp/dir_undo/"
+function M.backup()
+  o.undofile = true
+  o.backup = true
+  o.writebackup = true
+  o.backupdir = utils.cache_dir .. utils.path_sep .. 'backup'
+  o.directory = utils.cache_dir .. utils.path_sep .. 'swap'
+  o.undodir = utils.cache_dir .. utils.path_sep .. 'undo'
+  o.undolevels = 1000
+  o.undoreload = 10000
+  o.backupskip = '/tmp/*,/private/tmp/*' -- Don’t create backups when editing files in certain directories
+end
 
--- Turn off swapfiles
-o.swapfile = false
-o.backup = false
+function M.other_settings()
+  -- wo.colorcolumn = "80"
+  o.termguicolors = true
 
--- Use `indent` based folding
-o.foldmethod = "indent"
+  o.smartindent = true
+  bo.smartindent = true
 
--- Disable all folds on file open until `zc` or `zM` etc is used
-o.foldenable = false
+  o.tabstop = 2
+  bo.tabstop = 2
 
--- Lazyredraw attempts to solve Vim lag by reducing the amount of
--- processing required. When enabled, any action that is not typed
--- will not cause the screen to redraw
--- TODO: syntax?
--- o.lazyredraw = true
+  o.shiftwidth = 2
+  bo.shiftwidth = 2
 
--- Increase redraw time for large files ...
--- TODO: used? syntax?
--- o.redrawtime = 10000
+  -- Use spaces, not tabs
+  o.expandtab = true
+  bo.expandtab = true
 
--- Don't display the current mode (Insert, Visual, Replace)
--- in the status line. This info is already shown in the
--- Airline status bar.
--- TODO: used? syntax?
--- o.noshowmode = true
+  o.updatetime = 50
 
--- Stop vim trying to syntax highlight long lines, typically found in minified
--- files. This greatly reduces lag yet is still wide enough for large displays
-o.synmaxcol = 500
+  -- Briefly move the cursor to the matching brace
+  o.showmatch = true
 
--- Highlight current line
-wo.cursorline = false
+  -- Add the g flag to search/replace by default
+  o.gdefault = true
 
--- Smoother scrolling when moving horizontally
-o.sidescroll = 1
+  -- With :set hidden, opening a new file when the current buffer has unsaved
+  o.hidden = true
+
+  -- Don't wrap lines
+  wo.wrap = false
+
+  o.splitbelow = true
+  o.splitright = true
+
+  o.ignorecase = true
+  o.smartcase = true
+
+  o.clipboard = "unnamedplus"
+
+  -- Use `indent` based folding
+  o.foldmethod = "indent"
+
+  -- Disable all folds on file open until `zc` or `zM` etc is used
+  o.foldenable = false
+
+  -- Lazyredraw attempts to solve Vim lag by reducing the amount of
+  -- processing required. When enabled, any action that is not typed
+  -- will not cause the screen to redraw
+  -- TODO: syntax?
+  -- o.lazyredraw = true
+
+  -- Increase redraw time for large files ...
+  -- TODO: used? syntax?
+  -- o.redrawtime = 10000
+
+  -- Don't display the current mode (Insert, Visual, Replace)
+  -- in the status line. This info is already shown in the
+  -- Airline status bar.
+  -- TODO: used? syntax?
+  -- o.noshowmode = true
+
+  -- Stop vim trying to syntax highlight long lines, typically found in minified
+  -- files. This greatly reduces lag yet is still wide enough for large displays
+  o.synmaxcol = 500
+
+  -- Highlight current line
+  wo.cursorline = false
+
+  -- Smoother scrolling when moving horizontally
+  o.sidescroll = 1
+
+  -- Enable mouse with tmux
+  o.mouse = 'a'
+end
+
+function M.load_settings()
+  M.createdir()
+  M.disable_distribution_plugins()
+  M.leader_map()
+  M.backup()
+  M.line_numbers()
+  M.other_settings()
+end
+
+M.load_settings()
