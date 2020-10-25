@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "linux" -}}
+configuration {
+	modi: "drun,ssh,run";
+        /* combi-modi: [window,drun]; */
+	font: "System San Francisco 18";
+	ssh-command: "{terminal} -e "{ssh-client} {host}"";
+	separator-style: "solid";
+	hide-scrollbar: true;
+	show-icons: true;
+	color-normal: "#301d1f21, #c4cbd4, #96404552, #4084d6, #f9f9f9";
+	color-urgent: "argb:2c1d1f21, #cc6666, argb:e54b5160, #a54242, #f9f9f9";
+	color-active: "argb:2c1d1f21, #65acff, argb:e44b5160, #4491ed, #f9f9f9";
+	color-window: "argb:f22d303b, #7c8389, #1d1f21";
+}
+{{- end -}}
