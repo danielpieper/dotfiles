@@ -1,0 +1,41 @@
+local map = require("utils").map
+local g = vim.g
+local o = vim.o
+
+map('n', '<Leader>tt', ':TestNearest<CR>', {silent = true})
+map('n', '<Leader>tf', ':TestFile<CR>', {silent = true})
+map('n', '<Leader>ts', ':TestSuite<CR>', {silent = true})
+map('n', '<Leader>tl', ':TestLast<CR>', {silent = true})
+map('n', '<Leader>tv', ':TestVisit<CR>', {silent = true})
+
+vim.api.nvim_command([[
+function! PersonioTransform(cmd) abort
+  " let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o name'
+  let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o go-template --template "{{`{{\$item := index .items 0}}{{\$item.metadata.name}}`}}"'
+  return 'kubectl exec $('.pod.') --context=minikube -c fpm-ssh -- '.a:cmd
+endfunction
+]])
+
+vim.api.nvim_command([[
+  function! VagrantTransform(cmd) abort
+    let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+    return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
+  endfunction
+]])
+
+vim.api.set_set_var(
+  'test#custom_transformations',
+  {
+    personio = [[function('PersonioTransform')]],
+    vagrant = [[function('VagrantTransform')]]
+  }
+)
+
+{{- if eq .chezmoi.os "darwin" }}
+vim.api.set_set_var('test#transformation', 'personio')
+vim.api.set_set_var('test#php#phpunit#executable', 'vendor/bin/phpunit')
+{{- end }}
+
+" make test commands execute using dispatch.vim
+vim.api.set_set_var('test#strategy', 'dispatch')
+-- vim.api.set_set_var('test#strategy', 'neovim')

@@ -61,6 +61,9 @@ return require('packer').startup {
     use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
     use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
 
+    -- Snippets
+    use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
+
     -- Sessions
     use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
 
@@ -110,5 +113,10 @@ return require('packer').startup {
         },
       }
     }
+
+    -- Testing & debugging
+    use 'https://github.com/tpope/vim-dispatch' -- Asynchronous build and test dispatcher
+    use {'https://github.com/janko/vim-test', config = 'require("plugins.vim-test")' } -- Run your tests at the speed of thought
+    -- use 'https://github.com/vim-vdebug/vdebug' -- Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
   end
 }
