@@ -113,5 +113,4 @@ map('n', '<Leader>c8', ':call lightline#bufferline#delete(8)<CR>', {silent = tru
 map('n', '<Leader>c9', ':call lightline#bufferline#delete(9)<CR>', {silent = true})
 map('n', '<Leader>c0', ':call lightline#bufferline#delete(10)<CR>', {silent = true})
 
--- TODO:
---  autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+vim.api.nvim_command('autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()')

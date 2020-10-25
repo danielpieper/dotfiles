@@ -45,7 +45,7 @@ return require('packer').startup {
     
     -- Editing
     use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
-    use 'https://github.com/tpope/vim-commentary' -- Comment stuff out.
+    use {'https://github.com/tpope/vim-commentary', config = 'require("plugins.vim-commentary")'} -- Comment stuff out.
 
     -- Git
     use {
