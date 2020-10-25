@@ -36,8 +36,8 @@ return require('packer').startup {
     use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
 
     -- Buffers
-    use 'https://github.com/moll/vim-bbye' -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-    use 'https://github.com/schickling/vim-bufonly' -- Delete all the buffers except the current buffer.
+    use {'https://github.com/moll/vim-bbye', config = 'require("plugins.vim-bbye")'} -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+    use {'https://github.com/schickling/vim-bufonly', config = 'require("plugins.vim-bufonly")'} -- Delete all the buffers except the current buffer.
 
     -- Language Pack
     use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
