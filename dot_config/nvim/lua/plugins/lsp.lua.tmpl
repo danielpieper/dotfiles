@@ -5,8 +5,19 @@ local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
 local configs = require('nvim_lsp/configs')
 
--- vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
--- vim.g.completion_matching_ignore_case = 1
+-- Completion configuration
+--
+-- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+-- vim.api.nvim_set_var('completion_enable_snippet', 'snippets.nvim')
+
+vim.api.nvim_set_var('completion_matching_ignore_case', 1)
+vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
+
+vim.api.nvim_set_var('completion_chain_complete_list', {
+  { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
+  { mode = { '<c-p>' } },
+  { mode = { '<c-n>' } }
+})
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noinsert,noselect"
@@ -21,6 +32,13 @@ utils.map(
   [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]],
   {expr = true}
 )
+
+-- Diagnostic configuration
+--
+vim.api.nvim_set_var('diagnostic_enable_virtual_text', 1)
+vim.api.nvim_set_var('diagnostic_virtual_text_prefix', '')
+vim.api.nvim_set_var('diagnostic_insert_delay', 1)
+vim.api.nvim_set_var('diagnostic_show_sign', 1)
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
@@ -41,7 +59,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 end
--- lsp_status.register_progress()
+lsp_status.register_progress()
 -- lsp_status.config({
 --   status_symbol = '',
 --   indicator_errors = 'e',
@@ -61,8 +79,8 @@ end
 nvim_lsp.intelephense.setup{
   on_attach = on_attach,
   -- capabilities = lsp_status.capabilities
-  -- log_level = vim.lsp.protocol.MessageType.Log,
-  -- message_level = vim.lsp.protocol.MessageType.Log,
+  log_level = vim.lsp.protocol.MessageType.Log,
+  message_level = vim.lsp.protocol.MessageType.Log,
  {{- if ne $licenseKey "" }}
   init_options = {
     licenceKey = "{{ $licenseKey }}",

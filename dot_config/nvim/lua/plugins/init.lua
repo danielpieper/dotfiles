@@ -64,6 +64,8 @@ return require('packer').startup {
 
     -- Snippets
     use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
+    -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+    -- use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 
     -- Sessions
     use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
@@ -105,11 +107,14 @@ return require('packer').startup {
         'https://github.com/nvim-lua/diagnostic-nvim',
         {
           'https://github.com/nvim-lua/completion-nvim',
---          event = 'InsertEnter *',
+          -- event = 'InsertEnter *',
           requires = {
-            {'https://github.com/steelsojka/completion-buffers', event = 'InsertEnter *'},
---          {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
---          {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
+            {
+              'https://github.com/steelsojka/completion-buffers',
+              -- event = 'InsertEnter *'
+            },
+            -- {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
+            -- {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
           }
         },
       }
