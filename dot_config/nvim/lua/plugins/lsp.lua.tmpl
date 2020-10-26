@@ -1,5 +1,5 @@
 local utils = require('utils')
-local lsp_status = require('lsp-status')
+-- local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
@@ -41,7 +41,7 @@ vim.api.nvim_set_var('diagnostic_insert_delay', 1)
 vim.api.nvim_set_var('diagnostic_show_sign', 1)
 
 local on_attach = function(client, bufnr)
-  lsp_status.on_attach(client, bufnr)
+  -- lsp_status.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
   diagnostic.on_attach(client, bufnr)
 
@@ -59,7 +59,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 end
-lsp_status.register_progress()
+-- lsp_status.register_progress()
 -- lsp_status.config({
 --   status_symbol = '',
 --   indicator_errors = 'e',
@@ -69,30 +69,9 @@ lsp_status.register_progress()
 --   indicator_ok = 'ok',
 -- })
 
-{{- $licenseKey := "" -}}
-{{- range (first (onepassword "ucpdges4uyo3uaj2kmhe4e5diq").details.sections).fields -}}
-  {{- if eq .n "reg_code" -}}
-    {{- $licenseKey = .v -}}
-  {{- end -}}
-{{- end }}
-
-nvim_lsp.intelephense.setup{
-  on_attach = on_attach,
-  -- capabilities = lsp_status.capabilities
-  log_level = vim.lsp.protocol.MessageType.Log,
-  message_level = vim.lsp.protocol.MessageType.Log,
- {{- if ne $licenseKey "" }}
-  init_options = {
-    licenceKey = "{{ $licenseKey }}",
-    -- clearCache = true,
-  }
-{{- end }}
-}
-
 local servers = {
   'cssls',
   'bashls',
---  'diagnosticls',
   'dockerls',
   'flow',
   'ghcide',
@@ -115,4 +94,120 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
   }
 end
+
+
+nvim_lsp.diagnosticls.setup{
+  cmd = {'/home/daniel/.cache/nvim/nvim_lsp/diagnosticls/node_modules/.bin/diagnostic-languageserver', '--stdio', '--log-level', '4'},
+  on_attach = on_attach,
+  log_level = vim.lsp.protocol.MessageType.Log,
+  message_level = vim.lsp.protocol.MessageType.Log,
+  filetypes = { 'php' },
+  init_options = {
+    filetypes = {
+      php = {'phpcs', 'phpmd', 'phpstan'},
+      -- php = 'phpcs',
+      -- javascript = 'eslint',
+      -- markdown = 'markdownlint',
+      -- go = 'golangci-lint-json'
+    },
+    linters = {
+      phpcs = {
+        command = 'phpcs',
+        debounce = 100,
+        rootPatterns = { 'composer.json', 'composer.lock', 'vendor', '.git' },
+        args = { '--standard=phpcs.xml', '--report=emacs', '-s', '%file' },
+        offsetLine = 0,
+        offsetColumn = 0,
+        sourceName = 'phpcs',
+        formatLines = 1,
+        formatPattern = {
+          [[^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$]],
+          {
+            line = 1,
+            column = 2,
+            message = 4,
+            security = 3,
+          }
+        },
+        securities = {
+          error = 'error',
+          warning = 'warning'
+        }
+      },
+      phpmd = {
+        command = "phpmd",
+        debounce = 100,
+        rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
+        args = { "%file", "json", "phpmd.xml" },
+        offsetLine = 0,
+        offsetColumn = 0,
+        sourceName = "phpmd",
+        parseJson = {
+          errorsRoot = [[files[0].violations]],
+          line = "beginLine",
+          endLine = "endLine",
+          security = "priority",
+          message = [[${rule}: ${description} (${ruleSet})]],
+        },
+        securities = {
+          [1] = "error",
+          [2] = "warning",
+          [3] = "info"
+        }
+      },
+      phpstan = {
+        command = "phpstan",
+        debounce = 100,
+        rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
+        args = { "analyze", "--error-format", "raw", "--no-progress", "%file" },
+        offsetLine = 0,
+        offsetColumn = 0,
+        sourceName = "phpstan",
+        formatLines = 1,
+        formatPattern = {
+          [[^[^:]+:(\\d+):(.*)(\\r|\\n)*$]],
+          {
+            line = 1,
+            message = 2,
+          },
+        },
+      },
+    -- "golangci-lint-json": {
+    --   "command": "golangci-lint",
+    --   "rootPatterns": [ ".git", "go.mod" ],
+    --   "debounce": 100,
+    --   "args": [ "run", "--out-format", "json", "--enable-all" ],
+    --   "sourceName": "golangci-lint",
+    --   "parseJson": {
+    --     "errorsRoot": "Issues",
+    --     "sourceName": "Pos.Filename",
+    --     "sourceNameFilter": true,
+    --     "line": "LineRange.From",
+    --     "endLine": "LineRange.To",
+    --     "message": "${Text} (${FromLinter})"
+    --   }
+    -- }
+    },
+  }
+}
+
+{{- $licenseKey := "" -}}
+{{- range (first (onepassword "ucpdges4uyo3uaj2kmhe4e5diq").details.sections).fields -}}
+  {{- if eq .n "reg_code" -}}
+    {{- $licenseKey = .v -}}
+  {{- end -}}
+{{- end }}
+
+nvim_lsp.intelephense.setup{
+  on_attach = on_attach,
+  -- capabilities = lsp_status.capabilities
+  log_level = vim.lsp.protocol.MessageType.Log,
+  message_level = vim.lsp.protocol.MessageType.Log,
+ {{- if ne $licenseKey "" }}
+  init_options = {
+    licenceKey = "{{ $licenseKey }}",
+    -- clearCache = true,
+  }
+{{- end }}
+}
 
