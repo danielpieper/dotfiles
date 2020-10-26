@@ -1,10 +1,10 @@
 local map = require("utils").map
-local g = vim.g 
+local g = vim.g
 
 map("n", "<A-p>", ":Clap files<CR>", {silent = true})
 map("n", "<C-p>", ":Clap gfiles<CR>", {silent = true})
 map("n", "<C-SPACE>", ":Clap buffers<CR>", {silent = true})
--- map("n", "<C-t>", ":Clap tmuxinator<CR>", {silent = true})
+map("n", "<C-t>", ":Clap tmuxinator<CR>", {silent = true})
 map("n", "<C-l>", ":Clap lines<CR>", {silent = true})
 map("n", "<C-f>", ":Clap grep<CR>", {silent = true})
 map("n", "<BS>", ":Clap command_history<CR>", {silent = true})
@@ -22,9 +22,6 @@ g.clap_layout = { relative = 'editor' }
 -- \}
 -- ]])
 
--- vim.api.nvim_command([[
--- let g:clap_provider_tmuxinator = {
--- \      'source': split(system('tmuxinator list | tail -n +2 | tr -s "[:space:]" "\n"'), '\n'),
--- \      'sink': { selected -> execute('silent !tmuxinator ' . selected, '')},
--- \}
--- ]])
+vim.api.nvim_command([[
+let g:clap_provider_tmuxinator = { 'source': split(system('tmuxinator list | tail -n +2 | tr -s "[:space:]" "\n"'), '\n'), 'sink': { selected -> execute('silent !tmuxinator ' . selected, '')} }
+]])
