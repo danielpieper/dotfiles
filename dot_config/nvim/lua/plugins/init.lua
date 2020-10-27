@@ -42,7 +42,7 @@ return require('packer').startup {
     -- Language Pack
     use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
     use {'https://github.com/nvim-treesitter/nvim-treesitter', config = 'require("plugins.treesitter")'}
-    
+
     -- Editing
     use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
     use {'https://github.com/tpope/vim-commentary', config = 'require("plugins.vim-commentary")'} -- Comment stuff out.
@@ -57,15 +57,14 @@ return require('packer').startup {
     -- General
     use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
     use 'https://github.com/editorconfig/editorconfig-vim' -- EditorConfig plugin for Vim http://editorconfig.org
-    use 'https://github.com/tpope/vim-unimpaired' -- complementary pairs of mappings. 
+    use 'https://github.com/tpope/vim-unimpaired' -- complementary pairs of mappings.
     use 'https://github.com/tpope/vim-eunuch' -- Vim sugar for the UNIX shell commands that need it the most.
     use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
     use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
 
     -- Snippets
     use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
-    -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
-    -- use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+    use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 
     -- Sessions
     use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
@@ -80,7 +79,7 @@ return require('packer').startup {
         'https://github.com/tpope/vim-fugitive',
       }
     } -- A light and configurable statusline/tabline plugin for Vim
-   
+
     -- File management
     use {
       'https://github.com/preservim/nerdtree',
