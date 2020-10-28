@@ -105,9 +105,9 @@ nvim_lsp.diagnosticls.setup{
   init_options = {
     filetypes = {
       php = {"phpcs", "phpmd", "phpstan"},
+      go = "golangci-lint"
       -- javascript = 'eslint',
       -- markdown = 'markdownlint',
-      -- go = 'golangci-lint-json'
     },
     linters = {
       phpcs = {
@@ -170,22 +170,22 @@ nvim_lsp.diagnosticls.setup{
             message = 2,
           }
         }
+      },
+      ['golangci-lint'] = {
+        command = "golangci-lint",
+        rootPatterns = { ".git", "go.mod" },
+        debounce = 100,
+        args = { "run", "--out-format", "json", "--enable-all" },
+        sourceName = "golangci-lint",
+        parseJson = {
+          errorsRoot = "Issues",
+          sourceName = "Pos.Filename",
+          sourceNameFilter = true,
+          line = "LineRange.From",
+          endLine = "LineRange.To",
+          message = "${Text} (${FromLinter})"
+        }
       }
-    -- "golangci-lint-json": {
-    --   "command": "golangci-lint",
-    --   "rootPatterns": [ ".git", "go.mod" ],
-    --   "debounce": 100,
-    --   "args": [ "run", "--out-format", "json", "--enable-all" ],
-    --   "sourceName": "golangci-lint",
-    --   "parseJson": {
-    --     "errorsRoot": "Issues",
-    --     "sourceName": "Pos.Filename",
-    --     "sourceNameFilter": true,
-    --     "line": "LineRange.From",
-    --     "endLine": "LineRange.To",
-    --     "message": "${Text} (${FromLinter})"
-    --   }
-    -- }
     },
     formatters = {},
     formatFiletypes = {}
