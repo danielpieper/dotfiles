@@ -1,8 +1,18 @@
+{{- $licenseKey := "" -}}
+{{- range (first (onepassword "ucpdges4uyo3uaj2kmhe4e5diq").details.sections).fields -}}
+  {{- if eq .n "reg_code" -}}
+    {{- $licenseKey = .v -}}
+  {{- end -}}
+{{- end }}
 local utils = require('utils')
 local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
+
+-- Set log level
+-- Levels by name: "trace", "debug", "info", "warn", "error"
+-- vim.lsp.set_log_level("trace")
 
 -- Completion configuration
 --
@@ -35,9 +45,12 @@ utils.map(
 -- Diagnostic configuration
 --
 vim.api.nvim_set_var('diagnostic_enable_virtual_text', 1)
+-- vim.api.nvim_set_var('diagnostic_trimmed_virtual_text', 40)
 vim.api.nvim_set_var('diagnostic_virtual_text_prefix', '')
 vim.api.nvim_set_var('diagnostic_insert_delay', 1)
 vim.api.nvim_set_var('diagnostic_show_sign', 1)
+-- disable underline to make text more readable
+vim.api.nvim_set_var('diagnostic_enable_underline', 0) 
 
 -- LSP Status configuration
 --
@@ -83,138 +96,148 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-  'cssls',
-  'bashls',
-  'dockerls',
-  'flow',
-  'ghcide',
-  'gopls',
-  'hie',
-  'html',
-  'tsserver',
-  'jsonls',
-  'kotlin_language_server',
-  'pyls',
-  'rls',
-  'rust_analyzer',
-  'sourcekit',
-  'vimls',
-  'vuels',
-  'sumneko_lua',
-}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities,
-  }
-end
-
-nvim_lsp.diagnosticls.setup{
-  filetypes = { "php", "go" },
-  init_options = {
-    filetypes = {
-      php = {"phpcs", "phpmd", "phpstan"},
-      go = "golangci-lint"
-      -- javascript = 'eslint',
-      -- markdown = 'markdownlint',
+  cssls = {},
+  bashls = {},
+  dockerls = {},
+  flow = {},
+  ghcide = {},
+  gopls = {
+    init_options = {
+      completeUnimported = true,
+      gofumpt = true
     },
-    linters = {
-      phpcs = {
-        command = "phpcs",
-        debounce = 100,
-        rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
-        args = { "--standard=PSR12", "--report=emacs", "-s", "%file" },
-        offsetLine = 0,
-        offsetColumn = 0,
-        sourceName = "phpcs",
-        formatLines = 1,
-        formatPattern = {
-          "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$",
-          {
-            line = 1,
-            column = 2,
-            message = 4,
-            security = 3,
-          }
-        },
-        securities = {
-          error = "error",
-          warning = "warning"
-        }
-      },
-      phpmd = {
-        command = "phpmd",
-        debounce = 100,
-        rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
-        args = { "%file", "json", "phpmd.xml" },
-        offsetLine = 0,
-        offsetColumn = 0,
-        sourceName = "phpmd",
-        parseJson = {
-          errorsRoot = "files[0].violations",
-          line = "beginLine",
-          endLine = "endLine",
-          security = "priority",
-          message = "${rule}: ${description} (${ruleSet})"
-        },
-        securities = {
-          [1] = "error",
-          [2] = "warning",
-          [3] = "info"
-        }
-      },
-      phpstan = {
-        command = "phpstan",
-        debounce = 100,
-        rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
-        args = { "analyze", "--error-format", "raw", "--no-progress", "%file" },
-        offsetLine = 0,
-        offsetColumn = 0,
-        sourceName = "phpstan",
-        formatLines = 1,
-        formatPattern = {
-          "^[^:]+:(\\d+):(.*)(\\r|\\n)*$",
-          {
-            line = 1,
-            message = 2,
-          }
-        }
-      },
-      ['golangci-lint'] = {
-        command = "golangci-lint",
-        rootPatterns = { ".git", "go.mod" },
-        debounce = 100,
-        args = { "run", "--out-format", "json", "--enable-all" },
-        sourceName = "golangci-lint",
-        parseJson = {
-          errorsRoot = "Issues",
-          sourceName = "Pos.Filename",
-          sourceNameFilter = true,
-          line = "LineRange.From",
-          endLine = "LineRange.To",
-          message = "${Text} (${FromLinter})"
-        }
+  },
+  hie = {},
+  html = {},
+  tsserver = {},
+  jsonls = {},
+  kotlin_language_server = {},
+  pyls = {},
+  rls = {},
+  rust_analyzer = {},
+  sourcekit = {},
+  vimls = {},
+  vuels = {},
+  sumneko_lua = {},
+  intelephense = {
+    settings = {
+      intelephense = {
+        diagnostics = { enable = 0 }
       }
     },
-    formatters = {},
-    formatFiletypes = {}
-  }
-}
-
-{{- $licenseKey := "" -}}
-{{- range (first (onepassword "ucpdges4uyo3uaj2kmhe4e5diq").details.sections).fields -}}
-  {{- if eq .n "reg_code" -}}
-    {{- $licenseKey = .v -}}
-  {{- end -}}
-{{- end }}
-
-nvim_lsp.intelephense.setup{
-  on_attach = on_attach,
-  capabilities = lsp_status.capabilities,
 {{- if ne $licenseKey "" }}
-  init_options = {
-    licenceKey = "{{ $licenseKey }}",
-    clearCache = false
-  }
+    init_options = {
+      licenceKey = "{{ $licenseKey }}",
+      -- clearCache = false
+    }
 {{- end }}
+  },
+  diagnosticls = {
+    -- cmd = { "diagnostic-languageserver", "--log-level", "4", "--stdio" },
+    filetypes = { "php", "go" },
+    -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
+    init_options = {
+      filetypes = {
+        -- php = {"phpcs", "phpmd"},
+        php = {"phpcs", "phpmd", "phpstan"},
+        go = "golangci-lint"
+        -- javascript = 'eslint',
+        -- markdown = 'markdownlint',
+      },
+      linters = {
+        phpcs = {
+          command = "phpcs",
+          debounce = 100,
+          rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
+          args = { "--standard=PSR12", "--report=emacs", "-s", "%file" },
+          offsetLine = 0,
+          offsetColumn = 0,
+          sourceName = "phpcs",
+          formatLines = 1,
+          formatPattern = {
+            "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$",
+            {
+              line = 1,
+              column = 2,
+              message = 4,
+              security = 3,
+            }
+          },
+          securities = {
+            error = "error",
+            warning = "warning"
+          }
+        },
+        phpmd = {
+          command = "phpmd",
+          debounce = 100,
+          rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
+          args = { "%file", "json", "phpmd.xml" },
+          offsetLine = 0,
+          offsetColumn = 0,
+          sourceName = "phpmd",
+          parseJson = {
+            errorsRoot = "files[0].violations",
+            line = "beginLine",
+            endLine = "endLine",
+            security = "priority",
+            message = "${rule}: ${description} (${ruleSet})"
+          },
+          securities = {
+            [1] = "error",
+            [2] = "warning",
+            [3] = "info"
+          }
+        },
+        phpstan = {
+          command = "phpstan",
+          debounce = 100,
+          rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
+          args = { "analyze", "--error-format", "raw", "--no-progress", "%file" },
+          offsetLine = 0,
+          offsetColumn = 0,
+          sourceName = "phpstan",
+          formatLines = 1,
+          formatPattern = {
+            "^[^:]+:(\\d+):(.*)(\\r|\\n)*$",
+            {
+              line = 1,
+              message = 2,
+            }
+          }
+        },
+        ['golangci-lint'] = {
+          command = "golangci-lint",
+          rootPatterns = { ".git", "go.mod" },
+          debounce = 100,
+          args = { "run", "--out-format", "json" },
+          -- args = { "run", "--out-format", "json", "--enable-all" },
+          sourceName = "golangci-lint",
+          parseJson = {
+            errorsRoot = "Issues",
+            sourceName = "Pos.Filename",
+            sourceNameFilter = true,
+            line = "LineRange.From",
+            endLine = "LineRange.To",
+            message = "${Text} (${FromLinter})"
+          }
+        }
+      },
+      formatters = {},
+      formatFiletypes = {}
+    }
+  },
 }
+
+for server, config in pairs(servers) do
+  config.on_attach = on_attach
+
+  -- Set default client capabilities plus window/workDoneProgress
+  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
+
+  -- config.log_level = vim.lsp.protocol.MessageType.Log;
+  -- config.message_level = vim.lsp.protocol.MessageType.Log;
+
+  nvim_lsp[server].setup(config)
+end
+
