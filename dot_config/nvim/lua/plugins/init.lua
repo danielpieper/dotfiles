@@ -81,13 +81,15 @@ return require('packer').startup {
     } -- A light and configurable statusline/tabline plugin for Vim
 
     -- File management
-    use {
-      'https://github.com/preservim/nerdtree',
---      cmd = {'NERDTreeToggle', 'NERDTreeFind'},
+    use {'https://github.com/preservim/nerdtree',
+      -- cmd = {'NERDTreeToggle', 'NERDTreeFind'},
       config = 'require("plugins.nerdtree")'
     } -- The NERDTree is a file system explorer for the Vim editor.
---    use 'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
---    use {'https://github.com/mbbill/undotree', cmd = 'UndotreeToggle'} -- Undo visualise
+    use 'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
+    use {'https://github.com/mbbill/undotree',
+      -- cmd = 'UndotreeToggle',
+      config = 'require("plugins.undotree")'
+    } -- Undo visualise
 
     -- Finding and replacing
     use {
