@@ -79,6 +79,8 @@ local on_attach = function(client, bufnr)
   -- Always use autoindent 
   -- php workaround, see https://vi.stackexchange.com/questions/11023/auto-indent-turns-off-itself-automatically-on-php-files
   vim.api.nvim_buf_set_option(bufnr, "autoindent", true)
+  vim.api.nvim_buf_set_option(bufnr, "smartindent", true)
+  vim.api.nvim_buf_set_option(bufnr, "syntax", "on")
 
   -- Keybindings for LSPs
   local opts = { noremap=true, silent=true }
@@ -120,11 +122,14 @@ local servers = {
   vuels = {},
   sumneko_lua = {},
   intelephense = {
-    settings = {
-      intelephense = {
-        diagnostics = { enable = 0 }
-      }
-    },
+    -- settings = {
+    --   intelephense = {
+    --     diagnostics = {
+    --       enable = 1,
+    --       run = "onSave",
+    --     }
+    --   },
+    -- },
 {{- if ne $licenseKey "" }}
     init_options = {
       licenceKey = "{{ $licenseKey }}",
@@ -138,7 +143,6 @@ local servers = {
     -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
       filetypes = {
-        -- php = {"phpcs", "phpmd"},
         php = {"phpcs", "phpmd", "phpstan"},
         go = "golangci-lint"
         -- javascript = 'eslint',
