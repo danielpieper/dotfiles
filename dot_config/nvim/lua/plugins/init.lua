@@ -30,24 +30,44 @@ return require('packer').startup {
     use {'https://github.com/wbthomason/packer.nvim', opt = true} -- Packer can manage itself as an optional plugin
 
     -- Eye Candy
-    use {'https://github.com/joshdick/onedark.vim', config = 'require("plugins.onedark")'} -- Atom OneDark
+    use {'https://github.com/joshdick/onedark.vim',
+      disable = true,
+      config = 'require("plugins.onedark")',
+    } -- Atom OneDark
+    use {'https://github.com/tjdevries/colorbuddy.nvim',
+      disable = false,
+      config = 'require("plugins.colorbuddy")',
+      -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
+    } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
     use {'https://github.com/kyazdani42/nvim-web-devicons',
-      config = 'require "nvim-web-devicons".setup()',
+      config = 'require("nvim-web-devicons").setup()',
     } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
     use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
     use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
+    use {'https://github.com/norcalli/nvim-colorizer.lua',
+      disable = false,
+      config = 'require("colorizer").setup{"lua";}',
+    } -- A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
 
     -- Buffers
-    use {'https://github.com/moll/vim-bbye', config = 'require("plugins.vim-bbye")'} -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-    use {'https://github.com/schickling/vim-bufonly', config = 'require("plugins.vim-bufonly")'} -- Delete all the buffers except the current buffer.
+    use {'https://github.com/moll/vim-bbye',
+      config = 'require("plugins.vim-bbye")',
+    } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+    use {'https://github.com/schickling/vim-bufonly',
+      config = 'require("plugins.vim-bufonly")',
+    } -- Delete all the buffers except the current buffer.
 
     -- Language Pack
     use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
-    use {'https://github.com/nvim-treesitter/nvim-treesitter', config = 'require("plugins.treesitter")'}
+    use {'https://github.com/nvim-treesitter/nvim-treesitter',
+      config = 'require("plugins.treesitter")',
+    }
 
     -- Editing
     use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
-    use {'https://github.com/tpope/vim-commentary', config = 'require("plugins.vim-commentary")'} -- Comment stuff out.
+    use {'https://github.com/tpope/vim-commentary',
+      config = 'require("plugins.vim-commentary")',
+    } -- Comment stuff out.
 
     -- Git
     use {'https://github.com/tpope/vim-fugitive',
@@ -72,7 +92,9 @@ return require('packer').startup {
     use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 
     -- Sessions
-    use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
+    use {'https://github.com/mhinz/vim-startify',
+      config = 'require("plugins.startify")',
+    } -- This plugin provides a start screen for Vim and Neovim.
 
     -- Status Bar
     use {'https://github.com/itchyny/lightline.vim',
