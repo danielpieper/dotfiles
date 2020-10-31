@@ -9,9 +9,9 @@ o.showtabline = 2  -- Show tabline
 g.lightline = {
   colorscheme = 'arcdark',
   active = {
-    left = { 
+    left = {
       { 'mode', 'paste' },
-      { 'gitbranch', 'readonly', 'relativepath', 'modified', 'cocstatus', 'currentfunction' },
+      { 'gitbranch', 'readonly', 'relativepath', 'modified', 'lspstatus' },
     }
   },
   inactive = {
@@ -45,6 +45,7 @@ g.lightline = {
     fileformat = 'LightlineFileformat',
     filetype = 'LightlineFiletype',
     fileencoding = 'LightlineFileencoding',
+    lspstatus = 'LightlineLspStatus',
   }
 }
 
@@ -79,6 +80,16 @@ vim.api.nvim_command([[
 vim.api.nvim_command([[
   function! LightlineFileencoding()
     return winwidth(0) > 100 ? &fileencoding : ''
+  endfunction
+]])
+
+vim.api.nvim_command([[
+  function! LightlineLspStatus() abort
+    if luaeval('#vim.lsp.buf_get_clients() > 0')
+      return luaeval("require('lsp-status').status()")
+    endif
+
+    return ''
   endfunction
 ]])
 

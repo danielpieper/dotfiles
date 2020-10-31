@@ -56,7 +56,7 @@ return require('packer').startup {
 
     -- General
     use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
-    use 'https://github.com/editorconfig/editorconfig-vim' -- EditorConfig plugin for Vim http://editorconfig.org
+    use {'https://github.com/editorconfig/editorconfig-vim', config = 'require("plugins.editorconfig-vim")'} -- EditorConfig plugin for Vim http://editorconfig.org
     use 'https://github.com/tpope/vim-unimpaired' -- complementary pairs of mappings.
     use 'https://github.com/tpope/vim-eunuch' -- Vim sugar for the UNIX shell commands that need it the most.
     use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs

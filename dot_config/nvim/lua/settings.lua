@@ -74,6 +74,9 @@ function M.other_settings()
   o.smartindent = true
   bo.smartindent = true
 
+  -- o.autoindent = true
+  -- bo.autoindent = true
+
   o.tabstop = 2
   bo.tabstop = 2
 

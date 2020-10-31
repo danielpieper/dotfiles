@@ -1,5 +1,5 @@
 local utils = require('utils')
--- local lsp_status = require('lsp-status')
+local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
@@ -39,8 +39,21 @@ vim.api.nvim_set_var('diagnostic_virtual_text_prefix', '')
 vim.api.nvim_set_var('diagnostic_insert_delay', 1)
 vim.api.nvim_set_var('diagnostic_show_sign', 1)
 
+-- LSP Status configuration
+--
+lsp_status.register_progress()
+-- lsp_status.config({
+--   status_symbol = '',
+--   indicator_errors = 'e',
+--   indicator_warnings = 'w',
+--   indicator_info = 'i',
+--   indicator_hint = 'h',
+--   indicator_ok = 'ok',
+-- })
+
+
 local on_attach = function(client, bufnr)
-  -- lsp_status.on_attach(client, bufnr)
+  lsp_status.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
   diagnostic.on_attach(client, bufnr)
 
@@ -49,6 +62,10 @@ local on_attach = function(client, bufnr)
   -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
   -- Set $ as keyword to fix Intelephense (php) completion
   vim.api.nvim_buf_set_option(bufnr, "iskeyword", "@,48-57,_,192-255,$")
+
+  -- Always use autoindent 
+  -- php workaround, see https://vi.stackexchange.com/questions/11023/auto-indent-turns-off-itself-automatically-on-php-files
+  vim.api.nvim_buf_set_option(bufnr, "autoindent", true)
 
   -- Keybindings for LSPs
   local opts = { noremap=true, silent=true }
@@ -64,15 +81,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", ":PrevDiagnosticCycle<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", ":NextDiagnosticCycle<CR>", opts)
 end
--- lsp_status.register_progress()
--- lsp_status.config({
---   status_symbol = '',
---   indicator_errors = 'e',
---   indicator_warnings = 'w',
---   indicator_info = 'i',
---   indicator_hint = 'h',
---   indicator_ok = 'ok',
--- })
 
 local servers = {
   'cssls',
@@ -97,6 +105,7 @@ local servers = {
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
+    capabilities = lsp_status.capabilities,
   }
 end
 
@@ -201,6 +210,7 @@ nvim_lsp.diagnosticls.setup{
 
 nvim_lsp.intelephense.setup{
   on_attach = on_attach,
+  capabilities = lsp_status.capabilities,
 {{- if ne $licenseKey "" }}
   init_options = {
     licenceKey = "{{ $licenseKey }}",
