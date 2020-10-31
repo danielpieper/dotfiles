@@ -31,7 +31,9 @@ return require('packer').startup {
 
     -- Eye Candy
     use {'https://github.com/joshdick/onedark.vim', config = 'require("plugins.onedark")'} -- Atom OneDark
-    -- use 'https://github.com/kyazdani42/nvim-web-devicons' -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+    use {'https://github.com/kyazdani42/nvim-web-devicons',
+      config = 'require "nvim-web-devicons".setup()',
+    } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
     use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
     use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
 
