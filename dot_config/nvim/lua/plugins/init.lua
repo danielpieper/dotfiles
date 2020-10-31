@@ -31,7 +31,7 @@ return require('packer').startup {
 
     -- Eye Candy
     use {'https://github.com/joshdick/onedark.vim', config = 'require("plugins.onedark")'} -- Atom OneDark
-    use 'https://github.com/ryanoasis/vim-devicons' -- look at beauty icons
+    -- use 'https://github.com/kyazdani42/nvim-web-devicons' -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
     use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
     use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
 
@@ -70,24 +70,36 @@ return require('packer').startup {
     use {'https://github.com/mhinz/vim-startify', config = 'require("plugins.startify")'} -- This plugin provides a start screen for Vim and Neovim.
 
     -- Status Bar
-    use {
-      'https://github.com/itchyny/lightline.vim',
-      config = 'require("plugins.lightline")',
+    -- use {
+    --   'https://github.com/itchyny/lightline.vim',
+    --   config = 'require("plugins.lightline")',
+    --   requires = {
+    --     'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
+    --     'https://github.com/ryanoasis/vim-devicons',
+    --     'https://github.com/tpope/vim-fugitive',
+    --   }
+    -- } -- A light and configurable statusline/tabline plugin for Vim
+    use {'https://github.com/akinsho/nvim-bufferline.lua',
+      config = 'require("plugins.nvim-bufferline")',
       requires = {
-        'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
-        'https://github.com/ryanoasis/vim-devicons',
-        'https://github.com/tpope/vim-fugitive',
+        'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
       }
-    } -- A light and configurable statusline/tabline plugin for Vim
+    } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
 
     -- File management
-    use {'https://github.com/preservim/nerdtree',
-      -- cmd = {'NERDTreeToggle', 'NERDTreeFind'},
-      config = 'require("plugins.nerdtree")'
-    } -- The NERDTree is a file system explorer for the Vim editor.
-    use 'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
+    -- use {'https://github.com/preservim/nerdtree',
+    --   config = 'require("plugins.nerdtree")',
+    --   requires = {
+    --     'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
+    --   }
+    -- } -- The NERDTree is a file system explorer for the Vim editor.
+    use {'https://github.com/kyazdani42/nvim-tree.lua',
+      config = 'require("plugins.nvim-tree")',
+      requires = {
+        'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+      }
+    } -- A File Explorer For Neovim Written In Lua
     use {'https://github.com/mbbill/undotree',
-      -- cmd = 'UndotreeToggle',
       config = 'require("plugins.undotree")'
     } -- Undo visualise
 
