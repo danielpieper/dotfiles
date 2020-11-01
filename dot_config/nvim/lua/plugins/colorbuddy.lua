@@ -45,25 +45,25 @@ v.api.nvim_set_option('termguicolors', true)
 v.api.nvim_set_var('colors_name', 'arcbuddy')
 v.api.nvim_set_option('background', 'dark')
 
-Color.new('red',            '#e06c75')
-Color.new('dark_red',       '#be5046')
-Color.new('green',          '#98c379')
-Color.new('yellow',         '#e5c07b')
-Color.new('dark_yellow',    '#d19a66')
-Color.new('blue',           '#61afef')
-Color.new('purple',         '#c678dd')
-Color.new('cyan',           '#56b6c2')
-Color.new('white',          '#abb2bf')
-Color.new('black100',       '#1D1F21')
-Color.new('black',          '#1D1F21')
-Color.new('visual_black',   '#282c34')
-Color.new('comment_grey',   '#5C6370')
+Color.new('red', '#e06c75')
+Color.new('dark_red', '#be5046')
+Color.new('green', '#98c379')
+Color.new('yellow', '#e5c07b')
+Color.new('dark_yellow', '#d19a66')
+Color.new('blue', '#61afef')
+Color.new('purple', '#c678dd')
+Color.new('cyan', '#56b6c2')
+Color.new('white', '#abb2bf')
+Color.new('black100', '#1D1F21')
+Color.new('black', '#1D1F21')
+Color.new('visual_black', '#282c34')
+Color.new('comment_grey', '#5C6370')
 Color.new('gutter_fg_grey', '#4B5263')
-Color.new('cursor_grey',    '#1f2123')
-Color.new('visual_grey',    '#abb2bf')
-Color.new('menu_grey',      '#3E4452')
-Color.new('special_grey',   '#3B4048')
-Color.new('vertsplit',      '#181A1F')
+Color.new('cursor_grey', '#1f2123')
+Color.new('visual_grey', '#abb2bf')
+Color.new('menu_grey', '#3E4452')
+Color.new('special_grey', '#3B4048')
+Color.new('vertsplit', '#181A1F')
 
 -- Syntax Groups
 Group.new('Comment', colors.comment_grey, nil, i) -- any comment
@@ -101,8 +101,6 @@ Group.new('Underlined', nil, nil, ul) -- text that stands out, HTML links
 Group.new('Ignore', nil, nil, no) -- left blank, hidden
 Group.new('Error', colors.red, nil, no) -- any erroneous construct
 Group.new('Todo', colors.purple, nil, no) -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
-
 
 -- Highlighting Groups
 Group.new('ColorColumn', nil, colors.cursor_grey, no) -- used for the columns set with 'colorcolumn'
@@ -422,7 +420,6 @@ Group.new('WildMenu', colors.black, colors.blue, no) -- current match in 'wildme
 -- call s:h("xmlTag", { "fg": s:red })
 -- call s:h("xmlTagName", { "fg": s:red })
 
-
 --  -- Plugin Highlighting
 
 -- -- easymotion/vim-easymotion
@@ -431,7 +428,7 @@ Group.new('WildMenu', colors.black, colors.blue, no) -- current match in 'wildme
 -- call s:h("EasyMotionTarget2Second", { "fg": s:dark_yellow, "gui": "bold", "cterm": "bold" })
 -- call s:h("EasyMotionShade",  { "fg": s:comment_grey })
 
- -- mhinz/vim-signify
+-- mhinz/vim-signify
 Group.new('SignifySignAdd', colors.green, nil, no)
 Group.new('SignifySignChange', colors.yellow, nil, no)
 Group.new('SignifySignDelete', colors.red, nil, no)
@@ -450,7 +447,6 @@ Group.new('SignifySignDelete', colors.red, nil, no)
 --  -- tpope/vim-fugitive
 -- call s:h("diffAdded", { "fg": s:green })
 -- call s:h("diffRemoved", { "fg": s:red })
-
 
 -- Git Highlighting
 Group.new('gitcommitComment', colors.comment_grey, nil, no)

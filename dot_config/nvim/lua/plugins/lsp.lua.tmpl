@@ -237,7 +237,11 @@ local servers = {
       formatters = {
         ['lua-format'] = {
           command = 'lua-format',
-          args = { '-i' }
+          args = {
+            '-i',
+            '--no-keep-simple-control-block-one-line',
+            '--no-keep-simple-function-one-line',
+          },
         },
       }
     }
