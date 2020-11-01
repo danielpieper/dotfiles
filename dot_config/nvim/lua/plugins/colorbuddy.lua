@@ -81,6 +81,28 @@ Color.new('menu_grey', '#3E4452')
 Color.new('special_grey', '#3B4048')
 Color.new('vertsplit', '#181A1F')
 
+
+-- disable automatic coloring
+-- vim.api.nvim_command('autocmd! BufferlineColors VimEnter *')
+-- vim.api.nvim_command('autocmd! BufferlineColors ColorScheme *')
+-- colors.set_highlight('BufferLineFill', user_colors.bufferline_fill)
+-- colors.set_highlight('BufferLineInactive', user_colors.bufferline_buffer_inactive)
+-- Group.new('BufferLineBackground', colors.red, colors.black, no) -- any comment
+-- colors.set_highlight('BufferLineBackground', user_colors.bufferline_background)
+-- colors.set_highlight('BufferLineSelected', user_colors.bufferline_selected)
+-- colors.set_highlight('BufferLineSelectedIndicator', user_colors.bufferline_selected_indicator)
+-- colors.set_highlight('BufferLineModified', user_colors.bufferline_modified)
+-- colors.set_highlight('BufferLineModifiedSelected', user_colors.bufferline_modified_selected)
+-- colors.set_highlight('BufferLineModifiedInactive', user_colors.bufferline_modified_inactive)
+-- colors.set_highlight('BufferLineTab', user_colors.bufferline_tab)
+-- colors.set_highlight('BufferLineSeparator', user_colors.bufferline_separator)
+-- colors.set_highlight('BufferLineTabSelectedSeparator', user_colors.bufferline_tab_selected_separator)
+-- colors.set_highlight('BufferLineTabSelected', user_colors.bufferline_tab_selected)
+-- colors.set_highlight('BufferLineTabClose', user_colors.bufferline_tab_close)
+-- colors.set_highlight('BufferLinePick', user_colors.bufferline_pick)
+-- colors.set_highlight('BufferLinePickInactive', user_colors.bufferline_pick_inactive)
+
+
 -- Syntax Groups
 Group.new('Comment', colors.comment_grey, colors.none, i) -- any comment
 Group.new('Constant', colors.cyan, colors.none, no) -- any constant

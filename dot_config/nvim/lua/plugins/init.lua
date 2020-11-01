@@ -32,12 +32,12 @@ return require('packer').startup {
         } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
             'https://github.com/joshdick/onedark.vim',
-            disable = true,
+            disable = false,
             config = 'require("plugins.onedark")'
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
-            disable = false,
+            disable = true,
             config = 'require("plugins.colorbuddy")'
             -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
@@ -131,7 +131,6 @@ return require('packer').startup {
             config = 'require("plugins.nvim-bufferline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-                -- 'https://github.com/tjdevries/colorbuddy.nvim', -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
             }
         } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
 
@@ -172,14 +171,9 @@ return require('packer').startup {
                 'https://github.com/nvim-lua/lsp-status.nvim',
                 'https://github.com/nvim-lua/diagnostic-nvim', {
                     'https://github.com/nvim-lua/completion-nvim',
-                    -- event = 'InsertEnter *',
                     requires = {
-                        {
-                            'https://github.com/steelsojka/completion-buffers'
-                            -- event = 'InsertEnter *'
-                        }
-                        -- {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
-                        -- {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
+                        'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
+                        'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
                     }
                 }
             }
