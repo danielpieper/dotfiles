@@ -13,43 +13,37 @@ fi
 
 yay="yay -S --needed --noconfirm"
 
-# essential tools
-$yay bat diff-so-fancy exa htop iotop powertop httpie jq \
-  mc ncdu unzip wget make ranger nano ytop
-
-# other tools
-$yay 1password-cli aws-cli hostsctl weechat \
-  android-file-transfer android-tools usbutils
-
-# i3 and tools
-$yay i3-gaps dunst feh checkupdates-aur i3lock-fancy-git rofi udiskie \
+$yay \
+{{- /* essential tools */}}
+  bat diff-so-fancy exa htop iotop powertop httpie jq \
+  mc ncdu unzip wget make ranger nano ytop \
+{{- /* other tools */}}
+  1password-cli aws-cli hostsctl weechat \
+  android-file-transfer android-tools usbutils \
+{{- /* i3 and tools */}}
+  i3-gaps dunst feh checkupdates-aur i3lock-fancy-git rofi udiskie \
   gksu imwheel pavucontrol playerctl-git network-manager-applet \
   networkmanager-openvpn py3status gparted dex wpa_actiond \
-  pulseaudio-bluetooth picom
-
-# desktop apps
-$yay firefox kitty spotify tor-browser vlc chromium chromium-widevine
-
-# infrastructure
-$yay minikube docker-compose helm terraform tflint ansible hcloud
-
-# databases
-$yay mysql-workbench mariadb-clients tableplus
-
-# neovim
-$yay neovim-git fzy ripgrep the_silver_searcher tmux tmuxinator watchman \
-  editorconfig-core-c markdownlint-cli
-
-# displays
-$yay arandr autorandr
-
-# languages
-$yay composer xdebug php-gd php-intl php-phpdbg php-sqlite php-tidy \
+  pulseaudio-bluetooth picom \
+{{- /* desktop apps */}}
+  kitty spotify tor-browser vlc chromium chromium-widevine \
+{{- /* infrastructure */}}
+  minikube docker-compose helm terraform tflint ansible hcloud \
+{{- /* databases */}}
+  mysql-workbench mariadb-clients tableplus \
+{{- /* neovim */}}
+  neovim-nightly fzy ripgrep the_silver_searcher tmux tmuxinator watchman \
+  editorconfig-core-c \
+{{- /* displays */}}
+  arandr autorandr \
+{{- /* languages */}}
+  composer xdebug php-gd php-intl php-phpdbg php-sqlite php-tidy \
   go go-tools \
-  nvm yarn
+  nvm yarn \
+  lua luarocks \
+{{- /* api's */}}
+  postman-bin openapi-generator
 
-# api's
-$yay postman-bin openapi-generator
 {{ if eq .chezmoi.hostname "falcon9" -}}
 # laptop specific
 $yay acpilight laptop-mode-tools thermald upower
@@ -63,5 +57,5 @@ brew install bat exa awscli composer ctop diff-so-fancy fzy go go-jira \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
   tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop || true
 
-npm install -g markdownlint-cli
 {{ end -}}
+npm install -g markdownlint-cli

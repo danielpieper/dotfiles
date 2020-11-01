@@ -143,7 +143,7 @@ local servers = {
   },
   diagnosticls = {
     -- cmd = { "diagnostic-languageserver", "--log-level", "4", "--stdio" },
-    filetypes = { "php", "go" },
+    filetypes = { "php", "go", "lua" },
     -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
       filetypes = {
@@ -231,10 +231,17 @@ local servers = {
           }
         }
       },
-      formatters = {},
-      formatFiletypes = {}
+      formatFiletypes = {
+        lua = 'lua-format',
+      },
+      formatters = {
+        ['lua-format'] = {
+          command = 'lua-format',
+          args = { '-i' }
+        },
+      }
     }
-  },
+  }
 }
 
 for server, config in pairs(servers) do

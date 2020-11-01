@@ -34,11 +34,11 @@ return require('packer').startup {
       config = 'require("nvim-web-devicons").setup()',
     } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
     use {'https://github.com/joshdick/onedark.vim',
-      disable = false,
+      disable = true,
       config = 'require("plugins.onedark")',
     } -- Atom OneDark
     use {'https://github.com/tjdevries/colorbuddy.nvim',
-      disable = true,
+      disable = false,
       config = 'require("plugins.colorbuddy")',
       -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
     } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
@@ -77,7 +77,7 @@ return require('packer').startup {
     use {'https://github.com/mhinz/vim-signify',
       config = 'require("plugins.vim-signify")',
       -- event = { 'BufReadPre', 'BufNewFile'},
-    }
+    } -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
 
     -- General
     use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
@@ -111,6 +111,7 @@ return require('packer').startup {
       config = 'require("plugins.galaxyline")',
       requires = {
         'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+        'https://github.com/mhinz/vim-signify', -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
       }
     } -- galaxyline componentizes vim's statusline, the text of each area is provided by a component.
     use {'https://github.com/akinsho/nvim-bufferline.lua',
