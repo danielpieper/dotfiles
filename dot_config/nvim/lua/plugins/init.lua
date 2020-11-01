@@ -130,7 +130,8 @@ return require('packer').startup {
             'https://github.com/akinsho/nvim-bufferline.lua',
             config = 'require("plugins.nvim-bufferline")',
             requires = {
-                'https://github.com/kyazdani42/nvim-web-devicons' -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+                'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+                -- 'https://github.com/tjdevries/colorbuddy.nvim', -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
             }
         } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
 

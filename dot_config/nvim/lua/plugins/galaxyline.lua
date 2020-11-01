@@ -79,7 +79,7 @@ gls.left[2] = {
         rm = { color = colors.cyan, name = 'NORMAL' },
         ['r?'] = { color = colors.cyan, name = 'NORMAL' },
         ['!']  = { color = colors.red, name = 'NORMAL' },
-        t = { color = colors.red, name = 'NORMAL' },
+        t = { color = colors.green, name = 'TERMINAL' },
       }
       vim.api.nvim_command('hi GalaxyViMode guifg='..alias[vim.fn.mode()].color)
 
