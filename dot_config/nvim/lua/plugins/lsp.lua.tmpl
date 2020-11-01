@@ -92,9 +92,13 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-
+  -- Diagnostics
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", ":PrevDiagnosticCycle<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", ":NextDiagnosticCycle<CR>", opts)
+  -- Formatting
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- Uncomment for auto-format befor save
+  -- vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
 end
 
 local servers = {
@@ -143,8 +147,7 @@ local servers = {
     -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
       filetypes = {
-        -- php = {"phpcs", "phpmd", "phpstan"},
-        php = {"phpcs", "phpmd"},
+        php = {"phpcs", "phpmd", "phpstan"},
         go = "golangci-lint"
         -- javascript = 'eslint',
         -- markdown = 'markdownlint',
