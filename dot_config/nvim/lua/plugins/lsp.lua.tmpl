@@ -19,7 +19,10 @@ local nvim_lsp = require('nvim_lsp')
 -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 vim.g.completion_enable_snippet = "snippets.nvim"
 
-vim.api.nvim_set_var('completion_matching_ignore_case', 1)
+-- vim.api.nvim_set_var('completion_matching_ignore_case', 1)
+vim.api.nvim_set_var('completion_matching_smart_case', 1)
+-- Disable sorting: this let's me decide the order by completion source
+vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
@@ -118,6 +121,7 @@ local servers = {
   tsserver = {},
   jsonls = {},
   kotlin_language_server = {},
+  terraformls = {},
   pyls = {},
   rls = {},
   rust_analyzer = {},

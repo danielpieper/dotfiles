@@ -10,6 +10,6 @@ local g = vim.g
 
 {{- if ne $token "" }}
 g.fugitive_gitlab_domains = { '{{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}' }
-g.gitlab_api_keys = { {{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }} = '{{ $token }}' }
+g.gitlab_api_keys = { ['{{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}'] = '{{ $token }}' }
 {{- end }}
 {{- end }}

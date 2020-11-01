@@ -51,11 +51,15 @@ $yay acpilight laptop-mode-tools thermald upower
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
 brew tap cjbassi/ytop
+brew tap jason0x43/homebrew-neovim-nightly
 # homebrew returns error if the formula is installed and outdated
 brew install bat exa awscli composer ctop diff-so-fancy fzy go go-jira \
-  gradle helm htop httpie jenv jq midnight-commander ncdu neovim pre-commit \
+  gradle helm htop httpie jenv jq midnight-commander ncdu pre-commit \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
   tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop || true
+brew cask install neovim-nightly || true
+brew install hashicorp/tap/terraform-ls || true
+brew install golangci/tap/golangci-lint || true
 
 {{ end -}}
 npm install -g markdownlint-cli
