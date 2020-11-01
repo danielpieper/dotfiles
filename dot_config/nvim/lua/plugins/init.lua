@@ -30,18 +30,18 @@ return require('packer').startup {
     use {'https://github.com/wbthomason/packer.nvim', opt = true} -- Packer can manage itself as an optional plugin
 
     -- Eye Candy
-    use {'https://github.com/joshdick/onedark.vim',
-      disable = true,
-      config = 'require("plugins.onedark")',
-    } -- Atom OneDark
-    use {'https://github.com/tjdevries/colorbuddy.nvim',
-      disable = false,
-      config = 'require("plugins.colorbuddy")',
-      -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
-    } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
     use {'https://github.com/kyazdani42/nvim-web-devicons',
       config = 'require("nvim-web-devicons").setup()',
     } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+    use {'https://github.com/joshdick/onedark.vim',
+      disable = false,
+      config = 'require("plugins.onedark")',
+    } -- Atom OneDark
+    use {'https://github.com/tjdevries/colorbuddy.nvim',
+      disable = true,
+      config = 'require("plugins.colorbuddy")',
+      -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
+    } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
     use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
     use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
     use {'https://github.com/norcalli/nvim-colorizer.lua',
