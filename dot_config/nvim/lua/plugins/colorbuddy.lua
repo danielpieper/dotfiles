@@ -37,6 +37,10 @@ local v = vim
 -- | Comment Grey | rgb(92, 99, 112)   | #5c6370 |
 -- +---------------------------------------------+
 
+v.api.nvim_set_option('termguicolors', true)
+v.api.nvim_set_var('colors_name', 'arcbuddy')
+v.api.nvim_set_option('background', 'dark')
+
 Color.new('red',            '#e06c75')
 Color.new('dark_red',       '#be5046')
 Color.new('green',          '#98c379')
@@ -46,6 +50,7 @@ Color.new('blue',           '#61afef')
 Color.new('purple',         '#c678dd')
 Color.new('cyan',           '#56b6c2')
 Color.new('white',          '#abb2bf')
+Color.new('black100',       '#1D1F21')
 Color.new('black',          '#1D1F21')
 Color.new('visual_black',   '#282c34')
 Color.new('comment_grey',   '#5C6370')
@@ -56,9 +61,25 @@ Color.new('menu_grey',      '#3E4452')
 Color.new('special_grey',   '#3B4048')
 Color.new('vertsplit',      '#181A1F')
 
+Group.new('BufferLineFill', colors.comment_grey, nil, no)
+-- colors.set_highlight('BufferLineInactive', user_colors.bufferline_buffer_inactive)
+Group.new('BufferLineBackground', colors.white, colors.black:dark(), no)
+-- colors.set_highlight('BufferLineSelected', user_colors.bufferline_selected)
+-- colors.set_highlight('BufferLineSelectedIndicator', user_colors.bufferline_selected_indicator)
+-- colors.set_highlight('BufferLineModified', user_colors.bufferline_modified)
+-- colors.set_highlight('BufferLineModifiedSelected', user_colors.bufferline_modified_selected)
+-- colors.set_highlight('BufferLineModifiedInactive', user_colors.bufferline_modified_inactive)
+-- colors.set_highlight('BufferLineTab', colors.comment_grey, nil, no)
+Group.new('BufferLineSeparator', colors.green, nil, no)
+-- colors.set_highlight('BufferLineSeparator', user_colors.bufferline_separator)
+-- colors.set_highlight('BufferLineTabSelectedSeparator', user_colors.bufferline_tab_selected_separator)
+-- colors.set_highlight('BufferLineTabSelected', user_colors.bufferline_tab_selected)
+-- colors.set_highlight('BufferLineTabClose', user_colors.bufferline_tab_close)
+-- colors.set_highlight('BufferLinePick', user_colors.bufferline_pick)
+-- colors.set_highlight('BufferLinePickInactive', user_colors.bufferline_pick_inactive)
+
 
 -- Syntax Groups
-
 Group.new('Comment', colors.comment_grey, nil, i) -- any comment
 Group.new('Constant', colors.cyan, nil, no) -- any constant
 Group.new('String', colors.green, nil, no) -- a string constant: "this is a string"
@@ -444,24 +465,22 @@ Group.new('SignifySignDelete', colors.red, nil, no)
 -- call s:h("diffAdded", { "fg": s:green })
 -- call s:h("diffRemoved", { "fg": s:red })
 
--- " }}}
 
--- " Git Highlighting {{{
-
--- call s:h("gitcommitComment", { "fg": s:comment_grey })
--- call s:h("gitcommitUnmerged", { "fg": s:green })
--- call s:h("gitcommitOnBranch", {})
--- call s:h("gitcommitBranch", { "fg": s:purple })
--- call s:h("gitcommitDiscardedType", { "fg": s:red })
--- call s:h("gitcommitSelectedType", { "fg": s:green })
--- call s:h("gitcommitHeader", {})
--- call s:h("gitcommitUntrackedFile", { "fg": s:cyan })
--- call s:h("gitcommitDiscardedFile", { "fg": s:red })
--- call s:h("gitcommitSelectedFile", { "fg": s:green })
--- call s:h("gitcommitUnmergedFile", { "fg": s:yellow })
--- call s:h("gitcommitFile", {})
--- call s:h("gitcommitSummary", { "fg": s:white })
--- call s:h("gitcommitOverflow", { "fg": s:red })
+-- Git Highlighting
+Group.new('gitcommitComment', colors.comment_grey, nil, no)
+Group.new('gitcommitUnmerged', colors.green, nil, no)
+Group.new('gitcommitOnBranch', nil, nil, no)
+Group.new('gitcommitBranch', colors.purple, nil, no)
+Group.new('gitcommitDiscardedType', colors.red, nil, no)
+Group.new('gitcommitSelectedType', colors.green, nil, no)
+Group.new('gitcommitHeader', nil, nil, no)
+Group.new('gitcommitUntrackedFile', colors.cyan, nil, no)
+Group.new('gitcommitDiscardedFile', colors.red, nil, no)
+Group.new('gitcommitSelectedFile', colors.green, nil, no)
+Group.new('gitcommitUnmergedFile', colors.yellow, nil, no)
+Group.new('gitcommitFile', nil, nil, no)
+Group.new('gitcommitSummary', colors.white, nil, no)
+Group.new('gitcommitOverflow', colors.red, nil, no)
 -- hi link gitcommitNoBranch gitcommitBranch
 -- hi link gitcommitUntracked gitcommitComment
 -- hi link gitcommitDiscarded gitcommitComment
