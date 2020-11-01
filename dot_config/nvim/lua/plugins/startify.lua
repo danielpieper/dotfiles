@@ -9,6 +9,6 @@ g.startify_session_persistence = 1
 g.startify_change_to_dir = 1
 
 g.startify_lists = {
- { type = 'sessions',  header = {'   Sessions'}       },
- { type = 'files',     header = {'   MRU'}            },
+    {type = 'sessions', header = {'   Sessions'}},
+    {type = 'files', header = {'   MRU'}}
 }
