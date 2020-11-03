@@ -1,6 +1,4 @@
 local map = require("utils").map
-local g = vim.g
-local o = vim.o
 
 map('n', '<Leader>tt', ':TestNearest<CR>', {silent = true})
 map('n', '<Leader>tf', ':TestFile<CR>', {silent = true})
@@ -24,8 +22,8 @@ endfunction
 ]])
 
 vim.api.nvim_set_var('test#custom_transformations', {
-  personio = [[function('PersonioTransform')]],
-  vagrant = [[function('VagrantTransform')]]
+  personio = [[function("PersonioTransform")]],
+  vagrant = [[function("VagrantTransform")]]
 })
 
 {{- if eq .chezmoi.os "darwin" }}
