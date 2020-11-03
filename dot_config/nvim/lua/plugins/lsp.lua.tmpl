@@ -9,6 +9,7 @@ local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 local completion = require('completion')
 local nvim_lsp = require('nvim_lsp')
+local lsp_util = require ('nvim_lsp/util')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -120,7 +121,11 @@ local servers = {
   html = {},
   tsserver = {},
   jsonls = {},
-  kotlin_language_server = {},
+  kotlin_language_server = {
+    cmd = {"kotlin-language-server"},
+    filetypes = { "kotlin" },
+    root_dir = lsp_util.root_pattern("settings.gradle", "settings.gradle.kts", ".git"),
+  },
   terraformls = {},
   pyls = {},
   rls = {},
@@ -263,4 +268,3 @@ for server, config in pairs(servers) do
 
   nvim_lsp[server].setup(config)
 end
-

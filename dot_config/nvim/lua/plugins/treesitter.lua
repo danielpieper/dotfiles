@@ -1,3 +1,10 @@
+require "nvim-treesitter.parsers".get_parser_configs().kotlin = {
+  install_info = {
+    url = "https://github.com/fwcd/tree-sitter-kotlin",
+    files = {"src/parser.c"}
+  }
+}
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,                    -- false will disable the whole extension
@@ -30,7 +37,7 @@ require'nvim-treesitter.configs'.setup {
       }
     },
     navigation = {
-      enable = true,
+      enable = false,
       keymaps = {
         goto_definition = "gnd",      -- mapping to go to definition of symbol under cursor
         list_definitions = "gnD"      -- mapping to list all definitions in current file
@@ -65,7 +72,7 @@ require'nvim-treesitter.configs'.setup {
       ["im"] = "@call.inner"
     }
   },
-  -- one of "all", "language", or a list of languages
+  -- one of "all", "maintained", "language", or a list of languages
   ensure_installed = "all"
 --  ensure_installed = {
 --    "java",
