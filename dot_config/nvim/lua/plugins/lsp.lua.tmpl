@@ -130,18 +130,18 @@ local servers = {
   vuels = {},
   sumneko_lua = {},
   intelephense = {
-    settings = {
-      intelephense = {
-        diagnostics = {
-          enable = 1,
-          run = "onSave",
-        }
-      },
-    },
+    -- settings = {
+    --   intelephense = {
+    --     diagnostics = {
+    --       enable = 1,
+    --       run = "onSave",
+    --     }
+    --   },
+    -- },
 {{- if ne $licenseKey "" }}
     init_options = {
       licenceKey = "{{ $licenseKey }}",
-      -- clearCache = false
+      -- clearCache = true
     }
 {{- end }}
   },

@@ -80,28 +80,8 @@ Color.new('visual_grey', '#abb2bf')
 Color.new('menu_grey', '#3E4452')
 Color.new('special_grey', '#3B4048')
 Color.new('vertsplit', '#181A1F')
-
-
--- disable automatic coloring
--- vim.api.nvim_command('autocmd! BufferlineColors VimEnter *')
--- vim.api.nvim_command('autocmd! BufferlineColors ColorScheme *')
--- colors.set_highlight('BufferLineFill', user_colors.bufferline_fill)
--- colors.set_highlight('BufferLineInactive', user_colors.bufferline_buffer_inactive)
--- Group.new('BufferLineBackground', colors.red, colors.black, no) -- any comment
--- colors.set_highlight('BufferLineBackground', user_colors.bufferline_background)
--- colors.set_highlight('BufferLineSelected', user_colors.bufferline_selected)
--- colors.set_highlight('BufferLineSelectedIndicator', user_colors.bufferline_selected_indicator)
--- colors.set_highlight('BufferLineModified', user_colors.bufferline_modified)
--- colors.set_highlight('BufferLineModifiedSelected', user_colors.bufferline_modified_selected)
--- colors.set_highlight('BufferLineModifiedInactive', user_colors.bufferline_modified_inactive)
--- colors.set_highlight('BufferLineTab', user_colors.bufferline_tab)
--- colors.set_highlight('BufferLineSeparator', user_colors.bufferline_separator)
--- colors.set_highlight('BufferLineTabSelectedSeparator', user_colors.bufferline_tab_selected_separator)
--- colors.set_highlight('BufferLineTabSelected', user_colors.bufferline_tab_selected)
--- colors.set_highlight('BufferLineTabClose', user_colors.bufferline_tab_close)
--- colors.set_highlight('BufferLinePick', user_colors.bufferline_pick)
--- colors.set_highlight('BufferLinePickInactive', user_colors.bufferline_pick_inactive)
-
+Color.new('white_inactive', '#383D44')
+Color.new('black_inactive', '#151718')
 
 -- Syntax Groups
 Group.new('Comment', colors.comment_grey, colors.none, i) -- any comment
@@ -182,7 +162,7 @@ Group.new('StatusLineNC', colors.comment_grey, colors.none, no) -- status lines 
 Group.new('StatusLineTerm', colors.white, colors.cursor_grey, no) -- status line of current :terminal window
 Group.new('StatusLineTermNC', colors.comment_grey, colors.none, no) -- status line of non-current :terminal window
 Group.new('TabLine', colors.comment_grey, colors.none, no) -- tab pages line, not active tab page label
-Group.new('TabLineFill', colors.none, colors.none, no) -- tab pages line, where there are no labels
+Group.new('TabLineFill', colors.none, colors.black_inactive, no) -- tab pages line, where there are no labels
 Group.new('TabLineSel', colors.white, colors.none, no) -- tab pages line, active tab page label
 Group.new('Terminal', colors.white, colors.black, no) -- terminal window (see terminal-size-color)
 Group.new('Title', colors.green, colors.none, no) -- titles for output from ":set all", ":autocmd" etc.
@@ -485,6 +465,23 @@ Group.new('mkdLink', colors.blue, colors.none, no)
 -- tpope/vim-fugitive
 Group.new('diffAdded', colors.green, colors.none, no)
 Group.new('diffRemoved', colors.red, colors.none, no)
+
+
+-- romgrk/barbar.nvim colors
+Group.new('BufferCurrent', colors.white, colors.black, no)
+Group.new('BufferCurrentMod', colors.green, colors.black, no)
+Group.new('BufferCurrentSign', colors.blue, colors.black, no)
+Group.new('BufferCurrentTarget', colors.red, colors.black, b)
+Group.new('BufferVisible', colors.comment_grey, colors.black_inactive, no)
+Group.new('BufferVisibleMod', colors.green:dark(), colors.black_inactive, no)
+Group.new('BufferVisibleSign', colors.black:dark(), colors.black_inactive, no)
+Group.new('BufferVisibleTarget', colors.red, colors.black_inactive, b)
+Group.new('BufferInactive', colors.comment_grey, colors.black_inactive, no)
+Group.new('BufferInactiveMod', colors.green:dark(), colors.black_inactive, no)
+Group.new('BufferInactiveSign', colors.black:dark(), colors.black_inactive, no)
+Group.new('BufferInactiveTarget', colors.red, colors.black_inactive, b)
+Group.new('BufferShadow', colors.black_inactive, colors.black_inactive, no)
+
 
 -- Git Highlighting
 Group.new('gitcommitComment', colors.comment_grey, colors.none, no)

@@ -25,19 +25,22 @@ return require('packer').startup {
     function(use)
         use {'https://github.com/wbthomason/packer.nvim', opt = true} -- Packer can manage itself as an optional plugin
 
+
+        -- *****************************************
         -- Eye Candy
+        -- *****************************************
         use {
             'https://github.com/kyazdani42/nvim-web-devicons',
             config = 'require("nvim-web-devicons").setup()'
         } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
             'https://github.com/joshdick/onedark.vim',
-            disable = false,
+            disable = true,
             config = 'require("plugins.onedark")'
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
-            disable = true,
+            disable = false,
             config = 'require("plugins.colorbuddy")'
             -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
@@ -49,31 +52,20 @@ return require('packer').startup {
             config = 'require("colorizer").setup{"lua";}'
         } -- A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
 
-        -- Buffers
-        use {
-            'https://github.com/moll/vim-bbye',
-            config = 'require("plugins.vim-bbye")'
-        } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-        use {
-            'https://github.com/schickling/vim-bufonly',
-            config = 'require("plugins.vim-bufonly")'
-        } -- Delete all the buffers except the current buffer.
 
+        -- *****************************************
         -- Language Pack
+        -- *****************************************
         use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")'
         }
 
-        -- Editing
-        use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
-        use {
-            'https://github.com/tpope/vim-commentary',
-            config = 'require("plugins.vim-commentary")'
-        } -- Comment stuff out.
 
+        -- *****************************************
         -- Git
+        -- *****************************************
         use {
             'https://github.com/tpope/vim-fugitive',
             config = 'require("plugins.vim-fugitive")',
@@ -85,7 +77,10 @@ return require('packer').startup {
             -- event = { 'BufReadPre', 'BufNewFile'},
         } -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
 
+
+        -- *****************************************
         -- General
+        -- *****************************************
         use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
         use {
             'https://github.com/editorconfig/editorconfig-vim',
@@ -95,18 +90,32 @@ return require('packer').startup {
         use 'https://github.com/tpope/vim-eunuch' -- Vim sugar for the UNIX shell commands that need it the most.
         use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
         use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
+        use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
+        use {
+            'https://github.com/tpope/vim-commentary',
+            config = 'require("plugins.vim-commentary")'
+        } -- Comment stuff out.
 
+
+        -- *****************************************
         -- Snippets
+        -- *****************************************
         use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
         use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 
+
+        -- *****************************************
         -- Sessions
+        -- *****************************************
         use {
             'https://github.com/mhinz/vim-startify',
             config = 'require("plugins.startify")'
         } -- This plugin provides a start screen for Vim and Neovim.
 
+
+        -- *****************************************
         -- Status Bar
+        -- *****************************************
         use {
             'https://github.com/itchyny/lightline.vim',
             disable = true,
@@ -126,15 +135,45 @@ return require('packer').startup {
                 'https://github.com/mhinz/vim-signify' -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
             }
         } -- galaxyline componentizes vim's statusline, the text of each area is provided by a component.
+
+
+        -- *****************************************
+        -- Buffers
+        -- *****************************************
+        use {
+            'https://github.com/moll/vim-bbye',
+            disable = true,
+            config = 'require("plugins.vim-bbye")',
+        } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+        use {
+            'https://github.com/schickling/vim-bufonly',
+            config = 'require("plugins.vim-bufonly")',
+        } -- Delete all the buffers except the current buffer.
+
         use {
             'https://github.com/akinsho/nvim-bufferline.lua',
+            disable = true,
             config = 'require("plugins.nvim-bufferline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+                'https://github.com/moll/vim-bbye', -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+                'https://github.com/schickling/vim-bufonly', -- Delete all the buffers except the current buffer.
             }
         } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
+        use {
+            'https://github.com/romgrk/barbar.nvim',
+            disable = false,
+            config = 'require("plugins.barbar")',
+            requires = {
+                'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+                'https://github.com/schickling/vim-bufonly', -- Delete all the buffers except the current buffer.
+            }
+        } -- Tabs, as understood by any other editor.
 
+
+        -- *****************************************
         -- File management
+        -- *****************************************
         use {
             'https://github.com/preservim/nerdtree',
             disable = true,
@@ -155,7 +194,10 @@ return require('packer').startup {
             config = 'require("plugins.undotree")'
         } -- Undo visualise
 
+
+        -- *****************************************
         -- Finding and replacing
+        -- *****************************************
         use {
             'https://github.com/liuchengxu/vim-clap',
             run = ':Clap install-binary!',
@@ -163,7 +205,10 @@ return require('packer').startup {
         } -- Modern performant generic finder and dispatcher for Vim and NeoVim
         -- use 'https://github.com/haya14busa/incsearch.vim' -- incrementally highlights ALL pattern matches unlike default 'incsearch'.
 
+
+        -- *****************************************
         -- Completion and linting
+        -- *****************************************
         use {
             'https://github.com/neovim/nvim-lspconfig',
             config = 'require("plugins.lsp")',
@@ -179,7 +224,10 @@ return require('packer').startup {
             }
         }
 
+
+        -- *****************************************
         -- Testing & debugging
+        -- *****************************************
         use 'https://github.com/tpope/vim-dispatch' -- Asynchronous build and test dispatcher
         use {
             'https://github.com/janko/vim-test',
