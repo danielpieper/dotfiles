@@ -482,6 +482,10 @@ Group.new('BufferInactiveSign', colors.black:dark(), colors.black_inactive, no)
 Group.new('BufferInactiveTarget', colors.red, colors.black_inactive, b)
 Group.new('BufferShadow', colors.black_inactive, colors.black_inactive, no)
 
+Group.new('LspDiagnosticsErrorSign', colors.red, colors.none, no)
+Group.new('LspDiagnosticsWarningSign', colors.yellow, colors.none, no)
+Group.new('LspDiagnosticsInformationSign', colors.blue, colors.none, no)
+Group.new('LspDiagnosticsHintSign', colors.green, colors.none, no)
 
 -- Git Highlighting
 Group.new('gitcommitComment', colors.comment_grey, colors.none, no)

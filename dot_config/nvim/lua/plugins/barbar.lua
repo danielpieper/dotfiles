@@ -8,8 +8,8 @@ map('n', '<Leader>bb', ':BufferPick<CR>', {silent = true})
 -- nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
 
 -- Move to previous/next
--- nnoremap <silent>    <A-,> :BufferPrevious<CR>
--- nnoremap <silent>    <A-.> :BufferNext<CR>
+map('n', '[b', ":BufferPrevious<CR>", {silent = true})
+map('n', ']b', ":BufferNext<CR>", {silent = true})
 
 -- Re-order to previous/next
 map('n', '<Leader>b<', ":BufferMovePrevious<CR>", {silent = true})
@@ -33,8 +33,8 @@ map('n', '<Leader>q', ":BufferClose<CR>", {silent = true})
 map('n', '<Leader>Q', ":BufferWipeout<CR>", {silent = true})
 
 vim.g.bufferline = {
-  shadow = true, -- Show a shadow over the editor in buffer-pick mode
-  animation = true, -- Enable/disable animations
+  shadow = false, -- Show a shadow over the editor in buffer-pick mode
+  animation = false, -- Enable/disable animations
   icons = true, -- Enable/disable icons
   closable = false, -- Enable/disable close button
   -- Enables/disable clickable tabs
