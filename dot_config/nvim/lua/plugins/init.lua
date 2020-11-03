@@ -100,8 +100,10 @@ return require('packer').startup {
         -- *****************************************
         -- Snippets
         -- *****************************************
-        use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
-        use 'https://github.com/norcalli/snippets.nvim' -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+        -- use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
+        use {'https://github.com/norcalli/snippets.nvim',
+            config = 'require("plugins.snippets")',
+        } -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
 
 
         -- *****************************************

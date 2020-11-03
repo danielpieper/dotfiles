@@ -27,7 +27,7 @@ vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", 
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
-  { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
+  { complete_items = { 'snippet', 'lsp', 'path', 'buffers' } },
   { mode = { '<c-p>' } },
   { mode = { '<c-n>' } }
 })

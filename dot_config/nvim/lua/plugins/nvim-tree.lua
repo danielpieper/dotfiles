@@ -18,7 +18,7 @@ vim.api.nvim_set_var('lua_tree_icons', {
 })
 
 vim.api.nvim_set_var('lua_tree_side', 'right')
-vim.api.nvim_set_var('lua_tree_width', 40)
+vim.api.nvim_set_var('lua_tree_width', 50)
 vim.api.nvim_set_var('lua_tree_ignore', { '.git', 'node_modules', '.cache' })
 vim.api.nvim_set_var('lua_tree_auto_close', 1)
 vim.api.nvim_set_var('lua_tree_quit_on_open', 1)
