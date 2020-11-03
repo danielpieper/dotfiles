@@ -59,15 +59,32 @@ vim.api.nvim_set_var('diagnostic_enable_underline', 0)
 -- LSP Status configuration
 --
 lsp_status.register_progress()
--- lsp_status.config({
+
+-- see https://github.com/nvim-lua/lsp-status.nvim#configuration
+lsp_status.config {
 --   status_symbol = '',
 --   indicator_errors = 'e',
 --   indicator_warnings = 'w',
 --   indicator_info = 'i',
 --   indicator_hint = 'h',
 --   indicator_ok = 'ok',
--- })
+  select_symbol = function(cursor_pos, symbol)
+    if symbol.valueRange then
+      local value_range = {
+        ["start"] = {
+          character = 0,
+          line = vim.fn.byte2line(symbol.valueRange[1])
+        },
+        ["end"] = {
+          character = 0,
+          line = vim.fn.byte2line(symbol.valueRange[2])
+        }
+      }
 
+      return require("lsp-status.util").in_range(cursor_pos, value_range)
+    end
+  end
+}
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
@@ -265,7 +282,7 @@ for server, config in pairs(servers) do
   config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 
   -- config.log_level = vim.lsp.protocol.MessageType.Log;
-  -- config.message_level = vim.lsp.protocol.MessageType.Log;
+  config.message_level = vim.lsp.protocol.MessageType.Log;
 
   nvim_lsp[server].setup(config)
 end

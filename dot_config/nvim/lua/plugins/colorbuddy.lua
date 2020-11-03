@@ -482,10 +482,22 @@ Group.new('BufferInactiveSign', colors.black:dark(), colors.black_inactive, no)
 Group.new('BufferInactiveTarget', colors.red, colors.black_inactive, b)
 Group.new('BufferShadow', colors.black_inactive, colors.black_inactive, no)
 
-Group.new('LspDiagnosticsErrorSign', colors.red, colors.none, no)
-Group.new('LspDiagnosticsWarningSign', colors.yellow, colors.none, no)
-Group.new('LspDiagnosticsInformationSign', colors.blue, colors.none, no)
-Group.new('LspDiagnosticsHintSign', colors.green, colors.none, no)
+-- lsp diagnostics
+Group.new('LspDiagnosticsError', colors.red:dark(), colors.none, no) -- used for "Error" diagnostic virtual text
+Group.new('LspDiagnosticsErrorSign', colors.red:dark(), colors.none, no) -- used for "Error" diagnostic signs in sign column
+Group.new('LspDiagnosticsErrorFloating', colors.red:dark(), colors.none, no) -- used for "Error" diagnostic messages in the diagnostics float
+Group.new('LspDiagnosticsWarning', colors.yellow:dark(), colors.none, no) -- used for "Warning" diagnostic virtual text
+Group.new('LspDiagnosticsWarningSign', colors.yellow:dark(), colors.none, no) -- used for "Warning" diagnostic signs in sign column
+Group.new('LspDiagnosticsWarningFloating', colors.yellow:dark(), colors.none, no) -- used for "Warning" diagnostic messages in the diagnostics float
+Group.new('LspDiagnosticsInformation', colors.blue:dark(), colors.none, no) -- used for "Information" diagnostic virtual text
+Group.new('LspDiagnosticsInformationSign', colors.blue:dark(), colors.none, no) -- used for "Information" signs in sign column
+Group.new('LspDiagnosticsInformationFloating', colors.blue:dark(), colors.none, no) -- used for "Information" diagnostic messages in the diagnostics float
+Group.new('LspDiagnosticsHint', colors.green:dark(), colors.none, no) -- used for "Hint" diagnostic virtual text
+Group.new('LspDiagnosticsHintSign', colors.green:dark(), colors.none, no) -- used for "Hint" diagnostic signs in sign column
+Group.new('LspDiagnosticsHintFloating', colors.green:dark(), colors.none, no) -- used for "Hint" diagnostic messages in the diagnostics float
+Group.new('LspReferenceText', colors.cyan:dark(), colors.none, no) -- used for highlighting "text" references
+Group.new('LspReferenceRead', colors.cyan:dark(), colors.none, no) -- used for highlighting "read" references
+Group.new('LspReferenceWrite', colors.cyan:dark(), colors.none, no) -- used for highlighting "write" references
 
 -- Git Highlighting
 Group.new('gitcommitComment', colors.comment_grey, colors.none, no)
