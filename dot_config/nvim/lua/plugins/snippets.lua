@@ -40,7 +40,6 @@ class ${2}
 				${4}
 		}
 }
-
     ]];
     interface = [[
 <?php 
@@ -54,49 +53,42 @@ interface ${2}
 		public function ${3}(${4});
 		${0}
 }
-
     ]];
     ["public static"] = U.match_indentation([[
 public static function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["public"] = U.match_indentation([[
 public function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["private static"] = U.match_indentation([[
 private static function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["private"] = U.match_indentation([[
 private function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["protected static"] = U.match_indentation([[
 protected static function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["protected"] = U.match_indentation([[
 protected function ${1}(${2})
 {
 		${0}
 }
-
     ]]);
     ["foreach"] = U.match_indentation([[
 foreach (${1:iterable} as ${2:value}) {
@@ -150,7 +142,6 @@ ${1}
 **Solution**
 
 ${0}
-
       ]]);
   };
 }
