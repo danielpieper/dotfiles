@@ -480,7 +480,6 @@ Group.new('BufferInactive', colors.comment_grey, colors.black_inactive, no)
 Group.new('BufferInactiveMod', colors.green:dark(), colors.black_inactive, no)
 Group.new('BufferInactiveSign', colors.black:dark(), colors.black_inactive, no)
 Group.new('BufferInactiveTarget', colors.red, colors.black_inactive, b)
-Group.new('BufferShadow', colors.black_inactive, colors.black_inactive, no)
 
 -- lsp diagnostics
 Group.new('LspDiagnosticsError', colors.red:dark(), colors.none, no) -- used for "Error" diagnostic virtual text
@@ -489,9 +488,9 @@ Group.new('LspDiagnosticsErrorFloating', colors.red:dark(), colors.none, no) -- 
 Group.new('LspDiagnosticsWarning', colors.dark_yellow:dark(), colors.none, no) -- used for "Warning" diagnostic virtual text
 Group.new('LspDiagnosticsWarningSign', colors.dark_yellow:dark(), colors.none, no) -- used for "Warning" diagnostic signs in sign column
 Group.new('LspDiagnosticsWarningFloating', colors.dark_yellow:dark(), colors.none, no) -- used for "Warning" diagnostic messages in the diagnostics float
-Group.new('LspDiagnosticsInformation', colors.blue:dark(), colors.none, no) -- used for "Information" diagnostic virtual text
-Group.new('LspDiagnosticsInformationSign', colors.blue:dark(), colors.none, no) -- used for "Information" signs in sign column
-Group.new('LspDiagnosticsInformationFloating', colors.blue:dark(), colors.none, no) -- used for "Information" diagnostic messages in the diagnostics float
+Group.new('LspDiagnosticsInformation', colors.white, colors.none, no) -- used for "Information" diagnostic virtual text
+Group.new('LspDiagnosticsInformationSign', colors.white, colors.none, no) -- used for "Information" signs in sign column
+Group.new('LspDiagnosticsInformationFloating', colors.white, colors.none, no) -- used for "Information" diagnostic messages in the diagnostics float
 Group.new('LspDiagnosticsHint', colors.yellow:dark(), colors.none, no) -- used for "Hint" diagnostic virtual text
 Group.new('LspDiagnosticsHintSign', colors.yellow:dark(), colors.none, no) -- used for "Hint" diagnostic signs in sign column
 Group.new('LspDiagnosticsHintFloating', colors.yellow:dark(), colors.none, no) -- used for "Hint" diagnostic messages in the diagnostics float
