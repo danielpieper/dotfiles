@@ -143,6 +143,9 @@ function M.other_settings()
 
   -- Enable mouse with tmux
   o.mouse = 'a'
+
+  o.listchars = [[tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·]]
+  o.list = true
 end
 
 function M.load_settings()
