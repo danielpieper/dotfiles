@@ -101,7 +101,6 @@ local on_attach = function(client, bufnr)
   -- php workaround, see https://vi.stackexchange.com/questions/11023/auto-indent-turns-off-itself-automatically-on-php-files
   vim.api.nvim_buf_set_option(bufnr, "autoindent", true)
   vim.api.nvim_buf_set_option(bufnr, "smartindent", true)
-  vim.api.nvim_buf_set_option(bufnr, "syntax", "on")
 
   -- Keybindings for LSPs
   local opts = { noremap=true, silent=true }
@@ -125,7 +124,8 @@ end
 local servers = {
   cssls = {},
   bashls = {},
-  dockerls = {},
+  -- throws errors:
+  -- dockerls = {},
   flow = {},
   ghcide = {},
   gopls = {

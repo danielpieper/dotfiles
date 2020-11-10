@@ -144,8 +144,13 @@ function M.other_settings()
   -- Enable mouse with tmux
   o.mouse = 'a'
 
-  o.listchars = [[tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·]]
+  o.listchars = [[tab:  ,extends:›,precedes:‹,nbsp:·,trail:·]]
   o.list = true
+
+  -- TODO: how can i disable syntax from lua??? So far i put it in the init.vim...
+  -- vim.api.nvim_set_option('syntax', 'off');
+  -- o.syntax = "off"
+  -- bo.syntax = "off"
 end
 
 function M.load_settings()

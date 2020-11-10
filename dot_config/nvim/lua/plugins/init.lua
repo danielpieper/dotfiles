@@ -40,15 +40,14 @@ return require('packer').startup {
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
-            disable = false,
             config = 'require("plugins.colorbuddy")'
             -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
+            -- config = 'require("colorbuddy").colorscheme("onebuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
         use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
         use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
         use {
             'https://github.com/norcalli/nvim-colorizer.lua',
-            disable = false,
             config = 'require("colorizer").setup{"lua";}'
         } -- A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
 
@@ -56,7 +55,10 @@ return require('packer').startup {
         -- *****************************************
         -- Language Pack
         -- *****************************************
-        use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
+        use {
+            'https://github.com/sheerun/vim-polyglot',
+            disable = true,
+        } -- A collection of language packs for Vim.
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")'

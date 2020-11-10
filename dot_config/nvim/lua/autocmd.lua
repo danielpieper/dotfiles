@@ -38,9 +38,6 @@ utils.augroup(
 
     -- Allow stylesheets to autocomplete hyphenated words
     vim.cmd('autocmd FileType css,scss,sass setlocal iskeyword+=-')
-
-    -- Use JS snippets in TS
-    vim.cmd([[autocmd FileType typescript,typescript.tsx call UltiSnips#AddFiletypes('javascript.typescript')]])
   end
 )
 
