@@ -22,16 +22,3 @@ map("n", "<Leader>v", ":vsplit<CR>", {silent = true})
 
 -- Make `Y` work from the cursor to the end of line
 map("n", "Y", "y$", {})
-
--- Shows the highlight group names under the cursor
-vim.api.nvim_command([[
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-]])
-
-map("n", "<Leader><F10>", ':call <SID>SynStack()<CR>', {})
-

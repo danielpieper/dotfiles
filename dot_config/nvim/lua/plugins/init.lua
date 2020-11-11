@@ -40,9 +40,9 @@ return require('packer').startup {
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
-            config = 'require("plugins.colorbuddy")'
-            -- requires = 'https://github.com/Th3Whit3Wolf/onebuddy', -- An atom one inspired dark and light colorscheme
-            -- config = 'require("colorbuddy").colorscheme("onebuddy")',
+            -- config = 'require("plugins.colorbuddy")'
+            requires = '~/projects/private/arcbuddy', -- An atom one inspired dark and light colorscheme
+            config = 'require("colorbuddy").colorscheme("arcbuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
         use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
         use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
