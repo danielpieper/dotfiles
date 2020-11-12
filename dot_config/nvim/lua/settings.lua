@@ -151,6 +151,8 @@ function M.other_settings()
   -- vim.api.nvim_set_option('syntax', 'off');
   -- o.syntax = "off"
   -- bo.syntax = "off"
+
+  o.incsearch = true
 end
 
 function M.load_settings()

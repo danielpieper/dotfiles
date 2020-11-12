@@ -138,6 +138,7 @@ return require('packer').startup {
         use {
             'https://github.com/glepnir/galaxyline.nvim',
             disable = false,
+            branch = 'main', -- see https://github.com/wbthomason/packer.nvim/issues/86
             config = 'require("plugins.galaxyline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
@@ -209,19 +210,19 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/liuchengxu/vim-clap',
-            disable = true,
+            disable = false,
             run = ':Clap install-binary!',
             config = 'require("plugins.vim-clap")'
         } -- Modern performant generic finder and dispatcher for Vim and NeoVim
         use {
             'https://github.com/nvim-lua/telescope.nvim',
+            disable = true,
             config = 'require("plugins.telescope")',
             requires = {
                 'https://github.com/nvim-lua/plenary.nvim', -- All the lua functions I don't want to write twice.
                 'https://github.com/nvim-lua/popup.nvim', -- [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
             }
         }
-        -- use 'https://github.com/haya14busa/incsearch.vim' -- incrementally highlights ALL pattern matches unlike default 'incsearch'.
 
 
         -- *****************************************
