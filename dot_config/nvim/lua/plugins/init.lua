@@ -204,9 +204,18 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/liuchengxu/vim-clap',
+            disable = true,
             run = ':Clap install-binary!',
             config = 'require("plugins.vim-clap")'
         } -- Modern performant generic finder and dispatcher for Vim and NeoVim
+        use {
+            'https://github.com/nvim-lua/telescope.nvim',
+            config = 'require("plugins.telescope")',
+            requires = {
+                'https://github.com/nvim-lua/plenary.nvim', -- All the lua functions I don't want to write twice.
+                'https://github.com/nvim-lua/popup.nvim', -- [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
+            }
+        }
         -- use 'https://github.com/haya14busa/incsearch.vim' -- incrementally highlights ALL pattern matches unlike default 'incsearch'.
 
 
@@ -224,7 +233,8 @@ return require('packer').startup {
                         'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
                         'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
                     }
-                }
+                },
+                -- 'https://github.com/nvim-lua/lsp_extensions.nvim', -- Repo to hold a bunch of info & extension callbacks for built-in LSP. Use at your own risk 😉
             }
         }
 
