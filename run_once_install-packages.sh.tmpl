@@ -16,7 +16,7 @@ yay="yay -S --needed --noconfirm"
 $yay \
 {{- /* essential tools */}}
   bat diff-so-fancy exa htop iotop powertop httpie jq \
-  mc ncdu unzip wget make ranger nano ytop \
+  mc ncdu unzip wget make ranger nano ytop glow \
 {{- /* other tools */}}
   1password-cli aws-cli hostsctl weechat \
   android-file-transfer android-tools usbutils \
@@ -56,7 +56,7 @@ brew tap jason0x43/homebrew-neovim-nightly
 brew install bat exa awscli composer ctop diff-so-fancy fzy go go-jira \
   gradle helm htop httpie jenv jq midnight-commander ncdu pre-commit \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
-  tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop || true
+  tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop glow || true
 brew cask install neovim-nightly || true
 brew install hashicorp/tap/terraform-ls || true
 brew install golangci/tap/golangci-lint || true

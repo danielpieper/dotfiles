@@ -53,7 +53,7 @@ return require('packer').startup {
 
 
         -- *****************************************
-        -- Language Pack
+        -- Language Specific
         -- *****************************************
         use {
             'https://github.com/sheerun/vim-polyglot',
@@ -63,6 +63,11 @@ return require('packer').startup {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")'
         }
+        use {
+          'https://github.com/npxbr/glow.nvim',
+          run = ':GlowInstall<CR>',
+          config = 'require("utils").map("n", "<Leader>p", ":Glow<CR>", {silent=true})',
+        } -- A glow preview directly in your neovim buffer. (markdown)
 
 
         -- *****************************************
