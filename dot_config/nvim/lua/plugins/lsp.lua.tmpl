@@ -54,7 +54,13 @@ vim.api.nvim_set_var('diagnostic_virtual_text_prefix', '')
 vim.api.nvim_set_var('diagnostic_insert_delay', 1)
 vim.api.nvim_set_var('diagnostic_show_sign', 1)
 -- disable underline to make text more readable
-vim.api.nvim_set_var('diagnostic_enable_underline', 0) 
+vim.api.nvim_set_var('diagnostic_enable_underline', 0)
+
+vim.fn.sign_define('LspDiagnosticsErrorSign', {text = '', texthl = 'LspDiagnosticsError'})
+vim.fn.sign_define('LspDiagnosticsWarningSign', {text = '', texthl = 'LspDiagnosticsWarning'})
+vim.fn.sign_define('LspDiagnosticsInformationSign', {text = '', texthl = 'LspDiagnosticsInformation'})
+vim.fn.sign_define('LspDiagnosticsHintSign', {text = '', texthl = 'LspDiagnosticsHint'})
+
 
 -- LSP Status configuration
 --
@@ -65,9 +71,9 @@ lsp_status.config {
 --   status_symbol = '',
   indicator_errors = '',
   indicator_warnings = '',
---   indicator_info = 'i',
---   indicator_hint = 'h',
---   indicator_ok = 'ok',
+  indicator_info = '',
+  indicator_hint = '',
+  indicator_ok = '',
 -- This was a fix for the sumneko_lua
   select_symbol = function(cursor_pos, symbol)
     if symbol.valueRange then
@@ -171,7 +177,7 @@ local servers = {
   diagnosticls = {
     -- cmd = { "diagnostic-languageserver", "--log-level", "4", "--stdio" },
     -- filetypes = { "php", "go", "lua" },
-    filetypes = { "go", "lua" },
+    filetypes = { "php", "go", "lua" },
     -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
       filetypes = {
