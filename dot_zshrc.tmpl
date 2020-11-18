@@ -144,7 +144,7 @@ export VISUAL='nvim'
 export PAGER='less'
 export BROWSER='chromium'
 
-export PATH=$PATH:~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin
+export PATH=~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin:~/.local/nvim/bin:~/.yarn/bin:$PATH
 
 {{- if eq .chezmoi.os "darwin" }}
 export PATH=/usr/local/opt/node@8/bin:~/Library/Python/2.7/bin:/usr/local/sbin:$PATH

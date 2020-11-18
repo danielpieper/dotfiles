@@ -6,10 +6,9 @@
 {{- end }}
 local utils = require('utils')
 local lsp_status = require('lsp-status')
-local diagnostic = require('diagnostic')
 local completion = require('completion')
-local nvim_lsp = require('nvim_lsp')
-local lsp_util = require ('nvim_lsp/util')
+local lspconfig = require('lspconfig')
+-- local lsp_util = require ('nvim_lsp/util')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -48,19 +47,26 @@ utils.map(
 
 -- Diagnostic configuration
 --
-vim.api.nvim_set_var('diagnostic_enable_virtual_text', 1)
--- vim.api.nvim_set_var('diagnostic_trimmed_virtual_text', 40)
-vim.api.nvim_set_var('diagnostic_virtual_text_prefix', '')
-vim.api.nvim_set_var('diagnostic_insert_delay', 1)
-vim.api.nvim_set_var('diagnostic_show_sign', 1)
--- disable underline to make text more readable
-vim.api.nvim_set_var('diagnostic_enable_underline', 0)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Enable underline, use default values
+    underline = false,
+    virtual_text = {
+      spacing = 4,
+      prefix = '',
+    },
+    virtual_text = true,
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+    update_in_insert = false,
+  }
+)
 
-vim.fn.sign_define('LspDiagnosticsErrorSign', {text = '', texthl = 'LspDiagnosticsError'})
-vim.fn.sign_define('LspDiagnosticsWarningSign', {text = '', texthl = 'LspDiagnosticsWarning'})
-vim.fn.sign_define('LspDiagnosticsInformationSign', {text = '', texthl = 'LspDiagnosticsInformation'})
-vim.fn.sign_define('LspDiagnosticsHintSign', {text = '', texthl = 'LspDiagnosticsHint'})
-
+vim.fn.sign_define('LspDiagnosticsSignError', {text = '', texthl = 'LspDiagnosticsError'})
+vim.fn.sign_define('LspDiagnosticsSignWarning', {text = '', texthl = 'LspDiagnosticsWarning'})
+vim.fn.sign_define('LspDiagnosticsSignInformation', {text = '', texthl = 'LspDiagnosticsInformation'})
+vim.fn.sign_define('LspDiagnosticsSignHint', {text = '', texthl = 'LspDiagnosticsHint'})
 
 -- LSP Status configuration
 --
@@ -96,7 +102,6 @@ lsp_status.config {
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
-  diagnostic.on_attach(client, bufnr)
 
   -- Set the omnifunc for this buffer.
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -120,8 +125,8 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
   -- Diagnostics
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", ":PrevDiagnosticCycle<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", ":NextDiagnosticCycle<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<CR>", opts)
   -- Formatting
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   -- Uncomment for auto-format befor save
@@ -148,7 +153,7 @@ local servers = {
   kotlin_language_server = {
     cmd = {"kotlin-language-server"},
     filetypes = { "kotlin" },
-    root_dir = lsp_util.root_pattern("settings.gradle", "settings.gradle.kts", ".git"),
+    -- root_dir = lsp_util.root_pattern("settings.gradle", "settings.gradle.kts", ".git"),
   },
   terraformls = {},
   pyls = {},
@@ -176,7 +181,6 @@ local servers = {
   },
   diagnosticls = {
     -- cmd = { "diagnostic-languageserver", "--log-level", "4", "--stdio" },
-    -- filetypes = { "php", "go", "lua" },
     filetypes = { "php", "go", "lua" },
     -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
@@ -291,5 +295,5 @@ for server, config in pairs(servers) do
   -- config.log_level = vim.lsp.protocol.MessageType.Log;
   config.message_level = vim.lsp.protocol.MessageType.Log;
 
-  nvim_lsp[server].setup(config)
+  lspconfig[server].setup(config)
 end

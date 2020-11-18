@@ -40,8 +40,10 @@ return require('packer').startup {
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
-            -- config = 'require("plugins.colorbuddy")'
-            requires = '~/projects/private/arcbuddy', -- An atom one inspired dark and light colorscheme
+            requires = {
+              'https://github.com/danielpieper/arcbuddy',
+              branch = 'main',
+            }, -- An atom one inspired dark and light colorscheme
             config = 'require("colorbuddy").colorscheme("arcbuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
         use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
@@ -139,7 +141,6 @@ return require('packer').startup {
             'https://github.com/glepnir/galaxyline.nvim',
             disable = false,
             branch = 'main', -- see https://github.com/wbthomason/packer.nvim/issues/86
-            commit = 'd439b1e5b4b7e13f01c44b6ee6403a60b5b729c7',
             config = 'require("plugins.galaxyline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
