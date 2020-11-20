@@ -26,7 +26,7 @@ vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", 
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
-  { complete_items = { 'snippet', 'lsp', 'path', 'buffers' } },
+  { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
   { mode = { '<c-p>' } },
   { mode = { '<c-n>' } }
 })
@@ -81,22 +81,22 @@ lsp_status.config {
   indicator_hint = '',
   indicator_ok = '',
 -- This was a fix for the sumneko_lua
-  select_symbol = function(cursor_pos, symbol)
-    if symbol.valueRange then
-      local value_range = {
-        ["start"] = {
-          character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[1])
-        },
-        ["end"] = {
-          character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[2])
-        }
-      }
+  -- select_symbol = function(cursor_pos, symbol)
+  --   if symbol.valueRange then
+  --     local value_range = {
+  --       ["start"] = {
+  --         character = 0,
+  --         line = vim.fn.byte2line(symbol.valueRange[1])
+  --       },
+  --       ["end"] = {
+  --         character = 0,
+  --         line = vim.fn.byte2line(symbol.valueRange[2])
+  --       }
+  --     }
 
-      return require("lsp-status.util").in_range(cursor_pos, value_range)
-    end
-  end
+  --     return require("lsp-status.util").in_range(cursor_pos, value_range)
+  --   end
+  -- end
 }
 
 local on_attach = function(client, bufnr)

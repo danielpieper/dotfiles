@@ -50,7 +50,7 @@ return require('packer').startup {
         use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
         use {
             'https://github.com/norcalli/nvim-colorizer.lua',
-            config = 'require("colorizer").setup{"lua";}'
+            config = 'require("colorizer").setup()'
         } -- A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
 
 

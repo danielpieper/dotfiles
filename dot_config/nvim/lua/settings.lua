@@ -71,11 +71,11 @@ function M.other_settings()
   -- wo.colorcolumn = "80"
   o.termguicolors = true
 
+  o.autoindent = true
+  bo.autoindent = true
+
   o.smartindent = true
   bo.smartindent = true
-
-  -- o.autoindent = true
-  -- bo.autoindent = true
 
   o.tabstop = 2
   bo.tabstop = 2
@@ -124,12 +124,6 @@ function M.other_settings()
   -- Increase redraw time for large files ...
   -- TODO: used? syntax?
   -- o.redrawtime = 10000
-
-  -- Don't display the current mode (Insert, Visual, Replace)
-  -- in the status line. This info is already shown in the
-  -- Airline status bar.
-  -- TODO: used? syntax?
-  -- o.noshowmode = true
 
   -- Stop vim trying to syntax highlight long lines, typically found in minified
   -- files. This greatly reduces lag yet is still wide enough for large displays

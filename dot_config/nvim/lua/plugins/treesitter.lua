@@ -13,6 +13,9 @@ require'nvim-treesitter.configs'.setup {
     -- ["foo.bar"] = "Identifier"   -- highlight own capture @foo.bar with highlight group "Identifier", see :h nvim-treesitter-query-extensions
     -- },
   },
+  indent = {
+    enable = true
+  },
   incremental_selection = {
     enable = true,
     disable = { "cpp", "lua" },
