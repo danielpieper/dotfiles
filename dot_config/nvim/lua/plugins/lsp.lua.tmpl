@@ -8,7 +8,6 @@ local utils = require('utils')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
 local lspconfig = require('lspconfig')
--- local lsp_util = require ('nvim_lsp/util')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -49,15 +48,12 @@ utils.map(
 --
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- Enable underline, use default values
     underline = false,
     virtual_text = {
       spacing = 4,
       prefix = '',
     },
     virtual_text = true,
-    -- To configure sign display,
-    --  see: ":help vim.lsp.diagnostic.set_signs()"
     signs = true,
     update_in_insert = false,
   }
@@ -128,7 +124,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<CR>", opts)
   -- Formatting
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   -- Uncomment for auto-format befor save
   -- vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
 end
@@ -153,7 +149,7 @@ local servers = {
   kotlin_language_server = {
     cmd = {"kotlin-language-server"},
     filetypes = { "kotlin" },
-    -- root_dir = lsp_util.root_pattern("settings.gradle", "settings.gradle.kts", ".git"),
+    root_dir = lspconfig.util.root_pattern( "settings.gradle", "settings.gradle.kts", ".git" ),
   },
   terraformls = {},
   pyls = {},
@@ -180,22 +176,20 @@ local servers = {
 {{- end }}
   },
   diagnosticls = {
-    -- cmd = { "diagnostic-languageserver", "--log-level", "4", "--stdio" },
     filetypes = { "php", "go", "lua" },
-    -- trace = "verbose", -- "off" | "messages" | "verbose" | nil
     init_options = {
       filetypes = {
         php = {"phpcs", "phpmd", "phpstan"},
-        go = "golangci-lint"
-        -- javascript = 'eslint',
-        -- markdown = 'markdownlint',
+        go = "golangci-lint",
+        sh = "spellcheck",
+        markdown = "spellcheck",
       },
       linters = {
         phpcs = {
           command = "phpcs",
           debounce = 100,
           rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
-          args = { "--standard=PSR12", "--report=emacs", "-s", "%file" },
+          args = { "--standard=phpcs.xml", "--report=emacs", "-s", "%file" },
           offsetLine = 0,
           offsetColumn = 0,
           sourceName = "phpcs",
@@ -240,7 +234,7 @@ local servers = {
           debounce = 100,
           rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
           args = { "analyze", "--error-format", "raw", "--no-progress", "%file" },
-          offsetLine = 0,
+          offsetLine = 1, -- If the project has a configuration file, phpstan prints "Note: Using configuration file .../phpstan.neon." which cannot be disabled.
           offsetColumn = 0,
           sourceName = "phpstan",
           formatLines = 1,
@@ -267,6 +261,26 @@ local servers = {
             endLine = "LineRange.To",
             message = "${Text} (${FromLinter})"
           }
+        },
+        shellcheck = {
+          command = "shellcheck",
+          debounce = 100,
+          args = { "--format=json", "-" },
+          sourceName = "shellcheck",
+          parseJson = {
+            line = "line",
+            column = "column",
+            endLine = "endLine",
+            endColumn = "endColumn",
+            message = "${message} [${code}]",
+            security = "level"
+          },
+          securities = {
+              error = "error",
+              warning = "warning",
+              info = "info",
+              style = "hint"
+          }
         }
       },
       formatFiletypes = {
@@ -292,7 +306,7 @@ for server, config in pairs(servers) do
   -- Set default client capabilities plus window/workDoneProgress
   config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 
-  -- config.log_level = vim.lsp.protocol.MessageType.Log;
+  config.log_level = vim.lsp.protocol.MessageType.Log;
   config.message_level = vim.lsp.protocol.MessageType.Log;
 
   lspconfig[server].setup(config)
