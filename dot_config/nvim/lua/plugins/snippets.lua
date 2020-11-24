@@ -72,6 +72,13 @@ private static function ${1}(${2})
 		${0}
 }
     ]]);
+    ["app("] = U.match_indentation([[
+private function get${1}(): ${1}
+{
+    return app(${1}::class);
+}
+${0}
+    ]]);
     ["private"] = U.match_indentation([[
 private function ${1}(${2})
 {
