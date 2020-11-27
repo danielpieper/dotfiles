@@ -43,8 +43,8 @@ map("n", "<A-p>", ":lua require('telescope.builtin').find_files{}<CR>", {silent 
 map("n", "<BS>", ":lua require('telescope.builtin').command_history{}<CR>", {silent = true})
 map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", {silent = true})
 map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = false}<CR>", {silent = true}) -- Show unloaded buffers aswell
-map("n", "<F5>", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
-map("n", "<F6>", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
+map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
+map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
 
 
 -- function my_custom_picker(results)

@@ -157,10 +157,6 @@ return require('packer').startup {
             disable = true,
             config = 'require("plugins.vim-bbye")',
         } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-        use {
-            'https://github.com/schickling/vim-bufonly',
-            config = 'require("plugins.vim-bufonly")',
-        } -- Delete all the buffers except the current buffer.
 
         use {
             'https://github.com/akinsho/nvim-bufferline.lua',
@@ -178,7 +174,6 @@ return require('packer').startup {
             config = 'require("plugins.barbar")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-                'https://github.com/schickling/vim-bufonly', -- Delete all the buffers except the current buffer.
             }
         } -- Tabs, as understood by any other editor.
 
@@ -225,6 +220,11 @@ return require('packer').startup {
                 'https://github.com/nvim-lua/popup.nvim', -- [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
             }
         }
+        use {
+          'https://github.com/strboul/urlview.vim',
+          disable = true, -- netrw for some reason does not open the url
+          config = 'require("utils").map("n", "<F5>", ":Urlview<CR>", {silent=true})',
+        } -- List and open URLs easily.
 
 
         -- *****************************************

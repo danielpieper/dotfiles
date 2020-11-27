@@ -32,6 +32,9 @@ map('n', '<Leader>q', ":BufferClose<CR>", {silent = true})
 -- " Wipeout buffer
 map('n', '<Leader>Q', ":BufferWipeout<CR>", {silent = true})
 
+map('n', 'Q', ":BufferCloseAllButCurrent<CR>", {silent = true})
+map('n', 'Ql', ":BufferCloseBuffersRight<CR>", {silent = true})
+
 vim.g.bufferline = {
   shadow = false, -- Show a shadow over the editor in buffer-pick mode
   animation = false, -- Enable/disable animations
