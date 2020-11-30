@@ -63,12 +63,14 @@ return require('packer').startup {
         } -- A collection of language packs for Vim.
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
-            config = 'require("plugins.treesitter")'
+            config = 'require("plugins.treesitter")',
+            run = ':TSUpdate'
         }
         use {
           'https://github.com/npxbr/glow.nvim',
           run = ':GlowInstall<CR>',
           config = 'require("utils").map("n", "<Leader>p", ":Glow<CR>", {silent=true})',
+          cmd = 'Glow',
         } -- A glow preview directly in your neovim buffer. (markdown)
 
 
@@ -198,7 +200,7 @@ return require('packer').startup {
         } -- A File Explorer For Neovim Written In Lua
         use {
             'https://github.com/mbbill/undotree',
-            config = 'require("plugins.undotree")'
+            config = 'require("plugins.undotree")',
         } -- Undo visualise
 
 

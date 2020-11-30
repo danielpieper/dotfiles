@@ -32,7 +32,7 @@ map('n', '<Leader>q', ":BufferClose<CR>", {silent = true})
 -- " Wipeout buffer
 map('n', '<Leader>Q', ":BufferWipeout<CR>", {silent = true})
 
-map('n', 'QQ', ":BufferCloseAllButCurrent<CR>", {silent = true})
+map('n', 'Q', ":BufferCloseAllButCurrent<CR>", {silent = true})
 map('n', 'Ql', ":BufferCloseBuffersRight<CR>", {silent = true})
 
 vim.g.bufferline = {

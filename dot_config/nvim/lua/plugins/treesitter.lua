@@ -1,8 +1,8 @@
 require "nvim-treesitter.parsers".get_parser_configs().kotlin = {
- install_info = {
-   url = "https://github.com/fwcd/tree-sitter-kotlin",
-   files = {"src/parser.c"}
- }
+  install_info = {
+    url = "https://github.com/fwcd/tree-sitter-kotlin",
+    files = {"src/parser.c"}
+  }
 }
 
 require'nvim-treesitter.configs'.setup {

@@ -9,7 +9,7 @@ map("n", "<C-t>", ":Clap tmuxinator<CR>", {silent = true})
 -- map("n", "<C-l>", ":Clap lines<CR>", {silent = true})
 map("n", "<C-f>", ":Clap grep<CR>", {silent = true})
 map("n", "<BS>", ":Clap command_history<CR>", {silent = true})
-map("n", "<F4>", ":Clap git_diff_files<CR>", {silent = true})
+-- map("n", "<F4>", ":Clap git_diff_files<CR>", {silent = true})
 
 g.clap_theme = 'atom_dark'
 -- g.clap_theme = 'solarized_dark'
