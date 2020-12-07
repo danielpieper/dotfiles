@@ -1,10 +1,3 @@
-require "nvim-treesitter.parsers".get_parser_configs().kotlin = {
-  install_info = {
-    url = "https://github.com/fwcd/tree-sitter-kotlin",
-    files = {"src/parser.c"}
-  }
-}
-
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,                    -- false will disable the whole extension
@@ -76,7 +69,7 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   -- one of "all", "maintained", "language", or a list of languages
-  ensure_installed = "all"
+  ensure_installed = "maintained"
 --  ensure_installed = {
 --    "java",
 --    "python",

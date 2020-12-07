@@ -168,12 +168,11 @@ local servers = {
     --     }
     --   },
     -- },
-{{- if ne $licenseKey "" }}
     init_options = {
+      globalStoragePath = "{{ .chezmoi.homedir }}/.cache/nvim/intelephense",
       licenceKey = "{{ $licenseKey }}",
       -- clearCache = true
     }
-{{- end }}
   },
   diagnosticls = {
     filetypes = { "php", "go", "lua" },
