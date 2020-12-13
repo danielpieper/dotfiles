@@ -27,10 +27,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-k> <c-w>k
 nnoremap <a-h> gT
 nnoremap <a-l> gt
-# BEGIN work
-#nnoremap <c-a-h> gT
-#nnoremap <c-a-l> gt
-# END work
 
 " Splitting Windows
 nmap <leader>v :vsplit<CR>
@@ -64,9 +60,9 @@ nnoremap <leader>a :action GotoAction<cr>
 nnoremap <leader>rff :action ReformatCode<cr>
 
 " code navigation
-nnoremap <leader>] :action GotoImplementation<cr>
-nnoremap <leader>[ :action GotoSuperMethod<cr>
-nnoremap <leader>u :action FindUsages<cr>
+nnoremap <leader>gd :action GotoImplementation<cr>
+nnoremap <leader>gs :action GotoSuperMethod<cr>
+nnoremap <leader>gr :action FindUsages<cr>
 nnoremap <leader>gt :action GotoTest<cr>
 nnoremap <leader>k :action HighlightUsagesInFile<cr>
 " nnoremap \r :action RunClass<cr>
@@ -87,6 +83,17 @@ nnoremap [m :action MethodUp<cr>
 nnoremap ]m :action MethodDown<cr>
 nnoremap [c :action VcsShowPrevChangeMarker<cr>
 nnoremap ]c :action VcsShowNextChangeMarker<cr>
+nnoremap ]b :action NextTab<cr>
+nnoremap [b :action PreviousTab<cr>
+nnoremap <leader>1 :action GoToTab1<cr>
+nnoremap <leader>2 :action GoToTab2<cr>
+nnoremap <leader>3 :action GoToTab3<cr>
+nnoremap <leader>4 :action GoToTab4<cr>
+nnoremap <leader>5 :action GoToTab5<cr>
+nnoremap <leader>6 :action GoToTab6<cr>
+nnoremap <leader>7 :action GoToTab7<cr>
+nnoremap <leader>8 :action GoToTab8<cr>
+nnoremap <leader>9 :action GoToTab9<cr>
 
 
 " built-in navigation to navigated items works better
@@ -102,4 +109,4 @@ nnoremap / :action Find<cr>
 " nnoremap <leader>/ /
 
 " AceJump Plugin - Jump to Character
-nmap <leader>f :action AceAction<cr>
+" nmap <leader>f :action AceAction<cr>
