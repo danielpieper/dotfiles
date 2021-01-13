@@ -15,7 +15,7 @@ yay="yay -S --needed --noconfirm"
 
 $yay \
 {{- /* essential tools */}}
-  bat diff-so-fancy exa htop iotop powertop httpie jq \
+  bat git-delta-bin exa htop iotop powertop httpie jq \
   mc ncdu unzip wget make ranger nano ytop glow \
 {{- /* other tools */}}
   1password-cli aws-cli hostsctl weechat \
@@ -32,7 +32,7 @@ $yay \
 {{- /* databases */}}
   mysql-workbench mariadb-clients tableplus \
 {{- /* neovim */}}
-  neovim-nightly fzy ripgrep the_silver_searcher tmux tmuxinator watchman \
+  neovim fzy ripgrep the_silver_searcher tmux tmuxinator watchman \
   editorconfig-core-c \
 {{- /* displays */}}
   arandr autorandr \
@@ -53,7 +53,7 @@ $yay acpilight laptop-mode-tools thermald upower
 brew tap cjbassi/ytop
 brew tap jason0x43/homebrew-neovim-nightly
 # homebrew returns error if the formula is installed and outdated
-brew install bat exa awscli composer ctop diff-so-fancy fzy go go-jira \
+brew install bat exa awscli composer ctop git-delta fzy go go-jira \
   gradle helm htop httpie jenv jq midnight-commander ncdu pre-commit \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
   tmuxinator watch watchman weechat wget wifi-password yabai yarn zsh ytop glow || true
