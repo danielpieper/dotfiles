@@ -57,6 +57,7 @@ nmap <leader>bb :action ToggleLineBreakpoint<cr>
 " actions
 nnoremap <leader>q :action CloseContent<cr>
 nnoremap <leader>Q :action ReopenClosedTab<cr>
+nnoremap Q :action CloseAllEditorsButActive<cr>
 nnoremap <leader>\ :action VimFilePrevious<cr>
 nnoremap <leader>e :action SearchEverywhere<cr>
 nnoremap <leader>E :action Switcher<cr>
