@@ -21,7 +21,7 @@ vim.g.completion_enable_snippet = "snippets.nvim"
 -- vim.api.nvim_set_var('completion_matching_ignore_case', 1)
 vim.api.nvim_set_var('completion_matching_smart_case', 1)
 -- Disable sorting: this let's me decide the order by completion source
-vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
+-- vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
@@ -107,6 +107,7 @@ local on_attach = function(client, bufnr)
 
   -- Always use autoindent 
   -- php workaround, see https://vi.stackexchange.com/questions/11023/auto-indent-turns-off-itself-automatically-on-php-files
+  vim.api.nvim_buf_set_option(bufnr, "indentexpr", "")
   vim.api.nvim_buf_set_option(bufnr, "autoindent", true)
   vim.api.nvim_buf_set_option(bufnr, "smartindent", true)
 
