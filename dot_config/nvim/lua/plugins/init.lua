@@ -236,7 +236,6 @@ return require('packer').startup {
             'https://github.com/neovim/nvim-lspconfig',
             config = 'require("plugins.lsp")',
             requires = {
-                'https://github.com/nvim-lua/lsp-status.nvim',
                 'https://github.com/nvim-lua/diagnostic-nvim', {
                     'https://github.com/nvim-lua/completion-nvim',
                     requires = {
@@ -244,7 +243,6 @@ return require('packer').startup {
                         'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
                     }
                 },
-                -- 'https://github.com/nvim-lua/lsp_extensions.nvim', -- Repo to hold a bunch of info & extension callbacks for built-in LSP. Use at your own risk 😉
             }
         }
 
