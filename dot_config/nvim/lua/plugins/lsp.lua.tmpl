@@ -22,9 +22,11 @@ vim.api.nvim_set_var('completion_matching_smart_case', 1)
 -- Disable sorting: this let's me decide the order by completion source
 -- vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
+vim.api.nvim_set_var('completion_auto_change_source', 1)
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
-  { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
+  { complete_items = { 'lsp', 'snippet' } },
+  { complete_items = { 'path', 'buffers' } },
   { mode = { '<c-p>' } },
   { mode = { '<c-n>' } }
 })
