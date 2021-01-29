@@ -42,10 +42,11 @@ map("n", "<C-p>", ":lua require('telescope.builtin').git_files{}<CR>", {silent =
 map("n", "<A-p>", ":lua require('telescope.builtin').find_files{}<CR>", {silent = true})
 map("n", "<BS>", ":lua require('telescope.builtin').command_history{}<CR>", {silent = true})
 map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", {silent = true})
-map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = false}<CR>", {silent = true}) -- Show unloaded buffers aswell
+map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = true}<CR>", {silent = true}) -- Show unloaded buffers aswell
 map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
 map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
 map("n", "<C-t>", ":lua tmuxinator_sessions{}<CR>", {silent = true})
+map("n", "<Leader>ff", ":lua require('telescope.builtin').builtin{}<CR>", {silent = true})
 
 
 function tmuxinator_sessions(opts)
