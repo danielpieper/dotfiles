@@ -209,13 +209,13 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/liuchengxu/vim-clap',
-            disable = false,
+            disable = true,
             run = ':Clap install-binary!',
             config = 'require("plugins.vim-clap")'
         } -- Modern performant generic finder and dispatcher for Vim and NeoVim
         use {
             'https://github.com/nvim-lua/telescope.nvim',
-            disable = true,
+            disable = false,
             config = 'require("plugins.telescope")',
             requires = {
                 'https://github.com/nvim-lua/plenary.nvim', -- All the lua functions I don't want to write twice.
