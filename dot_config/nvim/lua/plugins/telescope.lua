@@ -1,11 +1,5 @@
 local telescope = require('telescope')
 local map = require("utils").map
-local pickers = require('telescope.pickers')
-local actions = require('telescope.actions')
-local finders = require('telescope.finders')
-local sorters = require('telescope.sorters')
-local utils = require('telescope.utils')
-local g = vim.g
 
 telescope.setup{
   defaults = {
@@ -45,32 +39,8 @@ map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", {silent =
 map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = true}<CR>", {silent = true}) -- Show unloaded buffers aswell
 map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
 map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
-map("n", "<C-t>", ":lua tmuxinator_sessions(require('telescope.themes').get_dropdown({}))<CR>", {silent = true})
 map("n", "<Leader>ff", ":lua require('telescope.builtin').builtin{}<CR>", {silent = true})
 
+require('telescope').load_extension('tmuxinator')
+map("n", "<C-t>", ":lua require('telescope').extensions.tmuxinator.projects(require('telescope.themes').get_dropdown({}))<CR>", {silent = true})
 
-function tmuxinator_sessions(opts)
-  local output = utils.get_os_command_output({ 'tmuxinator', 'list' })
-  local results = {}
-  for _, v in ipairs(output) do
-    -- strip title:
-    v = string.gsub(v, "tmuxinator projects:", "")
-    for item in string.gmatch(v, "([^%s]+)") do
-      table.insert(results, item)
-    end
-  end
-
-  pickers.new(opts, {
-    prompt_title = 'Tmuxinator Sessions',
-    finder = finders.new_table(results),
-    sorter = sorters.get_generic_fuzzy_sorter(),
-    attach_mappings = function(_, map)
-      map('i', '<CR>', function(prompt_bufnr)
-        local selection = actions.get_selected_entry(prompt_bufnr)
-        actions.close(prompt_bufnr)
-        os.execute('tmuxinator ' .. selection.value)
-      end)
-      return true
-    end,
-  }):find()
-end
