@@ -45,7 +45,7 @@ map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", {silent =
 map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = true}<CR>", {silent = true}) -- Show unloaded buffers aswell
 map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
 map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
-map("n", "<C-t>", ":lua tmuxinator_sessions{}<CR>", {silent = true})
+map("n", "<C-t>", ":lua tmuxinator_sessions(require('telescope.themes').get_dropdown({}))<CR>", {silent = true})
 map("n", "<Leader>ff", ":lua require('telescope.builtin').builtin{}<CR>", {silent = true})
 
 
