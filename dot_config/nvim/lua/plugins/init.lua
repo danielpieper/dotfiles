@@ -104,8 +104,14 @@ return require('packer').startup {
         use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
         use {
             'https://github.com/tpope/vim-commentary',
+            disable = true,
             config = 'require("plugins.vim-commentary")'
         } -- Comment stuff out.
+        use {
+            'https://github.com/b3nj5m1n/kommentary',
+            disable = false,
+            config = 'require("plugins.kommentary")'
+        } -- Neovim plugin to comment text in and out, written in lua. Supports commenting out the current line, a visual selection and a motion/textobject.
 
 
         -- *****************************************
