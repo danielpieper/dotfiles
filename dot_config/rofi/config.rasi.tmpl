@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.osRelease.id "arch" -}}
 configuration {
 	modi: "drun,ssh,run";
         /* combi-modi: [window,drun]; */

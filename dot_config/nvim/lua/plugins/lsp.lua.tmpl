@@ -107,6 +107,15 @@ local servers = {
   flow = {},
   ghcide = {},
   gopls = {
+    -- cmd = {"gopls", "serve"},
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
     init_options = {
       completeUnimported = true,
       gofumpt = true

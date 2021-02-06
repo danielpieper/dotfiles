@@ -1,12 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
-! BEGIN desktop
-!Xft.dpi:			192
-! END desktop
-
-! BEGIN work
-!Xft.dpi:			192
-! END work
-
+{{- if eq .chezmoi.osRelease.id "arch" -}}
 Xft.autohint:		  	0
 Xft.lcdfilter:      lcddefault
 Xft.hintstyle:      hintmedium

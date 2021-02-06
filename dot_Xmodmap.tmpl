@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.osRelease.id "arch" -}}
 clear Lock
 keycode 0x42 = Escape
 {{- end -}}

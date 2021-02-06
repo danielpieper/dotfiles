@@ -122,13 +122,13 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # {{"}}}"}} End configuration added by Zim install
 
-{{- if eq .chezmoi.hostname "Daniels-MBP" "Daniels-MacBook-Pro" }}
+{{- if eq .usage "work" }}
 # Secrets
 export GITLAB_URL={{ (onepassword "weypmxevbpo6kfczdruhux5qcy").overview.url }}
 export GITLAB_TOKEN={{ (first (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields).v }}
 {{- end }}
 
-{{- if eq .chezmoi.hostname "falcon9" }}
+{{- if eq .usage "private" }}
 # Secrets
 export GITHUB_TOKEN={{ (index (first (onepassword "ieyxgbj5yvg5zombgcxkze56gy").details.sections).fields 1).v }}
 {{- end }}
@@ -142,7 +142,7 @@ export GPG_TTY=`tty`
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
-export BROWSER='chromium'
+export BROWSER='firefox'
 
 export PATH=~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin:~/.local/nvim/bin:~/.yarn/bin:$PATH
 
@@ -157,7 +157,7 @@ alias pc="~/projects/personio/perctl"
 alias wl="nvim ~/projects/private/personio/worklog.md"
 {{- end }}
 
-{{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.hostname "falcon9" }}
 source /usr/share/nvm/init-nvm.sh
 {{- end }}
 

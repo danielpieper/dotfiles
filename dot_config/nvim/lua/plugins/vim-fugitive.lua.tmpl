@@ -1,6 +1,6 @@
 local g = vim.g
 
-{{- if eq .chezmoi.hostname "Daniels-MBP" "Daniels-MacBook-Pro" }}
+{{- if eq .usage "work" }}
 {{- $token := "" -}}
 {{- range (first (onepassword "weypmxevbpo6kfczdruhux5qcy").details.sections).fields -}}
   {{- if eq .n "m2fjl6qwheul3fzg7uwougx6y4" -}}
