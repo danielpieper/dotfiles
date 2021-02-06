@@ -51,6 +51,8 @@ window:
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   {{ if eq .chezmoi.os "darwin" -}}
   decorations: buttonless
+  {{ else if eq .chezmoi.osRelease.id "pop" -}}
+  decorations: none
   {{- else }}
   #decorations: full
   {{- end }}
