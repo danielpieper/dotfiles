@@ -107,18 +107,14 @@ local servers = {
   flow = {},
   ghcide = {},
   gopls = {
-    -- cmd = {"gopls", "serve"},
     settings = {
       gopls = {
         analyses = {
           unusedparams = true,
         },
         staticcheck = true,
+        gofumpt = true,
       },
-    },
-    init_options = {
-      completeUnimported = true,
-      gofumpt = true
     },
   },
   hie = {},
@@ -251,8 +247,8 @@ local servers = {
           command = "golangci-lint",
           rootPatterns = { ".git", "go.mod" },
           debounce = 100,
-          args = { "run", "--out-format", "json" },
-          -- args = { "run", "--out-format", "json", "--enable-all" },
+          -- args = { "run", "--out-format", "json" },
+          args = { "run", "--out-format", "json", "--enable-all", "--disable exhaustivestruct" },
           sourceName = "golangci-lint",
           parseJson = {
             errorsRoot = "Issues",
@@ -286,6 +282,7 @@ local servers = {
       },
       formatFiletypes = {
         lua = 'lua-format',
+        go = 'gofumpt',
       },
       formatters = {
         ['lua-format'] = {
@@ -294,6 +291,13 @@ local servers = {
             '-i',
             '--no-keep-simple-control-block-one-line',
             '--no-keep-simple-function-one-line',
+          },
+        },
+        gofumpt = {
+          command = 'gofumpt',
+          args = {
+            '-w',
+            '%filepath',
           },
         },
       }
