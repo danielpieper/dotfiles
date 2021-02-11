@@ -102,6 +102,10 @@ return require('packer').startup {
         use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
         use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
         use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
+
+        -- *****************************************
+        -- Comments
+        -- *****************************************
         use {
             'https://github.com/tpope/vim-commentary',
             disable = true,
@@ -112,6 +116,11 @@ return require('packer').startup {
             disable = false,
             config = 'require("plugins.kommentary")'
         } -- Neovim plugin to comment text in and out, written in lua. Supports commenting out the current line, a visual selection and a motion/textobject.
+        use {
+            'https://github.com/terrortylor/nvim-comment',
+            disable = true,
+            config = 'require("plugins.nvim-comment")'
+        } -- A comment toggler for Neovim, written in Lua
 
 
         -- *****************************************
