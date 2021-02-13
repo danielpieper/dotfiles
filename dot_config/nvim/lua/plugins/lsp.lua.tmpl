@@ -93,10 +93,24 @@ local on_attach = function(client, bufnr)
   -- Diagnostics
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<CR>", opts)
-  -- Formatting
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  -- Uncomment for auto-format befor save
-  -- vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gf", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  end
+
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec([[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]], false)
+  end
 end
 
 local servers = {
@@ -296,9 +310,11 @@ local servers = {
         gofumpt = {
           command = 'gofumpt',
           args = {
-            '-w',
-            '%filepath',
+            '-extra',
+            '-',
           },
+          isStderr = false,
+          isStdout = true,
         },
       }
     }
