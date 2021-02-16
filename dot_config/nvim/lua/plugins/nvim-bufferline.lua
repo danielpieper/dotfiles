@@ -7,7 +7,7 @@ bl.setup {
         -- modified_icon = '✥',
         show_buffer_close_icons = false,
         mappings = true,
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         -- sort_by = "directory",
         numbers = "none", -- "none" | "ordinal" | "buffer_id",
         number_style = "", -- "superscript" | "",

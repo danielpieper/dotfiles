@@ -71,6 +71,8 @@ function M.other_settings()
   -- wo.colorcolumn = "80"
   o.termguicolors = true
 
+  o.guifont = 'JetBrainsMono Nerd Font Mono:h20'
+
   o.autoindent = true
   bo.autoindent = true
 
