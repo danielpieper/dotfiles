@@ -275,5 +275,15 @@ return require('packer').startup {
             config = 'require("plugins.vim-test")'
         } -- Run your tests at the speed of thought
         -- use 'https://github.com/vim-vdebug/vdebug' -- Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
+
+
+        -- *****************************************
+        -- Crazy stuff
+        -- *****************************************
+        use {
+            'https://github.com/glacambre/firenvim',
+            run = '+call firenvim#install(0)',
+            config = 'require("plugins.firenvim")'
+        } -- Turn your browser into a Neovim client
     end
 }
