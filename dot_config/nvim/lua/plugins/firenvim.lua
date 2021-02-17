@@ -12,8 +12,14 @@ g.firenvim_config = {
       selector = 'div.ak-editor-content-area div[contenteditable="true"]',
       takeover = 'never',
     },
+    [".*"] = {
+      takeover = 'never',
+    },
   }
 }
+
+utils.map("v", "<leader>mh", "!pandoc -f markdown -t html - -o - | prettier --parser html<CR>", {silent = true})
+utils.map("v", "<leader>hm", "!pandoc -f html -t markdown - -o - | prettier --parser markdown<CR>", {silent = true})
 
 utils.augroup(
   'firenvim',
@@ -49,7 +55,7 @@ function! OnUIEnter(event) abort
   if s:IsFirenvimActive(a:event)
     set laststatus=0
     call timer_start(800, function("SetLines"))
-    au BufEnter *atlassian.net_*.txt set filetype=html
+    autocmd BufEnter *atlassian.net_*.txt set filetype=html
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
