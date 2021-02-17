@@ -141,6 +141,7 @@ local servers = {
   rust_analyzer = {},
   vimls = {},
   vuels = {},
+{{- if ne .chezmoi.os "darwin" -}}
   sumneko_lua = {
     cmd = { "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/bin/Linux/lua-language-server", "-E", "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/main.lua" },
     settings = {
@@ -165,6 +166,7 @@ local servers = {
       },
     },
   },
+{{- end -}}
   intelephense = {
     -- cmd = { "docker", "run", "--rm", "-i", "danielpieper/intelephense:latest" },
     -- settings = {

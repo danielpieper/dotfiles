@@ -18,8 +18,23 @@ g.firenvim_config = {
   }
 }
 
-utils.map("v", "<leader>mh", "!pandoc -f markdown -t html - -o - | prettier --parser html<CR>", {silent = true})
-utils.map("v", "<leader>hm", "!pandoc -f html -t markdown - -o - | prettier --parser markdown<CR>", {silent = true})
+utils.map("v", "<leader>mh", "!pandoc -f markdown -t html - -o - | prettier --parser html<CR>set filetype=html<CR>", {silent = true})
+utils.map("v", "<leader>hm", "!pandoc -f html -t markdown - -o - | prettier --parser markdown<CR>set filetype=markdown<CR>", {silent = true})
+
+-- vim.cmd([[
+-- function! HtmlToMarkdown()
+--   silent !pandoc -f html -t markdown - -o - | prettier --parser markdown
+--   set filetype=markdown
+-- endfunction
+
+-- function! MarkdownToHtml()
+--   silent !pandoc -f markdown -t html - -o - | prettier --parser html
+--   set filetype=html
+-- endfunction
+-- ]])
+
+-- utils.map("v", "<leader>mh", "!call MarkdownToHtml()<CR>", {silent = true})
+-- utils.map("v", "<leader>hm", "!call HtmlToMarkdown()<CR>", {silent = true})
 
 utils.augroup(
   'firenvim',
