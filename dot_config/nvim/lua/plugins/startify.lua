@@ -10,5 +10,6 @@ g.startify_change_to_dir = 1
 
 g.startify_lists = {
     {type = 'sessions', header = {'   Sessions'}},
-    {type = 'files', header = {'   MRU'}}
+    {type = 'dir', header = {'   MRU '}},
+    {type = 'files', header = {'   MRU *'}},
 }
