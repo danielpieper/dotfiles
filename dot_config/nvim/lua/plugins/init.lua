@@ -43,6 +43,7 @@ return require('packer').startup {
             requires = {
               'https://github.com/danielpieper/arcbuddy',
               branch = 'main',
+              -- '~/projects/arcbuddy',
             }, -- An atom one inspired dark and light colorscheme
             config = 'require("colorbuddy").colorscheme("arcbuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
