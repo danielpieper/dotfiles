@@ -7,6 +7,10 @@
 local utils = require('utils')
 local completion = require('completion')
 local lspconfig = require('lspconfig')
+local lsp_status = require('lsp-status')
+
+-- Lsp Status configuration
+lsp_status.register_progress()
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -67,6 +71,7 @@ vim.fn.sign_define('LspDiagnosticsSignHint', {text = '', texthl = 'LspDiagnos
 
 local on_attach = function(client, bufnr)
   completion.on_attach(client, bufnr)
+  lsp_status.on_attach(client)
 
   -- Set the omnifunc for this buffer.
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -325,6 +330,7 @@ for server, config in pairs(servers) do
 
   -- config.log_level = vim.lsp.protocol.MessageType.Log;
   config.message_level = vim.lsp.protocol.MessageType.Log;
+  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 
   lspconfig[server].setup(config)
 end

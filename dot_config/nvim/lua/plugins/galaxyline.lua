@@ -140,7 +140,15 @@ gls.left[8] = {
     highlight = { colors.red, colors.line_bg },
   }
 }
-
+gls.left[9] = {
+  LspStatus = {
+    provider = function()
+      return require('lsp-status').status()
+    end,
+    condition = has_lsp_client,
+    highlight = { colors.line_fg, colors.line_bg },
+  }
+}
 
 gls.right[1] = {
   DiffAdd = {

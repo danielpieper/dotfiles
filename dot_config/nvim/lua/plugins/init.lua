@@ -254,7 +254,6 @@ return require('packer').startup {
             'https://github.com/neovim/nvim-lspconfig',
             config = 'require("plugins.lsp")',
             requires = {
-                'https://github.com/anott03/nvim-lspinstall',
                 'https://github.com/nvim-lua/diagnostic-nvim',
                 {
                     'https://github.com/nvim-lua/completion-nvim',
@@ -263,6 +262,7 @@ return require('packer').startup {
                         'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
                     }
                 },
+                'https://github.com/nvim-lua/lsp-status.nvim',
             }
         }
 
