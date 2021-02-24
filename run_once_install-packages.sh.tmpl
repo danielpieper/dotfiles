@@ -52,14 +52,14 @@ $yay acpilight laptop-mode-tools thermald upower
 brew tap cjbassi/ytop
 brew tap jason0x43/homebrew-neovim-nightly
 # homebrew returns error if the formula is installed and outdated
-brew install bat exa awscli composer ctop git-delta fzy go go-jira \
-  gradle helm htop httpie jenv jq midnight-commander ncdu pre-commit \
+brew install bat exa awscli composer ctop git-delta fzy go \
+  gradle helm htop httpie jenv jq midnight-commander ncdu \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
-  tmuxinator watch weechat wget wifi-password yabai yarn zsh ytop glow \
+  tmuxinator watch wget wifi-password yabai yarn zsh ytop glow \
   clang-format || true
 brew install --cask jetbrains-toolbox firefox || true
 brew install hashicorp/tap/terraform-ls || true
 brew install golangci/tap/golangci-lint || true
 
 {{- end }}
-sudo npm install -g markdownlint-cli
+sudo npm install -g npm intelephense diagnostic-languageserver markdownlint-cli
