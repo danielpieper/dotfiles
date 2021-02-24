@@ -1,0 +1,14 @@
+{{- if eq .usage "private" }}
+
+{{- $token := "" -}}
+{{- range (onepassword "kd7ohcbjjzaw5j62kfqtk3omqm").details.sections -}}
+  {{- range .fields -}}
+    {{- if eq .n "spyh4qaivlk5jt7es4sqcyndu4" -}}
+      {{- $token = .v -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne $token "" -}}
+machine gitlab.com login {{ (onepasswordDetailsFields "kd7ohcbjjzaw5j62kfqtk3omqm").username.value }} password {{ $token }}
+{{- end}}
+{{- end}}
