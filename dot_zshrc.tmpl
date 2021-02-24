@@ -131,6 +131,18 @@ export GITLAB_TOKEN={{ (first (first (onepassword "weypmxevbpo6kfczdruhux5qcy").
 {{- if eq .usage "private" }}
 # Secrets
 export GITHUB_TOKEN={{ (index (first (onepassword "ieyxgbj5yvg5zombgcxkze56gy").details.sections).fields 1).v }}
+{{ $token := "" -}}
+{{- range (onepassword "kd7ohcbjjzaw5j62kfqtk3omqm").details.sections -}}
+  {{- range .fields -}}
+    {{- if eq .n "spyh4qaivlk5jt7es4sqcyndu4" -}}
+      {{- $token = .v -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne $token "" -}}
+export GITLAB_LOGIN={{ (onepasswordDetailsFields "kd7ohcbjjzaw5j62kfqtk3omqm").username.value }}
+export GITLAB_TOKEN={{ $token }}
+{{- end}}
 export GOPRIVATE=gitlab.com/dp-private
 {{- end }}
 
