@@ -23,10 +23,10 @@ vim.api.nvim_set_var('completion_matching_smart_case', 1)
 vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
 vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
 -- vim.api.nvim_set_var('completion_auto_change_source', 1)
+vim.api.nvim_set_var('completion_timer_cycle', 200)
 
 vim.api.nvim_set_var('completion_chain_complete_list', {
-  { complete_items = { 'lsp', 'snippet' } },
-  { complete_items = { 'path', 'buffers' } },
+  { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
   { mode = { '<c-p>' } },
   { mode = { '<c-n>' } }
 })
@@ -323,7 +323,7 @@ local servers = {
 for server, config in pairs(servers) do
   config.on_attach = on_attach
 
-  config.log_level = vim.lsp.protocol.MessageType.Log;
+  -- config.log_level = vim.lsp.protocol.MessageType.Log;
   config.message_level = vim.lsp.protocol.MessageType.Log;
 
   lspconfig[server].setup(config)
