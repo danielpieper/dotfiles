@@ -8,8 +8,8 @@ map('n', '<Leader>tv', ':TestVisit<CR>', {silent = true})
 
 vim.api.nvim_command([[
 function! PersonioTransform(cmd) abort
-  let pod = 'kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o go-template --template "{{`{{\$item := index .items 0}}{{\$item.metadata.name}}`}}"'
-  return 'kubectl exec $('.pod.') --context=minikube -c fpm-ssh -- '.a:cmd
+  let pod = system('kubectl get pods --context=minikube --selector="app.kubernetes.io/name=web" -o go-template --template "{{`{{\$item := index .items 0}}{{\$item.metadata.name}}`}}"')
+  return 'kubectl exec '.pod.' --context=minikube -c fpm-ssh -- '.a:cmd
 endfunction
 ]])
 
