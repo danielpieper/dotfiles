@@ -22,3 +22,9 @@ map("n", "<Leader>v", ":vsplit<CR>", {silent = true})
 
 -- Make `Y` work from the cursor to the end of line
 map("n", "Y", "y$", {})
+
+-- Resize splits
+map("n", "<Up>", ":exe 'resize ' . (winheight(0) * 3/2)<CR>", {silent = true})
+map("n", "<Down>", ":exe 'resize ' . (winheight(0) * 2/3)<CR>", {silent = true})
+map("n", "<Right>", ":exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>", {silent = true})
+map("n", "<Left>", ":exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>", {silent = true})
