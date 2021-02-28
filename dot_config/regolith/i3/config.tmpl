@@ -676,18 +676,19 @@ workspace "$ws3" output $rightDisplay
 workspace "$ws4" output $rightDisplay
 workspace "$ws5" output $rightDisplay
 workspace "$ws6" output $rightDisplay
-workspace "$ws7" output $leftDisplay
+workspace "$ws7" output $rightDisplay
 workspace "$ws8" output $leftDisplay
 workspace "$ws9" output $leftDisplay
 
 # Application specific settings
 assign [class="Firefox"] $ws1
 assign [class="Tor Browser"] $ws1
-assign [class="Mysql-workbench-bin"] $ws7
-assign [class="TablePlus"] $ws7
 assign [class="Slack"] $ws2
 assign [class="Signal"] $ws2
 assign [class="discord"] $ws2
+assign [class="Alacritty"] $ws3
+assign [class="bloom-rpc-client"] $ws7
+assign [class="TablePlus"] $ws7
 assign [class="Spotify"] $ws8
 for_window [class="Spotify"] move to workspace $ws8
 {{- end -}}
