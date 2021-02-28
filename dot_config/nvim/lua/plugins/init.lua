@@ -104,6 +104,7 @@ return require('packer').startup {
         use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
         use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
 
+
         -- *****************************************
         -- Comments
         -- *****************************************
@@ -242,8 +243,8 @@ return require('packer').startup {
         }
         use {
           'https://github.com/strboul/urlview.vim',
-          disable = true, -- netrw for some reason does not open the url
-          config = 'require("utils").map("n", "<F5>", ":Urlview<CR>", {silent=true})',
+          disable = true, -- required netrw is disabled by settings.lua and nvim-tree?
+          config = 'require("utils").map("n", "<F6>", ":Urlview<CR>", {silent=true})',
         } -- List and open URLs easily.
 
 
@@ -254,30 +255,32 @@ return require('packer').startup {
             'https://github.com/neovim/nvim-lspconfig',
             config = 'require("plugins.nvim-lspconfig")',
             requires = {
-                'https://github.com/nvim-lua/diagnostic-nvim', -- FIXME: deprecated
-                'https://github.com/nvim-lua/lsp-status.nvim',
+                'https://github.com/nvim-lua/lsp-status.nvim', -- This is a Neovim plugin/library for generating statusline components from the built-in LSP client.
             }
-        }
+        } -- This plugin handles automatically launching, initializing, and configuring language servers that are installed on your system.
+
 
         -- *****************************************
         -- Completion
         -- *****************************************
         use {
-            'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+            'https://github.com/nvim-lua/completion-nvim',
             config = 'require("plugins.completion-nvim")',
             requires = {
                 'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
                 'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
             }
-        }
+        } -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
         use {
             'https://github.com/kristijanhusak/vim-dadbod-completion',
             config = 'require("plugins.vim-dadbod-completion")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
                 'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+                'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
             }
         } -- Database auto completion powered by vim-dadbod.
+
 
         -- *****************************************
         -- Database
@@ -289,6 +292,7 @@ return require('packer').startup {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
             }
         } -- Simple UI for vim-dadbod. It allows simple navigation through databases and allows saving queries for later use.
+
 
         -- *****************************************
         -- Testing & debugging

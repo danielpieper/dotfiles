@@ -4,8 +4,8 @@ local utils = require('utils')
 -- possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
 vim.g.completion_enable_snippet = "snippets.nvim"
 
--- vim.api.nvim_set_var('completion_matching_ignore_case', 1)
-vim.api.nvim_set_var('completion_matching_smart_case', 1)
+vim.api.nvim_set_var('completion_matching_ignore_case', 1)
+-- vim.api.nvim_set_var('completion_matching_smart_case', 1)
 
 -- Disable sorting: this let's me decide the order by completion source
 vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
