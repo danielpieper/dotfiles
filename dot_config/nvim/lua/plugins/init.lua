@@ -273,9 +273,17 @@ return require('packer').startup {
             'https://github.com/kristijanhusak/vim-dadbod-ui',
             config = 'require("plugins.vim-dadbod-ui")',
             requires = {
-              'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
+                'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
             }
         } -- Simple UI for vim-dadbod. It allows simple navigation through databases and allows saving queries for later use.
+        use {
+            'https://github.com/kristijanhusak/vim-dadbod-completion',
+            config = 'require("plugins.vim-dadbod-completion")',
+            requires = {
+                'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
+                'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+            }
+        } -- Database auto completion powered by vim-dadbod.
 
         -- *****************************************
         -- Testing & debugging
