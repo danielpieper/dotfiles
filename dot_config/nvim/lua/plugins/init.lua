@@ -103,6 +103,7 @@ return require('packer').startup {
         use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
         use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
         use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
+        use 'https://github.com/junegunn/vim-easy-align' -- A simple, easy-to-use Vim alignment plugin.
 
 
         -- *****************************************
