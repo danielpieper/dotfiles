@@ -5,7 +5,6 @@
   {{- end -}}
 {{- end }}
 local utils = require('utils')
-local completion = require('completion')
 local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 
@@ -15,41 +14,6 @@ lsp_status.register_progress()
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
 -- vim.lsp.set_log_level("trace")
-
--- Completion configuration
---
--- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
-vim.g.completion_enable_snippet = "snippets.nvim"
-
--- vim.api.nvim_set_var('completion_matching_ignore_case', 1)
-vim.api.nvim_set_var('completion_matching_smart_case', 1)
--- Disable sorting: this let's me decide the order by completion source
-vim.api.nvim_set_var('completion_sorting', 'none') -- possible value: "length", "alphabet", "none"
-vim.api.nvim_set_var('completion_matching_strategy_list', {"exact", "substring", "fuzzy"})
--- vim.api.nvim_set_var('completion_auto_change_source', 1)
-vim.api.nvim_set_var('completion_timer_cycle', 200)
-
-vim.api.nvim_set_var('completion_chain_complete_list', {
-  default = {
-    { complete_items = { 'lsp', 'snippet', 'path', 'buffers' } },
-    { mode = { '<c-p>' } },
-    { mode = { '<c-n>' } },
-  },
-})
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noinsert,noselect"
-
--- Avoid showing message extra message when using completion
-vim.o.shortmess = vim.o.shortmess .. "c"
-
-utils.map("i", "<Tab>", [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {expr = true})
-utils.map(
-  "i",
-  "<S-Tab>",
-  [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]],
-  {expr = true}
-)
 
 -- Diagnostic configuration
 --
@@ -72,7 +36,6 @@ vim.fn.sign_define('LspDiagnosticsSignInformation', {text = '', texthl = 'Lsp
 vim.fn.sign_define('LspDiagnosticsSignHint', {text = '', texthl = 'LspDiagnosticsHint'})
 
 local on_attach = function(client, bufnr)
-  completion.on_attach(client, bufnr)
   lsp_status.on_attach(client)
 
   -- Set the omnifunc for this buffer.
