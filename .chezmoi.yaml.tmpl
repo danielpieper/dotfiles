@@ -1,5 +1,7 @@
 {{- $email := promptString "email" -}}
 {{- $usage := promptString "usage (private/work)" -}}
+genericSecret:
+  command: "op"
 data:
   email: "{{ $email }}"
   usage: "{{ $usage }}"

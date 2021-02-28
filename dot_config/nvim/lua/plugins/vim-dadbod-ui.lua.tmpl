@@ -1,0 +1,23 @@
+local g = vim.g
+local map = require("utils").map
+
+map("n", "<F5>", ":DBUIToggle<CR>", {silent = true})
+
+g.db_ui_use_nerd_fonts = 1
+
+{{- define "database_type" -}}
+{{ if eq . "postgresql" }}postgres:{{ else }}{{ . }}:{{- end -}}
+{{- end -}}
+
+{{ define "database" -}}
+  ["{{ .title }}"] = "{{ template "database_type" .database_type }}//{{ .username }}:{{ .password }}@{{ .hostname }}:{{ .port }}/{{ .database }}",
+{{- end }}
+{{- $vault := "Personal" }}
+{{ if eq .usage "work" }}{{ $vault = "Personio" }}{{ end -}}
+
+g.dbs = {
+{{- range (secretJSON "list" "items" "--vault" $vault "--categories" "Database") }}
+  {{ template "database" (secretJSON "get" "item" .uuid "--fields" "title,database_type,hostname,port,database,username,password") -}}
+{{ end }}
+}
+

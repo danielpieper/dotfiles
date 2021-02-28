@@ -254,9 +254,9 @@ return require('packer').startup {
             'https://github.com/neovim/nvim-lspconfig',
             config = 'require("plugins.lsp")',
             requires = {
-                'https://github.com/nvim-lua/diagnostic-nvim',
+                'https://github.com/nvim-lua/diagnostic-nvim', -- FIXME: deprecated
                 {
-                    'https://github.com/nvim-lua/completion-nvim',
+                    'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
                     requires = {
                         'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
                         'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
@@ -266,6 +266,16 @@ return require('packer').startup {
             }
         }
 
+        -- *****************************************
+        -- Database
+        -- *****************************************
+        use {
+            'https://github.com/kristijanhusak/vim-dadbod-ui',
+            config = 'require("plugins.vim-dadbod-ui")',
+            requires = {
+              'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
+            }
+        } -- Simple UI for vim-dadbod. It allows simple navigation through databases and allows saving queries for later use.
 
         -- *****************************************
         -- Testing & debugging
