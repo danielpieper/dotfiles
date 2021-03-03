@@ -2,6 +2,7 @@ local g = vim.g
 local o = vim.o
 local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
+local lspstatus = require('lsp-status')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
@@ -147,7 +148,7 @@ gls.left[9] = {
 gls.left[10] = {
   LspStatus = {
     provider = function()
-      return require('lsp-status').status()
+      return lspstatus.status()
     end,
     condition = condition.check_active_lsp,
     highlight = { colors.line_fg, colors.line_bg },
