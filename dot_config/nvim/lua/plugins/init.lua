@@ -7,6 +7,7 @@ end
 -- Only required if you have packer in your `opt` pack
 vim.api.nvim_command('packadd packer.nvim')
 
+-- see https://github.com/rhysd/vim-startuptime
 return require('packer').startup {
     function(use)
         use {'https://github.com/wbthomason/packer.nvim', opt = true} -- Packer can manage itself as an optional plugin

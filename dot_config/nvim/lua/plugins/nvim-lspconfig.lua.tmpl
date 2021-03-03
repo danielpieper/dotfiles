@@ -92,8 +92,7 @@ end
 local servers = {
   cssls = {},
   bashls = {},
-  -- throws errors:
-  -- dockerls = {},
+  dockerls = {},
   html = {},
   gopls = {
     settings = {
@@ -144,15 +143,6 @@ local servers = {
   },
 {{- end -}}
   intelephense = {
-    -- cmd = { "docker", "run", "--rm", "-i", "danielpieper/intelephense:latest" },
-    -- settings = {
-    --   intelephense = {
-    --     diagnostics = {
-    --       enable = 1,
-    --       run = "onSave",
-    --     }
-    --   },
-    -- },
     init_options = {
       globalStoragePath = "{{ .chezmoi.homedir }}/.cache/nvim/intelephense",
       licenceKey = "{{ $licenseKey }}",

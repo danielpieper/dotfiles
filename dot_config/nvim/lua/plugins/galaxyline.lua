@@ -1,6 +1,7 @@
 local g = vim.g
 local o = vim.o
 local gl = require('galaxyline')
+local condition = require('galaxyline.condition')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
@@ -28,26 +29,20 @@ local colors = {
   red = '#e06c75'
 }
 
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
+local get_lsp_client = function (msg)
+  msg = msg or 'No Active Lsp'
+  local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+  local buf_clients = vim.lsp.buf_get_clients()
+  if next(buf_clients) == nil then
+    return msg
   end
-  return false
-end
-
-local has_lsp_client = function()
-  if #vim.lsp.buf_get_clients() > 0 then
-    return true
+  for _,client in ipairs(buf_clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 and client.name ~= 'diagnosticls' then
+      return client.name
+    end
   end
-  return false
-end
-
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
+  return msg
 end
 
 gls.left[1] = {
@@ -92,15 +87,15 @@ gls.left[2] = {
 }
 gls.left[3] = {
   GitIcon = {
-    provider = function() return '  ' end,
-    condition = buffer_not_empty,
+    provider = function() return '  ' end,
+    condition = condition.check_git_workspace,
     highlight = { colors.orange, colors.line_bg},
   }
 }
 gls.left[4] = {
   GitBranch = {
     provider = 'GitBranch',
-    condition = buffer_not_empty,
+    condition = condition.check_git_workspace,
     separator = '▕ ',
     separator_highlight = { colors.sep, colors.line_bg },
     highlight = { colors.line_fg, colors.line_bg },
@@ -109,20 +104,29 @@ gls.left[4] = {
 gls.left[5] ={
   FileIcon = {
     provider = 'FileIcon',
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = { require('galaxyline.provider_fileinfo').get_file_icon_color, colors.line_bg },
   },
 }
 gls.left[6] = {
   FileName = {
     provider = {'FileName','FileSize'},
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     separator = '▕',
     separator_highlight = { colors.sep, colors.line_bg },
     highlight = { colors.line_fg, colors.line_bg }
   }
 }
 gls.left[7] = {
+  LspClient = {
+    provider = get_lsp_client,
+    icon = ' ﮧ ',
+    separator = ' ',
+    separator_highlight = { colors.sep, colors.line_bg },
+    highlight = { colors.line_fg, colors.line_bg },
+  }
+}
+gls.left[8] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
@@ -131,7 +135,7 @@ gls.left[7] = {
     highlight = { colors.yellow, colors.line_bg },
   }
 }
-gls.left[8] = {
+gls.left[9] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
@@ -140,12 +144,12 @@ gls.left[8] = {
     highlight = { colors.red, colors.line_bg },
   }
 }
-gls.left[9] = {
+gls.left[10] = {
   LspStatus = {
     provider = function()
       return require('lsp-status').status()
     end,
-    condition = has_lsp_client,
+    condition = condition.check_active_lsp,
     highlight = { colors.line_fg, colors.line_bg },
   }
 }
@@ -153,7 +157,7 @@ gls.left[9] = {
 gls.right[1] = {
   DiffAdd = {
     provider = 'DiffAdd',
-    condition = checkwidth,
+    condition = condition.hide_in_width,
     icon = '  ',
     highlight = { colors.green, colors.line_bg },
   }
@@ -161,7 +165,7 @@ gls.right[1] = {
 gls.right[2] = {
   DiffModified = {
     provider = 'DiffModified',
-    condition = checkwidth,
+    condition = condition.hide_in_width,
     icon = '  ',
     highlight = { colors.orange, colors.line_bg },
   }
@@ -169,7 +173,7 @@ gls.right[2] = {
 gls.right[3] = {
   DiffRemove = {
     provider = 'DiffRemove',
-    condition = checkwidth,
+    condition = condition.hide_in_width,
     icon = '  ',
     highlight = { colors.red, colors.line_bg },
   }
@@ -177,7 +181,7 @@ gls.right[3] = {
 gls.right[4] = {
   Space = {
     provider = function () return ' ' end,
-    condition = checkwidth,
+    condition = condition.hide_in_width,
     separator = '▕',
     separator_highlight = { colors.sep, colors.line_bg },
     highlight = { colors.line_fg, colors.line_bg },
@@ -209,14 +213,14 @@ gls.right[7] = {
 gls.short_line_left[1] ={
   FileIcon = {
     provider = 'FileIcon',
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = { require('galaxyline.provider_fileinfo').get_file_icon_color, colors.line_bg },
   },
 }
 gls.short_line_left[2] = {
   FileName = {
-    provider = {'FileName','FileSize'},
-    condition = buffer_not_empty,
+    provider =  'SFileName',
+    condition = condition.buffer_not_empty,
     highlight = { colors.line_fg, colors.line_bg }
   }
 }
@@ -224,5 +228,11 @@ gls.short_line_right[1] = {
   LineInfo = {
     provider = 'LineColumn',
     highlight = { colors.line_fg, colors.line_bg }
+  },
+}
+gls.short_line_right[2] = {
+  BufferIcon = {
+    provider= 'BufferIcon',
+    highlight = { colors.line_fg, colors.line_bg },
   },
 }
