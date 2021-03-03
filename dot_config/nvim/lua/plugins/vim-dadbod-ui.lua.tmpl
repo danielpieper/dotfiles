@@ -10,7 +10,7 @@ g.db_ui_use_nerd_fonts = 1
 {{- end -}}
 
 {{ define "database" -}}
-  ["{{ .title }}"] = "{{ template "database_type" .database_type }}//{{ .username }}:{{ .password }}@{{ .hostname }}:{{ .port }}/{{ .database }}",
+  ["{{ .title }}"] = [[{{ template "database_type" .database_type }}//{{ .username }}:{{ .password }}@{{ .hostname }}:{{ .port }}/{{ .database }}]],
 {{- end }}
 {{- $vault := "Personal" }}
 {{ if eq .usage "work" }}{{ $vault = "Personio" }}{{ end -}}

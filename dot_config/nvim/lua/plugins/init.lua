@@ -1,25 +1,11 @@
--- Only required if you have packer in your `opt` pack
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
-if not packer_exists then
-    if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
-        return
-    end
-
-    local directory = string.format('%s/site/pack/packer/opt/',
-                                    vim.fn.stdpath('data'))
-
-    vim.fn.mkdir(directory, 'p')
-
-    local out = vim.fn.system(string.format('git clone %s %s',
-                                            'https://github.com/wbthomason/packer.nvim',
-                                            directory .. '/packer.nvim'))
-
-    print(out)
-    print("Downloading packer.nvim...")
-
-    return
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
 end
+
+-- Only required if you have packer in your `opt` pack
+vim.api.nvim_command('packadd packer.nvim')
 
 return require('packer').startup {
     function(use)
@@ -29,10 +15,10 @@ return require('packer').startup {
         -- *****************************************
         -- Eye Candy
         -- *****************************************
-        use {
-            'https://github.com/kyazdani42/nvim-web-devicons',
-            config = 'require("nvim-web-devicons").setup()'
-        } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+        -- use {
+        --     'https://github.com/kyazdani42/nvim-web-devicons',
+        --     config = 'require("nvim-web-devicons").setup()'
+        -- } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
             'https://github.com/joshdick/onedark.vim',
             disable = true,
@@ -60,7 +46,7 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/sheerun/vim-polyglot',
-            disable = true,
+            disable = true, -- in favor of nvim-treesitter
         } -- A collection of language packs for Vim.
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
@@ -69,6 +55,7 @@ return require('packer').startup {
         }
         use {
           'https://github.com/npxbr/glow.nvim',
+          opt = true,
           run = ':GlowInstall<CR>',
           config = 'require("utils").map("n", "<Leader>p", ":Glow<CR>", {silent=true})',
           cmd = 'Glow',
@@ -78,10 +65,17 @@ return require('packer').startup {
         -- *****************************************
         -- Git
         -- *****************************************
+        use 'https://github.com/tpope/vim-rhubarb' -- Enables :GBrowse from fugitive.vim to open GitHub URLs.
+        use 'https://github.com/shumphrey/fugitive-gitlab.vim' -- An extension to fugitive.vim for gitlab support
         use {
             'https://github.com/tpope/vim-fugitive',
+            opt = true,
+            cmd = { 'Git', 'G', 'Gstatus', 'Gedit', 'Gsplit', 'Gdiffsplit', 'Gread', 'Gwrite', 'Ggrep', 'Glgrep', 'GMove', 'GRename', 'GDelete', 'GRemove', 'GBrowse', 'Gblame' },
             config = 'require("plugins.vim-fugitive")',
-            requires = 'https://github.com/shumphrey/fugitive-gitlab.vim' -- An extension to fugitive.vim for gitlab support
+            requires = {
+                'https://github.com/shumphrey/fugitive-gitlab.vim', -- An extension to fugitive.vim for gitlab support
+                'https://github.com/tpope/vim-rhubarb', -- Enables :GBrowse from fugitive.vim to open GitHub URLs.
+            },
         } -- fugitive.vim: A Git wrapper so awesome, it should be illegal
         use {
             'https://github.com/mhinz/vim-signify',
@@ -103,7 +97,11 @@ return require('packer').startup {
         use 'https://github.com/tpope/vim-surround' -- ysiw' | ds{ds)  provides mappings to easily delete, change and add such surroundings in pairs
         use 'https://github.com/ConradIrwin/vim-bracketed-paste' -- Improve pasting code from the clipboard
         use 'https://github.com/tpope/vim-repeat' -- Repeat.vim remaps . in a way that plugins can tap into it
-        use 'https://github.com/junegunn/vim-easy-align' -- A simple, easy-to-use Vim alignment plugin.
+        use {
+            'https://github.com/junegunn/vim-easy-align',
+            opt = true,
+            cmd = 'EasyAlign',
+        } -- A simple, easy-to-use Vim alignment plugin.
 
 
         -- *****************************************
@@ -111,19 +109,19 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/tpope/vim-commentary',
-            disable = true,
+            disable = true, -- in favor of kommentary
             config = 'require("plugins.vim-commentary")'
         } -- Comment stuff out.
+        use {
+            'https://github.com/terrortylor/nvim-comment',
+            disable = true, -- in favor of kommentary
+            config = 'require("plugins.nvim-comment")'
+        } -- A comment toggler for Neovim, written in Lua
         use {
             'https://github.com/b3nj5m1n/kommentary',
             disable = false,
             config = 'require("plugins.kommentary")'
         } -- Neovim plugin to comment text in and out, written in lua. Supports commenting out the current line, a visual selection and a motion/textobject.
-        use {
-            'https://github.com/terrortylor/nvim-comment',
-            disable = true,
-            config = 'require("plugins.nvim-comment")'
-        } -- A comment toggler for Neovim, written in Lua
 
 
         -- *****************************************
@@ -149,7 +147,7 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/itchyny/lightline.vim',
-            disable = true,
+            disable = true, -- in favor of galaxyline.nvim
             config = 'require("plugins.lightline")',
             requires = {
                 'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
@@ -174,13 +172,13 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/moll/vim-bbye',
-            disable = true,
+            disable = true, -- included in barbar.nvim
             config = 'require("plugins.vim-bbye")',
         } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
 
         use {
             'https://github.com/akinsho/nvim-bufferline.lua',
-            disable = true,
+            disable = true, -- in favor of barbar.nvim
             config = 'require("plugins.nvim-bufferline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
@@ -203,7 +201,7 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/preservim/nerdtree',
-            disable = true,
+            disable = true, -- in favor of nvim-tree.lua
             config = 'require("plugins.nerdtree")',
             requires = {
                 'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
@@ -218,6 +216,9 @@ return require('packer').startup {
         } -- A File Explorer For Neovim Written In Lua
         use {
             'https://github.com/mbbill/undotree',
+            opt = true,
+            cmd = { 'UndotreeToggle', 'UndotreeHide', 'UndotreeShow', 'UndotreeFocus' },
+            keys = '<F4>',
             config = 'require("plugins.undotree")',
         } -- Undo visualise
 
@@ -227,7 +228,7 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/liuchengxu/vim-clap',
-            disable = true,
+            disable = true, -- in favor of telescope.nvim
             run = ':Clap install-binary!',
             config = 'require("plugins.vim-clap")'
         } -- Modern performant generic finder and dispatcher for Vim and NeoVim
@@ -273,8 +274,21 @@ return require('packer').startup {
                 'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
             }
         } -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+
+
+        -- *****************************************
+        -- Database
+        -- *****************************************
+        use {
+            'https://github.com/tpope/vim-dadbod',
+        -- For some reason dadbod-ui throws errors if vim-dadbod is not loaded
+        --     opt = true,
+        --     cmd = 'DB',
+        } -- Dadbod is a Vim plugin for interacting with databases.
         use {
             'https://github.com/kristijanhusak/vim-dadbod-completion',
+            opt = true,
+            ft = 'sql',
             config = 'require("plugins.vim-dadbod-completion")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
@@ -282,13 +296,11 @@ return require('packer').startup {
                 'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
             }
         } -- Database auto completion powered by vim-dadbod.
-
-
-        -- *****************************************
-        -- Database
-        -- *****************************************
         use {
             'https://github.com/kristijanhusak/vim-dadbod-ui',
+            opt = true,
+            cmd = { 'DB', 'DBUI', 'DBUIToggle', 'DBUIAddConnection' },
+            keys = '<F5>',
             config = 'require("plugins.vim-dadbod-ui")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
@@ -299,12 +311,31 @@ return require('packer').startup {
         -- *****************************************
         -- Testing & debugging
         -- *****************************************
-        use 'https://github.com/tpope/vim-dispatch' -- Asynchronous build and test dispatcher
+        use {
+            'https://github.com/tpope/vim-dispatch',
+            opt = true,
+            cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
+        } -- Asynchronous build and test dispatcher
         use {
             'https://github.com/janko/vim-test',
-            config = 'require("plugins.vim-test")'
+            opt = true,
+            cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' },
+            keys = {
+              '<Leader>tt',
+              '<Leader>tf',
+              '<Leader>ts',
+              '<Leader>tl',
+              '<Leader><Leader>tt',
+              '<Leader><Leader>tf',
+              '<Leader><Leader>ts',
+              '<Leader><Leader>tl',
+              '<Leader>tv',
+            },
+            config = 'require("plugins.vim-test")',
+            requires = {
+                'https://github.com/tpope/vim-dispatch', -- Asynchronous build and test dispatcher
+            }
         } -- Run your tests at the speed of thought
-        -- use 'https://github.com/vim-vdebug/vdebug' -- Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
 
 
         -- *****************************************
