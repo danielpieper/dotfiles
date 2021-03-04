@@ -67,6 +67,8 @@ endfunction
 function! OnUIEnter(event) abort
   if s:IsFirenvimActive(a:event)
     set laststatus=0
+    let g:bufferline.auto_hide=1
+
     autocmd BufEnter *atlassian.net_*.txt set filetype=html
     autocmd BufEnter *gitlab.*.txt set filetype=markdown
     autocmd BufEnter *github.*.txt set filetype=markdown
