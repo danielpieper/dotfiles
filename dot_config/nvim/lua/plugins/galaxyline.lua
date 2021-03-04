@@ -147,9 +147,8 @@ gls.left[9] = {
 }
 gls.left[10] = {
   LspStatus = {
-    provider = function()
-      return lspstatus.status()
-    end,
+    provider = lspstatus.status,
+    event = 'User LspMessageUpdate',
     condition = condition.check_active_lsp,
     highlight = { colors.line_fg, colors.line_bg },
   }

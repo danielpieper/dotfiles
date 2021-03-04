@@ -143,11 +143,6 @@ function M.other_settings()
   o.listchars = [[tab:  ,extends:›,precedes:‹,nbsp:·,trail:·]]
   o.list = true
 
-  -- TODO: how can i disable syntax from lua??? So far i put it in the init.vim...
-  -- vim.api.nvim_set_option('syntax', 'off');
-  -- o.syntax = "off"
-  -- bo.syntax = "off"
-
   o.incsearch = true
 end
 

@@ -7,7 +7,7 @@ require'nvim-treesitter.configs'.setup {
     -- },
   },
   indent = {
-    enable = true
+    enable = true,
   },
   incremental_selection = {
     enable = true,
@@ -70,22 +70,4 @@ require'nvim-treesitter.configs'.setup {
   },
   -- one of "all", "maintained", "language", or a list of languages
   ensure_installed = "maintained"
---  ensure_installed = {
---    "java",
---    "python",
---    "lua",
---    "go",
---    "yaml",
---    "json",
---    "markdown",
---    "html",
---    "typescript",
---    "query",
---    "vue",
---    "bash",
---    "css",
---    "php",
---    "javascript",
---    "regex"
---  }
 }
