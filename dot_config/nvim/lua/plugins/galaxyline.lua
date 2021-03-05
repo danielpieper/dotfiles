@@ -1,4 +1,3 @@
-local g = vim.g
 local o = vim.o
 local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
@@ -124,6 +123,7 @@ gls.left[7] = {
     icon = ' ﮧ ',
     separator = ' ',
     separator_highlight = { colors.sep, colors.line_bg },
+    condition = condition.check_active_lsp,
     highlight = { colors.line_fg, colors.line_bg },
   }
 }

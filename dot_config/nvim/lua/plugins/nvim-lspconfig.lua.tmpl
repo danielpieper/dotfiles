@@ -5,11 +5,10 @@
   {{- end -}}
 {{- end }}
 local utils = require('utils')
-local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
-
--- Lsp Status configuration
 lsp_status.register_progress()
+
+local lspconfig = require('lspconfig')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"

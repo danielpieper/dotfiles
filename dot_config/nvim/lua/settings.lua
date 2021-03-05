@@ -89,7 +89,7 @@ function M.other_settings()
   o.expandtab = true
   bo.expandtab = true
 
-  o.updatetime = 50
+  o.updatetime = 750
 
   -- Briefly move the cursor to the matching brace
   o.showmatch = true

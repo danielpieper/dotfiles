@@ -347,5 +347,11 @@ return require('packer').startup {
             run = '+call firenvim#install(0)',
             config = 'require("plugins.firenvim")'
         } -- Turn your browser into a Neovim client
+{{ if .usage eq "private" }}
+        use {
+            'https://github.com/andweeb/presence.nvim',
+            config = 'require("plugins.presence-nvim")'
+        } -- Discord Rich Presence plugin for Neovim.
+{{ end }}
     end
 }
