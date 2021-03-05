@@ -17,6 +17,10 @@ g.firenvim_config = {
       selector = 'div.ak-editor-content-area div[contenteditable="true"]',
       takeover = 'never',
     },
+    [".*todoist\\.com.*"] = {
+      cmdline = 'firenvim',
+      takeover = 'never',
+    },
     [".*"] = {
       cmdline = 'firenvim',
       priority = 0,
