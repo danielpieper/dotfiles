@@ -1,4 +1,4 @@
-{{- if .usage eq "private" -}}
+{{- if eq .usage "private" -}}
 Presence = require("presence"):setup({
     -- This config table shows all available config options with their default values
     auto_update       = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua Presence:update()`)
