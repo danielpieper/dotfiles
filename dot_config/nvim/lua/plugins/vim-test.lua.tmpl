@@ -22,6 +22,7 @@ vim.api.nvim_command([[let g:test#custom_transformations = {'personio': function
 
 vim.api.nvim_set_var('test#transformation', 'personio')
 vim.api.nvim_set_var('test#php#phpunit#executable', 'vendor/bin/phpunit')
+vim.api.nvim_set_var('test#php#phpunit#options', '--testdox')
 {{- end }}
 
 -- make test commands execute using dispatch.vim

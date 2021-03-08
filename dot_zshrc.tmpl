@@ -181,7 +181,12 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 alias de="docker exec -it"
 alias d="docker"
+
 alias kc="kubectl"
+if [[ -x "$(command -v kubecolor)" ]] # https://github.com/dty1er/kubecolor
+then
+  alias kc="kubecolor"
+fi
 
 # kitty ssh
 alias ssh="kitty +kitten ssh"
