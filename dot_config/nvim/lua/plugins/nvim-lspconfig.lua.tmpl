@@ -149,7 +149,7 @@ local servers = {
     }
   },
   diagnosticls = {
-    filetypes = { "php", "go", "lua" },
+    filetypes = { "php", "go", "lua", "sh", "markdown", "yaml" },
     init_options = {
       filetypes = {
         -- php = {"phpcs", "phpmd", "phpstan"},
@@ -157,6 +157,7 @@ local servers = {
         go = "golangci-lint",
         sh = "spellcheck",
         markdown = "spellcheck",
+        yaml = "ansible-lint",
       },
       linters = {
         phpcs = {
@@ -255,7 +256,27 @@ local servers = {
               info = "info",
               style = "hint"
           }
-        }
+        },
+        ['ansible-lint'] = {
+          command = "ansible-lint",
+          rootPatterns = { ".ansible-lint", "ansible.cfg", ".git" },
+          debounce = 100,
+          args = { "-f", "codeclimate", "--nocolor" },
+          sourceName = "ansible-lint",
+          parseJson = {
+            line = "location.lines.begin",
+            message = "${check_name}",
+            security = "severity"
+          },
+          securities = {
+              error = "error",
+              warning = "warning",
+              info = "info",
+          },
+          requiredFiles = {
+              ".ansible-lint",
+          }
+        },
       },
       formatFiletypes = {
         lua = 'lua-format',
@@ -288,7 +309,7 @@ local servers = {
 for server, config in pairs(servers) do
   config.on_attach = on_attach
 
-  -- config.log_level = vim.lsp.protocol.MessageType.Log;
+  config.log_level = vim.lsp.protocol.MessageType.Log;
   config.message_level = vim.lsp.protocol.MessageType.Log;
   config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 

@@ -62,4 +62,14 @@ brew install hashicorp/tap/terraform-ls || true
 brew install golangci/tap/golangci-lint || true
 
 {{- end }}
-sudo npm install -g npm intelephense diagnostic-languageserver markdownlint-cli
+
+sudo npm install -g \
+  npm \
+  intelephense \
+  diagnostic-languageserver \
+  markdownlint-cli \
+  dockerfile-language-server-nodejs
+
+pip3 install --upgrade \
+  ansible \
+  "ansible-lint[community,yamllint]"

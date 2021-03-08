@@ -28,6 +28,7 @@ utils.augroup(
     vim.cmd('autocmd BufNewFile,BufRead *.yaml.tmpl setlocal filetype=yaml')
     vim.cmd('autocmd BufNewFile,BufRead *.yml.tmpl setlocal filetype=yaml')
     vim.cmd('autocmd BufNewFile,BufRead *.lua.tmpl setlocal filetype=lua')
+    vim.cmd('autocmd BufNewFile,BufRead *.sh.tmpl setlocal filetype=bash')
     vim.cmd('autocmd BufNewFile,BufRead Tiltfile setlocal filetype=python')
 
     -- Wrap text and turn on spell for markdown files
