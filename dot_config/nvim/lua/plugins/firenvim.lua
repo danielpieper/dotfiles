@@ -17,15 +17,11 @@ g.firenvim_config = {
       selector = 'div.ak-editor-content-area div[contenteditable="true"]',
       takeover = 'never',
     },
-    [".*todoist\\.com.*"] = {
-      cmdline = 'firenvim',
-      takeover = 'never',
-    },
     [".*"] = {
       cmdline = 'firenvim',
       priority = 0,
       selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
-      takeover = 'once',
+      takeover = 'never',
     },
     [".*notion\\.so.*"] = {
       priority = 9,

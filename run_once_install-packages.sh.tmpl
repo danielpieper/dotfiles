@@ -71,7 +71,9 @@ sudo npm install -g \
   dockerfile-language-server-nodejs \
   bash-language-server
 
+{{ if ne .chezmoi.os "darwin" -}}
 pip3 install --upgrade \
   pip \
   ansible \
   "ansible-lint[community,yamllint]"
+{{- end }}

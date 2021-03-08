@@ -47,7 +47,7 @@ utils.augroup(
 utils.augroup(
   'checktime',
   function ()
-    vim.cmd('autocmd FocusGained,BufEnter * :silent! checktime " https://vi.stackexchange.com/a/13092')
+    vim.cmd('autocmd FocusGained,BufEnter * :silent! checktime') -- see https://vi.stackexchange.com/a/13092
     -- vim.cmd('autocmd CursorHold * silent! checktime')
   end
 )
