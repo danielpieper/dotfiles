@@ -30,6 +30,7 @@ utils.augroup(
     vim.cmd('autocmd BufNewFile,BufRead *.lua.tmpl setlocal filetype=lua')
     vim.cmd('autocmd BufNewFile,BufRead *.sh.tmpl setlocal filetype=bash')
     vim.cmd('autocmd BufNewFile,BufRead Tiltfile setlocal filetype=python')
+    vim.cmd('autocmd BufNewFile,BufRead Dockerfile.j2 setlocal filetype=dockerfile')
 
     -- Wrap text and turn on spell for markdown files
     vim.cmd('autocmd BufNewFile,BufRead *.md setlocal wrap linebreak spell filetype=markdown')
