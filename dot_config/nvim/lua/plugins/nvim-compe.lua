@@ -1,3 +1,5 @@
+local map = require("utils").map
+
 vim.o.completeopt = "menuone,noselect"
 
 require('compe').setup {
@@ -27,12 +29,6 @@ require('compe').setup {
     treesitter = true;
   };
 }
-
--- inoremap <silent><expr> <C-Space> compe#complete()
--- inoremap <silent><expr> <CR>      compe#confirm('<CR>')
--- inoremap <silent><expr> <C-e>     compe#close('<C-e>')
--- inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
--- inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -71,7 +67,14 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+map("i", "<C-Space>", "compe#complete()", {expr = true})
+map("i", "<CR>", "compe#confirm('<CR>')", {expr = true})
+map("i", "<C-e>", "compe#close('<C-e>')", {expr = true})
+map("i", "<C-f>", "compe#scroll({ 'delta': +4 })", {expr = true})
+map("i", "<C-d>", "compe#scroll({ 'delta': -4 })", {expr = true})
+
