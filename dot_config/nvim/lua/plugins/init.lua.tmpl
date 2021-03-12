@@ -269,12 +269,21 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/nvim-lua/completion-nvim',
+            disable = true, -- in favor of nvim-compe
             config = 'require("plugins.completion-nvim")',
             requires = {
                 'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
                 'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
             }
         } -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+        use {
+            'https://github.com/hrsh7th/nvim-compe',
+            disable = false,
+            config = 'require("plugins.nvim-compe")',
+            requires = {
+                'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+            }
+        } -- Auto completion plugin for nvim.
 
 
         -- *****************************************
@@ -288,6 +297,7 @@ return require('packer').startup {
         } -- Dadbod is a Vim plugin for interacting with databases.
         use {
             'https://github.com/kristijanhusak/vim-dadbod-completion',
+            disable = true, -- temporarily disabled to test out nvim-compe
             opt = true,
             ft = 'sql',
             config = 'require("plugins.vim-dadbod-completion")',
