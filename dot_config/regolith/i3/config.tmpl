@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "pop-os" -}}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "pop") }}
 ###############################################################################
 # i3-gaps config file for the Regolith Desktop Environment
 #
@@ -667,7 +667,8 @@ exec --no-startup-id $i3-wm.program.2
 set_from_resource $i3-wm.program.3 i3-wm.program.3 :
 exec --no-startup-id $i3-wm.program.3
 
-#assign workspaces to specific outputs
+{{ if eq .chezmoi.hostname "pop-os" -}}
+# assign workspaces to specific outputs (only desktop!)
 # $xrandr --listmonitors
 
 # set $leftDisplay DP-1-1
@@ -682,6 +683,7 @@ workspace "$ws6" output $rightDisplay
 workspace "$ws7" output $leftDisplay
 workspace "$ws8" output $leftDisplay
 workspace "$ws9" output $leftDisplay
+{{- end }}
 
 # Application specific settings
 assign [class="Firefox"] $ws1
