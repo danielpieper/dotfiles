@@ -42,15 +42,21 @@ return require('packer').startup {
             'https://github.com/danielpieper/base16-arc-scheme',
             {{- end }}
             config = 'require("plugins.base16-arc")',
-        }
-        use 'https://github.com/chriskempson/base16-vim' -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
-
+        } -- A base16 colorscheme.
+        use {
+          'https://github.com/chriskempson/base16-vim',
+          disable = true,
+        } -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
         use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
         use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
         use {
             'https://github.com/norcalli/nvim-colorizer.lua',
             config = 'require("colorizer").setup()'
         } -- A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
+        use {
+          'https://github.com/Yggdroot/indentLine',
+          config = 'require("plugins.indentline")',
+        }
 
 
         -- *****************************************
