@@ -51,8 +51,7 @@ end
 function M.line_numbers()
   wo.number = true
   wo.relativenumber = true
-  -- wo.signcolumn = "number"
-  wo.signcolumn = "auto:1"
+  wo.signcolumn = "yes:1"
 end
 
 -- Backup, undo, swap options

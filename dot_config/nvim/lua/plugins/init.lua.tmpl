@@ -22,11 +22,12 @@ return require('packer').startup {
         -- } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
             'https://github.com/joshdick/onedark.vim',
-            disable = true,
+            disable = true, -- in favor of colorbuddy/arcbuddy
             config = 'require("plugins.onedark")'
         } -- Atom OneDark
         use {
             'https://github.com/tjdevries/colorbuddy.nvim',
+            disable = true, -- in favor of base16 onedark
             requires = {
               'https://github.com/danielpieper/arcbuddy',
               branch = 'main',
@@ -34,6 +35,16 @@ return require('packer').startup {
             }, -- An atom one inspired dark and light colorscheme
             config = 'require("colorbuddy").colorscheme("arcbuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
+
+        use {
+            'https://github.com/chriskempson/base16-vim',
+            config = 'require("plugins.base16-vim")',
+            -- disable = true,
+            requires = {
+                '~/projects/base16-arc-scheme',
+            }
+        } -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
+
         use 'https://github.com/psliwka/vim-smoothie' -- Smooth scrolling for Vim done right🥤
         use 'https://github.com/camspiers/animate.vim' -- A Vim Window Animation Library
         use {

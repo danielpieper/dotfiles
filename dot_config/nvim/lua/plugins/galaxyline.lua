@@ -10,7 +10,7 @@ o.laststatus = 2 -- Show status line
 o.showtabline = 2  -- Show tabline
 
 local colors = {
-  bg = '#181a1b',
+  bg = '#151718',
   line_bg = '#151718',
   line_fg = '#4f5560',
   sep = '#0f1112',
