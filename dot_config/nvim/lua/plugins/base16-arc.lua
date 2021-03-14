@@ -24,6 +24,7 @@ vim.cmd("highlight PmenuSel                           guibg=#56b6c2")
 -- highlights for indent lines:
 vim.cmd("highlight Conceal                            guifg=#2c323c")
 vim.cmd("highlight Whitespace                         guifg=#2c323c")
+vim.cmd("highlight NvimTreeIndentMarker               guifg=#2c323c")
 
 vim.cmd("highlight IncSearch                          guifg=#1D1F21    guibg=#c678dd")
 vim.cmd("highlight Search                             guifg=#1D1F21    guibg=#d291e4")
@@ -40,3 +41,4 @@ vim.cmd("highlight LspDiagnosticsUnderlineError       gui=undercurl    guisp=Red
 vim.cmd("highlight LspDiagnosticsUnderlineWarning     gui=undercurl    guisp=Yellow guibg=none")
 vim.cmd("highlight LspDiagnosticsUnderlineInformation gui=undercurl    guisp=LightBlue  guibg=none")
 vim.cmd("highlight LspDiagnosticsUnderlineHint        gui=undercurl    guisp=LightGray  guibg=none")
+
