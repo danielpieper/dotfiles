@@ -36,7 +36,11 @@ return require('packer').startup {
             config = 'require("colorbuddy").colorscheme("arcbuddy")',
         } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
         use {
+            {{- if eq .chezmoi.hostname "pop-os" }}
+            '~/projects/base16-arc-scheme',
+            {{- else }}
             'https://github.com/danielpieper/base16-arc-scheme',
+            {{- end }}
             config = 'require("plugins.base16-arc")',
         }
         use 'https://github.com/chriskempson/base16-vim' -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
