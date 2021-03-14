@@ -80,9 +80,17 @@ return require('packer').startup {
         } -- fugitive.vim: A Git wrapper so awesome, it should be illegal
         use {
             'https://github.com/mhinz/vim-signify',
+            disable = true, -- in favor of gitsigns.nvim
             config = 'require("plugins.vim-signify")'
-            -- event = { 'BufReadPre', 'BufNewFile'},
         } -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+        use {
+            'https://github.com/lewis6991/gitsigns.nvim',
+            disable = false,
+            config = 'require("plugins.gitsigns-nvim")',
+            requires = {
+                'https://github.com/nvim-lua/plenary.nvim', -- All the lua functions I don't want to write twice.
+            },
+        } -- Git signs written in pure lua.
 
 
         -- *****************************************
@@ -284,6 +292,9 @@ return require('packer').startup {
                 'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
             }
         } -- Auto completion plugin for nvim.
+        use {
+            'https://github.com/onsails/lspkind-nvim'
+        } -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
 
 
         -- *****************************************
