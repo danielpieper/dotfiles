@@ -20,7 +20,10 @@ vim.cmd("highlight TelescopePreviewBorder             guifg=#5c6370")
 
 vim.cmd("highlight PmenuSel                           guibg=#56b6c2")
 -- vim.cmd("highlight Constant                           guifg=#d19a66")
+
+-- highlights for indent lines:
 vim.cmd("highlight Conceal                            guifg=#2c323c")
+vim.cmd("highlight Whitespace                         guifg=#2c323c")
 
 vim.cmd("highlight IncSearch                          guifg=#1D1F21    guibg=#c678dd")
 vim.cmd("highlight Search                             guifg=#1D1F21    guibg=#d291e4")
