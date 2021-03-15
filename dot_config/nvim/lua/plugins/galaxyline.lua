@@ -10,23 +10,22 @@ o.laststatus = 2 -- Show status line
 o.showtabline = 2  -- Show tabline
 
 local colors = {
-  bg = '#151718',
-  line_bg = '#151718',
-  line_fg = '#4f5560',
-  sep = '#0f1112',
-  fg = '#abb2bf',
-
-  black = '#1d1f21',
-  yellow = '#e5c07b',
-  cyan = '#56b6c2',
+  bg       = '#151718',
+  line_bg  = '#151718',
+  line_fg  = '#4f5560',
+  sep      = '#0f1112',
+  fg       = '#abb2bf',
+  black    = '#1d1f21',
+  yellow   = '#e5c07b',
+  cyan     = '#56b6c2',
   darkblue = '#081633',
-  green = '#98c379',
-  orange = '#d19a66',
-  purple = '#5d4d7a',
-  magenta = '#c678dd',
-  grey = '#abb2bf',
-  blue = '#61afef',
-  red = '#e06c75'
+  green    = '#98c379',
+  orange   = '#d19a66',
+  purple   = '#5d4d7a',
+  magenta  = '#c678dd',
+  grey     = '#abb2bf',
+  blue     = '#61afef',
+  red      = '#e06c75'
 }
 
 local get_lsp_client = function (msg)
