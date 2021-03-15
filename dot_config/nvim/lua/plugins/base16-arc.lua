@@ -22,7 +22,7 @@ vim.cmd("highlight VertSplit                          guifg=#151718    guibg=non
 vim.cmd("highlight DiffAdd                            guibg=none")
 vim.cmd("highlight DiffChange                         guifg=#d19a66    guibg=none")
 vim.cmd("highlight DiffModified                       guibg=none")
-vim.cmd("highlight DiffDelete                         guibg=none")
+vim.cmd("highlight DiffDelete                         guifg=#e06c75 guibg=none")
 vim.cmd("highlight EndOfBuffer                        guifg=#2c323c")
 
 vim.cmd("highlight TelescopeBorder                    guifg=#5c6370")
@@ -38,8 +38,8 @@ vim.cmd("highlight Conceal                            guifg=#2c323c")
 vim.cmd("highlight Whitespace                         guifg=#2c323c")
 vim.cmd("highlight NvimTreeIndentMarker               guifg=#2c323c")
 
-vim.cmd("highlight IncSearch                          guifg=#1D1F21    guibg=#c678dd")
-vim.cmd("highlight Search                             guifg=#1D1F21    guibg=#d291e4")
+vim.cmd("highlight Search                             guifg=#1D1F21 guibg=#d19a66")
+vim.cmd("highlight IncSearch                          guifg=#1D1F21 guibg=#e5c07b")
 
 vim.cmd("highlight NvimTreeFolderIcon                 guifg=#61afef")
 vim.cmd("highlight NvimTreeFolderName                 guifg=#61afef")
@@ -53,4 +53,3 @@ vim.cmd("highlight LspDiagnosticsUnderlineError       gui=undercurl    guisp=Red
 vim.cmd("highlight LspDiagnosticsUnderlineWarning     gui=undercurl    guisp=Yellow guibg=none")
 vim.cmd("highlight LspDiagnosticsUnderlineInformation gui=undercurl    guisp=LightBlue  guibg=none")
 vim.cmd("highlight LspDiagnosticsUnderlineHint        gui=undercurl    guisp=LightGray  guibg=none")
-
