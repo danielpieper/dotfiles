@@ -1,7 +1,19 @@
--- vim.cmd("colorscheme base16-onedark")
-vim.cmd("colorscheme arc")
+local utils = require("utils")
 
--- highlights
+vim.cmd("colorscheme base16-arc")
+
+-- vim.cmd("
+-- function! s:base16_customize() abort
+--   call Base16hi("MatchParen", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold,italic", "")
+-- endfunction
+
+-- utils.augroup(
+--   'on_change_colorscheme',
+--   function ()
+--     vim.cmd('autocmd ColorScheme * call s:base16_customize()')
+--   end
+-- )
+
 vim.cmd("highlight LineNr                             guibg=none")
 vim.cmd("highlight CursorLineNr                       guibg=none")
 
