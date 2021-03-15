@@ -41,7 +41,7 @@ return require('packer').startup {
         } -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
         use {
             {{- if eq .chezmoi.hostname "pop-os" }}
-            '~/projects/base16-arc-scheme',
+            '~/projects/base16-arc-vim',
             {{- else }}
             'https://github.com/danielpieper/base16-arc-vim',
             branch = 'main',
