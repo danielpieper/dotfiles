@@ -2,8 +2,10 @@ local g = vim.g
 local map = require("utils").map
 
 map("n", "<F5>", ":DBUIToggle<CR>", {silent = true})
+map("n", "<Leader><F5>", ":DBUILastQueryInfo<CR>", {silent = true})
 
 g.db_ui_use_nerd_fonts = 1
+g.db_ui_execute_on_save = 0
 
 {{- define "database_type" -}}
 {{ if eq . "postgresql" }}postgres:{{ else }}{{ . }}:{{- end -}}

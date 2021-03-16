@@ -322,27 +322,30 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/tpope/vim-dadbod',
+            -- disable = true,
         -- For some reason dadbod-ui throws errors if vim-dadbod is not loaded
         --     opt = true,
         --     cmd = 'DB',
         } -- Dadbod is a Vim plugin for interacting with databases.
         use {
             'https://github.com/kristijanhusak/vim-dadbod-completion',
-            disable = true, -- temporarily disabled to test out nvim-compe
-            opt = true,
+            -- disable = true,
+            -- opt = true,
             ft = 'sql',
-            config = 'require("plugins.vim-dadbod-completion")',
+            -- config = 'require("plugins.vim-dadbod-completion")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
-                'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
-                'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
+                'https://github.com/hrsh7th/nvim-compe', -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
+                -- 'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
+                -- 'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
             }
         } -- Database auto completion powered by vim-dadbod.
         use {
             'https://github.com/kristijanhusak/vim-dadbod-ui',
-            opt = true,
-            cmd = { 'DB', 'DBUI', 'DBUIToggle', 'DBUIAddConnection' },
-            keys = '<F5>',
+            -- disable = true,
+            -- opt = true,
+            cmd = { 'DB', 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIRenameBuffer', 'DBUIFindBuffer', 'DBUILastQueryInfo' },
+            keys = { '<F5>', '<Leader><F5>' },
             config = 'require("plugins.vim-dadbod-ui")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
