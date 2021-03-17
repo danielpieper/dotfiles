@@ -115,7 +115,10 @@ return require('packer').startup {
         -- *****************************************
         -- General
         -- *****************************************
-        use 'https://github.com/myusuf3/numbers.vim' -- intelligently toggling line numbers
+        use {
+            'https://github.com/myusuf3/numbers.vim',
+            config = 'require("plugins.numbers-vim")',
+        } -- intelligently toggling line numbers
         use {
             'https://github.com/editorconfig/editorconfig-vim',
             config = 'require("plugins.editorconfig-vim")'
@@ -162,12 +165,18 @@ return require('packer').startup {
 
 
         -- *****************************************
-        -- Sessions
+        -- Dashboard & Sessions
         -- *****************************************
         use {
             'https://github.com/mhinz/vim-startify',
+            disable = true, -- in favor of dashboard-nvim
             config = 'require("plugins.startify")'
         } -- This plugin provides a start screen for Vim and Neovim.
+        use {
+            'https://github.com/glepnir/dashboard-nvim',
+            -- disable = true,
+            config = 'require("plugins.dashboard-nvim")'
+        } -- neovim dashboard
 
 
         -- *****************************************
