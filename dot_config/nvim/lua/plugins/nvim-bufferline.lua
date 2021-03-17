@@ -15,11 +15,11 @@ bl.setup {
         show_tab_indicators = true,
         separator_style = "thin",
 
-        diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level)
-            local icon = level:match("error") and " " or ""
-            return " " .. icon .. count
-        end,
+        -- diagnostics = "nvim_lsp",
+        -- diagnostics_indicator = function(count, level)
+        --     local icon = level:match("error") and " " or ""
+        --     return " " .. icon .. count
+        -- end,
         highlights = {
             warning = {
                 guisp = "Yellow",
