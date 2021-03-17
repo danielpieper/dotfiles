@@ -356,8 +356,8 @@ return require('packer').startup {
         use {
             'https://github.com/kristijanhusak/vim-dadbod-ui',
             -- disable = true,
-            -- opt = true,
-            cmd = { 'DB', 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIRenameBuffer', 'DBUIFindBuffer', 'DBUILastQueryInfo' },
+            opt = true,
+            cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIRenameBuffer', 'DBUIFindBuffer', 'DBUILastQueryInfo' },
             keys = { '<F5>', '<Leader><F5>' },
             config = 'require("plugins.vim-dadbod-ui")',
             requires = {
