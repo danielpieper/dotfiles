@@ -98,7 +98,16 @@ foreach (${1:iterable} as ${2:value}) {
 foreach (${1:iterable} as ${2:key} => ${3:value}) {
     ${0}
 }]]);
-    ["suppressWarnings"] = U.match_indentation([[
+    ["phpcs-ignore"] = U.match_indentation([[
+// phpcs:ignore ${0}
+]]);
+    ["phpcs-disable"] = U.match_indentation([[
+// phpcs:disable ${0}
+]]);
+    ["phpcs-enable"] = U.match_indentation([[
+// phpcs:enable ${0}
+]]);
+    ["phpmd-suppressWarnings"] = U.match_indentation([[
 @SuppressWarnings(PHPMD.${1:CouplingBetweenObjects}) ${0}
 ]]);
     ["debugmem"] = U.match_indentation([[
