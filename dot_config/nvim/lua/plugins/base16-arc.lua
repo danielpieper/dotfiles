@@ -38,8 +38,8 @@ vim.cmd([[
     highlight LspDiagnosticsDefaultInformation   guifg=LightBlue  guibg=none
     highlight LspDiagnosticsDefaultHint          guifg=LightGray  guibg=none
 
-    highlight LspDiagnosticsUnderlineError       gui=undercurl    guisp=Red    guibg=none
-    highlight LspDiagnosticsUnderlineWarning     gui=undercurl    guisp=Yellow guibg=none
+    highlight LspDiagnosticsUnderlineError       gui=undercurl    guisp=#e06c75    guibg=none
+    highlight LspDiagnosticsUnderlineWarning     gui=undercurl    guisp=#e5c07b guibg=none
     highlight LspDiagnosticsUnderlineInformation gui=undercurl    guisp=LightBlue  guibg=none
     highlight LspDiagnosticsUnderlineHint        gui=undercurl    guisp=LightGray  guibg=none
   endfunction
