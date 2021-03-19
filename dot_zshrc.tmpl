@@ -163,6 +163,8 @@ export BROWSER='firefox'
 export PATH=~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin:~/.local/nvim/bin:~/.yarn/bin:$PATH
 
 {{- if eq .chezmoi.os "darwin" }}
+export TERMINFO=/Applications/kitty.app/Contents/Resources/terminfo
+export TERM=xterm-kitty
 export PATH=/usr/local/sbin:$PATH
 # nvm:
 export NVM_DIR="$HOME/.nvm"
