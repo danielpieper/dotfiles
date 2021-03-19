@@ -4,3 +4,4 @@ vim.g.indentLine_bgcolor_gui = '#151718'
 vim.o.list = true
 vim.o.listchars = "tab:▏ "
 vim.g.indentLine_fileTypeExclude = { 'dashboard' }
+vim.g.indentLine_bufTypeExclude = { 'help', 'terminal' }

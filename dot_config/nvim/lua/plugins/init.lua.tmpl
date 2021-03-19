@@ -64,10 +64,8 @@ return require('packer').startup {
         -- *****************************************
         -- Language Specific
         -- *****************************************
-        use {
-            'https://github.com/sheerun/vim-polyglot',
-            disable = true, -- in favor of nvim-treesitter
-        } -- A collection of language packs for Vim.
+        use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
+        use 'https://github.com/rhysd/vim-syntax-codeowners' -- Vim syntax support for CODEOWNERS file supported by GitHub
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")',
