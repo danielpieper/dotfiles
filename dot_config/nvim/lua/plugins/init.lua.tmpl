@@ -64,8 +64,8 @@ return require('packer').startup {
         -- *****************************************
         -- Language Specific
         -- *****************************************
-        use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
-        use 'https://github.com/rhysd/vim-syntax-codeowners' -- Vim syntax support for CODEOWNERS file supported by GitHub
+        -- use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
+        -- use 'https://github.com/rhysd/vim-syntax-codeowners' -- Vim syntax support for CODEOWNERS file supported by GitHub
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")',
@@ -207,17 +207,17 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/moll/vim-bbye',
-            -- disable = true, -- included in barbar.nvim
+            disable = true, -- included in barbar.nvim
             config = 'require("plugins.vim-bbye")',
         } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
         use {
             'https://github.com/schickling/vim-bufonly',
-            -- disable = true, -- included in barbar.nvim
+            disable = true, -- included in barbar.nvim
             config = 'require("plugins.vim-bufonly")',
         } -- Delete all the buffers except the current buffer.
         use {
             'https://github.com/akinsho/nvim-bufferline.lua',
-            -- disable = true, -- in favor of barbar.nvim
+            disable = true, -- in favor of barbar.nvim
             config = 'require("plugins.nvim-bufferline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
@@ -227,7 +227,7 @@ return require('packer').startup {
         } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
         use {
             'https://github.com/romgrk/barbar.nvim',
-            disable = true,
+            -- disable = true,
             config = 'require("plugins.barbar")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.

@@ -49,7 +49,7 @@ vim.g.bufferline = {
   -- highlight group. By default, the Buffer*Icon group is linked to the
   -- Buffer* group (see Highlighting below). Otherwise, it will take its
   -- default value as defined by devicons.
-  icon_custom_colors = false,
+  icon_custom_colors = true,
 
   -- Configure icons on the bufferline.
   icon_separator_active = '▎',
@@ -77,9 +77,9 @@ vim.g.bufferline = {
   letters = 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
 
   -- Sets the maximum padding width with which to surround each tab
-  maximum_padding = 4,
+  maximum_padding = 2,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = false,
+  auto_hide = true,
 }
 
