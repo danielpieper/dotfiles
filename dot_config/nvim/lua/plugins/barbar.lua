@@ -38,7 +38,7 @@ map('n', 'Qh', ":BufferCloseBuffersLeft<CR>", {silent = true})
 
 vim.g.bufferline = {
   -- Enable/disable animations
-  animation = false,
+  animation = true,
 
   -- Enable/disable icons
   -- if set to 'numbers', will show buffer index in the tabline

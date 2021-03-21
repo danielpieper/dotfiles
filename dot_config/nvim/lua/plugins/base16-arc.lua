@@ -50,7 +50,7 @@ vim.cmd([[
     highlight BufferVisibleIndex                 guibg=#1D1F21
     highlight BufferVisibleSign                  guibg=#1D1F21
 
-    highlight BufferInactiveSign                 guifg=#151718 guibg=#151718
+    highlight BufferInactiveSign                 guifg=Black guibg=#151718
   endfunction
 ]])
 
