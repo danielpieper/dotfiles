@@ -1,7 +1,8 @@
-local map = require("utils").map
+local utils = require("utils")
 local g = vim.g
 
 g.dashboard_default_executive ='telescope'
+g.dashboard_session_directory = utils.cache_dir .. utils.path_sep .. 'session'
 
 g.dashboard_custom_shortcut = {
   last_session       = '        ',

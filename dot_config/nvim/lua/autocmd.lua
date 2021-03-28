@@ -29,7 +29,7 @@ utils.augroup(
     vim.cmd('autocmd BufNewFile,BufRead *.yml.tmpl setlocal filetype=yaml')
     vim.cmd('autocmd BufNewFile,BufRead *.lua.tmpl setlocal filetype=lua')
     vim.cmd('autocmd BufNewFile,BufRead *.sh.tmpl setlocal filetype=bash')
-    vim.cmd('autocmd BufNewFile,BufRead Tiltfile setlocal filetype=python')
+    vim.cmd('autocmd BufNewFile,BufRead Tiltfile setlocal filetype=config')
     vim.cmd('autocmd BufNewFile,BufRead Dockerfile.j2 setlocal filetype=dockerfile')
     vim.cmd('autocmd BufNewFile,BufRead *.toml.j2 setlocal filetype=toml')
 
