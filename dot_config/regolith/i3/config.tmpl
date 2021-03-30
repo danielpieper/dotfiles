@@ -668,7 +668,10 @@ set_from_resource $i3-wm.program.3 i3-wm.program.3 :
 exec --no-startup-id $i3-wm.program.3
 
 #assign workspaces to specific outputs
-set $leftDisplay DP-1-1
+# $xrandr --listmonitors
+
+# set $leftDisplay DP-1-1
+set $leftDisplay HDMI-1
 set $rightDisplay HDMI-0
 workspace "$ws1" output $leftDisplay
 workspace "$ws2" output $leftDisplay

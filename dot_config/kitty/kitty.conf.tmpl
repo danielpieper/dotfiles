@@ -13,10 +13,17 @@
 # kitty list-fonts
 # font_family      monospace
 # font_family      Consolas Nerd Font
-font_family      JetBrainsMono Nerd Font Mono Regular
-italic_font      JetBrainsMono Nerd Font Mono Italic
-bold_font        JetBrainsMono Nerd Font Mono Bold
+{{- if eq .chezmoi.os "darwin" }}
+font_family      JetBrainsMono Nerd Font Mono Regular                                                                                                                                                                                                           
+italic_font      JetBrainsMono Nerd Font Mono Italic                                                                                                                                                                                                            
+bold_font        JetBrainsMono Nerd Font Mono Bold                                                                                                                                                                                                              
 bold_italic_font JetBrainsMono Nerd Font Mono Bold Italic
+{{- else }}
+font_family      JetBrains Mono Regular Nerd Font Complete Mono
+italic_font      JetBrains Mono Italic Nerd Font Complete Mono
+bold_font        JetBrains Mono Bold Nerd Font Complete Mono
+bold_italic_font JetBrains Mono Bold Italic Nerd Font Complete Mono
+{{- end }}
 
 # Font size (in pts)
 {{- if eq .chezmoi.os "darwin" }}

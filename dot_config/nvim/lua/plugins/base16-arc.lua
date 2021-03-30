@@ -7,9 +7,9 @@ vim.cmd([[
     highlight CursorLineNr                       guibg=none
 
     highlight SignColumn                         guibg=none
-    highlight VertSplit                          guifg=#151718    guibg=none
+    highlight VertSplit                          guifg=#151718 guibg=none
     highlight DiffAdd                            guibg=none
-    highlight DiffChange                         guifg=#d19a66    guibg=none
+    highlight DiffChange                         guifg=#d19a66 guibg=none
     highlight DiffModified                       guibg=none
     highlight DiffDelete                         guifg=#e06c75 guibg=none
     highlight EndOfBuffer                        guifg=#2c323c
