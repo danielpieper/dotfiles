@@ -74,6 +74,7 @@ return require('packer').startup {
         use {
           'https://github.com/npxbr/glow.nvim',
           opt = true,
+          branch = 'main',
           run = ':GlowInstall<CR>',
           config = 'require("utils").map("n", "<Leader>p", ":Glow<CR>", {silent=true})',
           cmd = 'Glow',
