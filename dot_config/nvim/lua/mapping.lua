@@ -28,3 +28,6 @@ map("n", "<Up>", ":exe 'resize ' . (winheight(0) * 3/2)<CR>", {silent = true})
 map("n", "<Down>", ":exe 'resize ' . (winheight(0) * 2/3)<CR>", {silent = true})
 map("n", "<Right>", ":exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>", {silent = true})
 map("n", "<Left>", ":exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>", {silent = true})
+
+-- close all windows
+map("n", "ZZ", ":qa<CR>", {silent=true})
