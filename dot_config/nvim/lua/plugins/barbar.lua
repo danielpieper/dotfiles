@@ -80,6 +80,6 @@ vim.g.bufferline = {
   maximum_padding = 2,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = true,
+  auto_hide = false,
 }
 
