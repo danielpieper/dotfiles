@@ -104,6 +104,7 @@ return require('packer').startup {
         use {
             'https://github.com/lewis6991/gitsigns.nvim',
             disable = false,
+            branch = 'main',
             config = 'require("plugins.gitsigns-nvim")',
             requires = {
                 'https://github.com/nvim-lua/plenary.nvim', -- All the lua functions I don't want to write twice.

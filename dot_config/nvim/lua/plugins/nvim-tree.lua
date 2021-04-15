@@ -1,7 +1,8 @@
 local map = require("utils").map
+local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 vim.api.nvim_set_var('nvim_tree_bindings', {
-  ["l"] = ":lua require('nvim-tree').on_keypress('edit')<CR>",
+  ["l"] = tree_cb("edit"),
 })
 
 vim.g.nvim_tree_side = "right"

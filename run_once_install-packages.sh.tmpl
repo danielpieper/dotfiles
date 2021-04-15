@@ -70,7 +70,10 @@ sudo npm install -g \
   markdownlint-cli \
   dockerfile-language-server-nodejs \
   bash-language-server \
-  yaml-language-server
+  yaml-language-server \
+  vim-language-server \
+  vls \
+  vscode-css-languageserver-bin
 
 {{ if ne .chezmoi.os "darwin" -}}
 pip3 install --upgrade \
