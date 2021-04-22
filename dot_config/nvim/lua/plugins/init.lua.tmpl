@@ -344,7 +344,7 @@ return require('packer').startup {
             'https://github.com/kristijanhusak/vim-dadbod-completion',
             -- disable = true,
             -- opt = true,
-            ft = 'sql',
+            ft = { 'sql', 'mysql' },
             -- config = 'require("plugins.vim-dadbod-completion")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
