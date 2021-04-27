@@ -55,7 +55,7 @@ utils.map("v", "<leader>hm", "!pandoc -f html -t markdown - -o - | prettier --pa
 utils.augroup(
   'firenvim',
   function ()
-    vim.cmd([[
+    vim.api.nvim_command([[
 function! s:IsFirenvimActive(event) abort
   if !exists('*nvim_get_chan_info')
     return 0
