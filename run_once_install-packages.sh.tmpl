@@ -49,15 +49,14 @@ $yay acpilight laptop-mode-tools thermald upower
 
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
-brew tap cjbassi/ytop
 brew tap jason0x43/homebrew-neovim-nightly
 # homebrew returns error if the formula is installed and outdated
 brew install bat exa awscli composer ctop git-delta fzy go \
   gradle helm htop httpie jenv jq midnight-commander ncdu \
   ranger ripgrep skhd terraform tflint the_silver_searcher tmux \
-  tmuxinator watch wget wifi-password yabai yarn zsh ytop glow \
+  tmuxinator watch wget wifi-password yabai yarn zsh glow \
   clang-format rust || true
-brew install --cask jetbrains-toolbox firefox || true
+brew install --cask jetbrains-toolbox firefox kitty || true
 brew install hashicorp/tap/terraform-ls || true
 brew install golangci/tap/golangci-lint || true
 
