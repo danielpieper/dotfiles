@@ -16,10 +16,10 @@ return require('packer').startup {
         -- *****************************************
         -- Eye Candy
         -- *****************************************
-        -- use {
-        --     'https://github.com/kyazdani42/nvim-web-devicons',
-        --     config = 'require("nvim-web-devicons").setup()'
-        -- } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+        use {
+            'https://github.com/kyazdani42/nvim-web-devicons',
+            -- config = 'require("nvim-web-devicons").setup()'
+        } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
             'https://github.com/joshdick/onedark.vim',
             disable = true, -- in favor of colorbuddy/arcbuddy
@@ -67,8 +67,11 @@ return require('packer').startup {
         -- *****************************************
         -- use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
         -- use 'https://github.com/rhysd/vim-syntax-codeowners' -- Vim syntax support for CODEOWNERS file supported by GitHub
+        -- use 'https://github.com/2072/vim-syntax-for-PHP' -- Fork of the official VIm syntax file for PHP
+        -- use 'https://github.com/2072/PHP-Indenting-for-VIm' -- The official VIm indent script for PHP
         use {
             "https://github.com/folke/lsp-trouble.nvim",
+            disable = true,
             config = 'require("plugins.trouble")',
             requires = {
               'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.

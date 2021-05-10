@@ -8,7 +8,7 @@ map("v", "<", "<gv", {})
 map("v", ">", ">gv", {})
 
 -- clear all the highlighted text from the previous search
-map("n", "<F1>", ":noh<CR>", {silent = true})
+map("n", "<F2>", ":noh<CR>", {silent = true})
 
 -- Easier Moving between splits
 map("n", "<C-J>", "<C-W><C-J>", {})
