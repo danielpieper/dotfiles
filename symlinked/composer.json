@@ -7,6 +7,7 @@
     "phpmd/phpmd": "^2.10",
     "phpstan/phpstan": "^0.12",
     "danielpieper/mrcli": "dev-master",
-    "friendsofphp/php-cs-fixer": "^3"
+    "friendsofphp/php-cs-fixer": "^3",
+    "nunomaduro/larastan": "^0.7.6"
   }
 }
