@@ -9,6 +9,7 @@ local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
 local lspconfig = require('lspconfig')
+local configs = require('lspconfig/configs')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -114,7 +115,7 @@ local servers = {
   vimls = {},
   yamlls = {},
   vuels = {},
-{{- if ne .chezmoi.os "darwin" -}}
+{{ if ne .chezmoi.os "darwin" -}}
   sumneko_lua = {
     cmd = { "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/bin/Linux/lua-language-server", "-E", "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/main.lua" },
     settings = {
@@ -147,6 +148,7 @@ local servers = {
       -- clearCache = true
     }
   },
+  -- psalmls = {},
   diagnosticls = {
     handlers = {
       ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -316,6 +318,17 @@ local servers = {
     }
   }
 }
+
+if not lspconfig.psalmls then
+  configs.psalmls = {
+    default_config = {
+      cmd = {'./vendor/bin/psalm-language-server'};
+      filetypes = {'php'};
+      root_dir = lspconfig.util.root_pattern( "psalm.xml", "psalm.xml.dist" );
+      settings = {};
+    };
+  }
+end
 
 for server, config in pairs(servers) do
   config.on_attach = on_attach
