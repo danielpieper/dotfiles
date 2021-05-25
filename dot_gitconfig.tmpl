@@ -30,24 +30,25 @@
 [pull]
   rebase = false
 
-[merge]
-  tool = vimdiff
-  conflictstyle = diff3
-  prompt = false
-
 ; [url "ssh://git@github.com/"]
 ; 	insteadOf = https://github.com/
 
 ; [url "ssh://git@gitlab.com/"]
 ; 	insteadOf = https://gitlab.com/
 
-[mergetool "vimdiff"]
-  path = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\" 
+
+[merge]
+  tool = nvim
+
+[mergetool]
+  prompt = false
 
 [delta]
-    plus-color = "#012800"
-    minus-color = "#340001"
-    syntax-theme = Monokai Extended
+  plus-color = "#012800"
+  minus-color = "#340001"
+  syntax-theme = Monokai Extended
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
