@@ -21,32 +21,12 @@ return require('packer').startup {
             -- config = 'require("nvim-web-devicons").setup()'
         } -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         use {
-            'https://github.com/joshdick/onedark.vim',
-            disable = true, -- in favor of colorbuddy/arcbuddy
-            config = 'require("plugins.onedark")'
-        } -- Atom OneDark
-        use {
-            'https://github.com/tjdevries/colorbuddy.nvim',
-            disable = true, -- in favor of base16 onedark
-            requires = {
-              'https://github.com/danielpieper/arcbuddy',
-              branch = 'main',
-              -- '~/projects/arcbuddy',
-            }, -- An atom one inspired dark and light colorscheme
-            config = 'require("colorbuddy").colorscheme("arcbuddy")',
-        } -- A colorscheme helper for Neovim.  Written in Lua! Quick & Easy Color Schemes smile
-        use {
-          'https://github.com/chriskempson/base16-vim',
-          disable = true,
-        } -- themes based on carefully chosen syntax highlighting using a base of sixteen colors. 
-        use {
             {{- if eq .chezmoi.hostname "pop-os" }}
             '~/projects/base16-arc-vim',
             {{- else }}
             'https://github.com/danielpieper/base16-arc-vim',
             branch = 'main',
             {{- end }}
-            -- disable = true,
             config = 'require("plugins.base16-arc")',
         } -- A base16 colorscheme.
         use 'https://github.com/folke/lsp-colors.nvim' -- Automatically creates missing LSP diagnostics highlight groups for color schemes that don't yet support the Neovim 0.5 builtin lsp client.
@@ -67,29 +47,11 @@ return require('packer').startup {
         -- *****************************************
         -- use 'https://github.com/sheerun/vim-polyglot' -- A collection of language packs for Vim.
         -- use 'https://github.com/rhysd/vim-syntax-codeowners' -- Vim syntax support for CODEOWNERS file supported by GitHub
-        -- use 'https://github.com/2072/vim-syntax-for-PHP' -- Fork of the official VIm syntax file for PHP
-        -- use 'https://github.com/2072/PHP-Indenting-for-VIm' -- The official VIm indent script for PHP
-        use {
-            "https://github.com/folke/lsp-trouble.nvim",
-            disable = true,
-            config = 'require("plugins.trouble")',
-            requires = {
-              'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-            }
-        } -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
         use {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")',
             run = ':TSUpdate'
         }
-        use {
-          'https://github.com/npxbr/glow.nvim',
-          opt = true,
-          branch = 'main',
-          run = ':GlowInstall<CR>',
-          config = 'require("utils").map("n", "<Leader>p", ":Glow<CR>", {silent=true})',
-          cmd = 'Glow',
-        } -- A glow preview directly in your neovim buffer. (markdown)
 
 
         -- *****************************************
@@ -107,11 +69,6 @@ return require('packer').startup {
                 'https://github.com/tpope/vim-rhubarb', -- Enables :GBrowse from fugitive.vim to open GitHub URLs.
             },
         } -- fugitive.vim: A Git wrapper so awesome, it should be illegal
-        use {
-            'https://github.com/mhinz/vim-signify',
-            disable = true, -- in favor of gitsigns.nvim
-            config = 'require("plugins.vim-signify")'
-        } -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
         use {
             'https://github.com/lewis6991/gitsigns.nvim',
             disable = false,
@@ -150,16 +107,6 @@ return require('packer').startup {
         -- Comments
         -- *****************************************
         use {
-            'https://github.com/tpope/vim-commentary',
-            disable = true, -- in favor of kommentary
-            config = 'require("plugins.vim-commentary")'
-        } -- Comment stuff out.
-        use {
-            'https://github.com/terrortylor/nvim-comment',
-            disable = true, -- in favor of kommentary
-            config = 'require("plugins.nvim-comment")'
-        } -- A comment toggler for Neovim, written in Lua
-        use {
             'https://github.com/b3nj5m1n/kommentary',
             disable = false,
             config = 'require("plugins.kommentary")'
@@ -179,11 +126,6 @@ return require('packer').startup {
         -- Dashboard & Sessions
         -- *****************************************
         use {
-            'https://github.com/mhinz/vim-startify',
-            disable = true, -- in favor of dashboard-nvim
-            config = 'require("plugins.startify")'
-        } -- This plugin provides a start screen for Vim and Neovim.
-        use {
             'https://github.com/glepnir/dashboard-nvim',
             -- disable = true,
             config = 'require("plugins.dashboard-nvim")'
@@ -194,23 +136,12 @@ return require('packer').startup {
         -- Status Bar
         -- *****************************************
         use {
-            'https://github.com/itchyny/lightline.vim',
-            disable = true, -- in favor of galaxyline.nvim
-            config = 'require("plugins.lightline")',
-            requires = {
-                'https://github.com/mengelbrecht/lightline-bufferline', -- This plugin provides bufferline functionality for the lightline vim plugin.
-                'https://github.com/ryanoasis/vim-devicons',
-                'https://github.com/tpope/vim-fugitive'
-            }
-        } -- A light and configurable statusline/tabline plugin for Vim
-        use {
             'https://github.com/glepnir/galaxyline.nvim',
             disable = false,
             branch = 'main', -- see https://github.com/wbthomason/packer.nvim/issues/86
             config = 'require("plugins.galaxyline")',
             requires = {
                 'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-                'https://github.com/mhinz/vim-signify' -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
             }
         } -- galaxyline componentizes vim's statusline, the text of each area is provided by a component.
 
@@ -218,26 +149,6 @@ return require('packer').startup {
         -- *****************************************
         -- Buffers
         -- *****************************************
-        use {
-            'https://github.com/moll/vim-bbye',
-            disable = true, -- included in barbar.nvim
-            config = 'require("plugins.vim-bbye")',
-        } -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-        use {
-            'https://github.com/schickling/vim-bufonly',
-            disable = true, -- included in barbar.nvim
-            config = 'require("plugins.vim-bufonly")',
-        } -- Delete all the buffers except the current buffer.
-        use {
-            'https://github.com/akinsho/nvim-bufferline.lua',
-            disable = true, -- in favor of barbar.nvim
-            config = 'require("plugins.nvim-bufferline")',
-            requires = {
-                'https://github.com/kyazdani42/nvim-web-devicons', -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-                'https://github.com/moll/vim-bbye', -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-                'https://github.com/schickling/vim-bufonly', -- Delete all the buffers except the current buffer.
-            }
-        } -- A snazzy buffer line (with minimal tab integration) for Neovim built using lua.
         use {
             'https://github.com/romgrk/barbar.nvim',
             -- disable = true,
@@ -251,14 +162,6 @@ return require('packer').startup {
         -- *****************************************
         -- File management
         -- *****************************************
-        use {
-            'https://github.com/preservim/nerdtree',
-            disable = true, -- in favor of nvim-tree.lua
-            config = 'require("plugins.nerdtree")',
-            requires = {
-                'https://github.com/Xuyuanp/nerdtree-git-plugin' -- A plugin of NERDTree showing git status flags.
-            }
-        } -- The NERDTree is a file system explorer for the Vim editor.
         use {
             'https://github.com/kyazdani42/nvim-tree.lua',
             config = 'require("plugins.nvim-tree")',
@@ -279,12 +182,6 @@ return require('packer').startup {
         -- Finding and replacing
         -- *****************************************
         use {
-            'https://github.com/liuchengxu/vim-clap',
-            disable = true, -- in favor of telescope.nvim
-            run = ':Clap install-binary!',
-            config = 'require("plugins.vim-clap")'
-        } -- Modern performant generic finder and dispatcher for Vim and NeoVim
-        use {
             'https://github.com/nvim-lua/telescope.nvim',
             disable = false,
             config = 'require("plugins.telescope")',
@@ -296,11 +193,6 @@ return require('packer').startup {
                 -- '~/projects/telescope-tmuxinator.nvim',
             }
         }
-        use {
-          'https://github.com/strboul/urlview.vim',
-          disable = true, -- required netrw is disabled by settings.lua and nvim-tree?
-          config = 'require("utils").map("n", "<F6>", ":Urlview<CR>", {silent=true})',
-        } -- List and open URLs easily.
 
 
         -- *****************************************
@@ -318,15 +210,6 @@ return require('packer').startup {
         -- *****************************************
         -- Completion
         -- *****************************************
-        use {
-            'https://github.com/nvim-lua/completion-nvim',
-            disable = true, -- in favor of nvim-compe
-            config = 'require("plugins.completion-nvim")',
-            requires = {
-                'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
-                'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
-            }
-        } -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
         use {
             'https://github.com/hrsh7th/nvim-compe',
             disable = false,
