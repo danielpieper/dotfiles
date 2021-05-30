@@ -140,7 +140,7 @@ function M.other_settings()
   -- Enable mouse with tmux
   o.mouse = 'a'
 
-  o.listchars = [[tab:  ,extends:›,precedes:‹,nbsp:·,trail:·]]
+  vim.opt.listchars = { tab = '  ', extends = '>', precedes = '<', nbsp = '·', trail = '·' }
   o.list = true
 
   o.incsearch = true
