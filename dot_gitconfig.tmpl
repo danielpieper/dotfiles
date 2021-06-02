@@ -30,12 +30,6 @@
 [pull]
   rebase = false
 
-; [url "ssh://git@github.com/"]
-; 	insteadOf = https://github.com/
-
-; [url "ssh://git@gitlab.com/"]
-; 	insteadOf = https://gitlab.com/
-
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\" 
 
@@ -44,6 +38,7 @@
 
 [mergetool]
   prompt = false
+  keepBackup = false
 
 [delta]
   plus-color = "#012800"

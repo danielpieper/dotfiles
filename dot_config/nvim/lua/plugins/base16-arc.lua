@@ -8,11 +8,16 @@ vim.api.nvim_command([[
 
     highlight SignColumn                         guibg=none
     highlight VertSplit                          guifg=#151718 guibg=none
-    highlight DiffAdd                            guibg=none
-    highlight DiffChange                         guifg=#d19a66 guibg=none
-    highlight DiffModified                       guibg=none
-    highlight DiffDelete                         guifg=#e06c75 guibg=none
+    highlight GitSignsAdd                        guifg=#87af87 guibg=none
+    highlight GitSignsChange                     guifg=#d19a66 guibg=none
+    highlight GitSignsDelete                     guifg=#e06c75 guibg=none
     highlight EndOfBuffer                        guifg=#2c323c
+
+    " TODO:
+    hi DiffAdd ctermbg=235 ctermfg=108 cterm=reverse guibg=#262626 guifg=#87af87 gui=reverse
+    hi DiffChange ctermbg=235 ctermfg=103 cterm=reverse guibg=#262626 guifg=#d19a66 gui=reverse
+    hi DiffDelete ctermbg=235 ctermfg=131 cterm=reverse guibg=#262626 guifg=#e06c75 gui=reverse
+    hi DiffText ctermbg=235 ctermfg=208 cterm=reverse guibg=#262626 guifg=#61afef gui=reverse
 
     highlight TelescopeBorder                    guifg=#5c6370
     highlight TelescopePromptBorder              guifg=#5c6370
