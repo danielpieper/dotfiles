@@ -48,14 +48,13 @@ vim.api.nvim_command([[
     highlight LspDiagnosticsUnderlineInformation gui=undercurl    guisp=LightBlue  guibg=none
     highlight LspDiagnosticsUnderlineHint        gui=undercurl    guisp=LightGray  guibg=none
 
-    highlight BufferCurrent                      guifg=#56b6c2
+"   highlight BufferCurrent                      guifg=#56b6c2
     highlight BufferVisible                      guibg=#1D1F21
     highlight BufferVisibleIcon                  guibg=#1D1F21
     highlight BufferVisibleMod                   guibg=#1D1F21
     highlight BufferVisibleIndex                 guibg=#1D1F21
     highlight BufferVisibleSign                  guibg=#1D1F21
-
-    highlight BufferInactiveSign                 guifg=Black guibg=#151718
+"   highlight BufferInactiveSign                 guifg=Black guibg=#151718
   endfunction
 ]])
 
