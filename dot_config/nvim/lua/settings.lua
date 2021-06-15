@@ -1,7 +1,4 @@
 local utils = require("utils")
-local wo = vim.wo
-local o = vim.o
-local bo = vim.bo
 local g = vim.g
 local M = {}
 
@@ -49,101 +46,88 @@ function M.leader_map()
 end
 
 function M.line_numbers()
-  wo.number = true
-  wo.relativenumber = true
-  wo.signcolumn = "yes:1"
+  vim.opt.number = true
+  vim.opt.relativenumber = true
+  vim.opt.signcolumn = "yes:1"
 end
 
 -- Backup, undo, swap options
 function M.backup()
-  o.undofile = true
-  o.backup = true
-  o.writebackup = true
-  o.backupdir = utils.cache_dir .. utils.path_sep .. 'backup'
-  o.directory = utils.cache_dir .. utils.path_sep .. 'swap'
-  o.undodir = utils.cache_dir .. utils.path_sep .. 'undo'
-  o.undolevels = 1000
-  o.undoreload = 10000
-  o.backupskip = '/tmp/*,/private/tmp/*' -- Don’t create backups when editing files in certain directories
+  vim.opt.undofile = true
+  vim.opt.backup = true
+  vim.opt.writebackup = true
+  vim.opt.backupdir = utils.cache_dir .. utils.path_sep .. 'backup'
+  vim.opt.directory = utils.cache_dir .. utils.path_sep .. 'swap'
+  vim.opt.undodir = utils.cache_dir .. utils.path_sep .. 'undo'
+  vim.opt.undolevels = 1000
+  vim.opt.undoreload = 10000
+  vim.opt.backupskip = '/tmp/*,/private/tmp/*' -- Don’t create backups when editing files in certain directories
 end
 
 function M.other_settings()
-  -- wo.colorcolumn = "80"
-  o.termguicolors = true
-
-  o.guifont = 'JetBrainsMono Nerd Font Mono:h20'
-
-  o.autoindent = true
-  bo.autoindent = true
-
-  o.smartindent = true
-  bo.smartindent = true
-
-  o.tabstop = 2
-  bo.tabstop = 2
-
-  o.shiftwidth = 2
-  bo.shiftwidth = 2
-
+  -- vim.opt.colorcolumn = "80"
+  vim.opt.termguicolors = true
+  vim.opt.guifont = 'JetBrainsMono Nerd Font Mono:h20'
+  vim.opt.autoindent = true
+  vim.opt.smartindent = true
+  vim.opt.tabstop = 2
+  vim.opt.shiftwidth = 2
   -- Use spaces, not tabs
-  o.expandtab = true
-  bo.expandtab = true
-
-  o.updatetime = 750
-
+  vim.opt.expandtab = true
+  vim.opt.updatetime = 750
   -- Briefly move the cursor to the matching brace
-  o.showmatch = true
+  vim.opt.showmatch = true
 
   -- Add the g flag to search/replace by default
-  o.gdefault = true
+  vim.opt.gdefault = true
 
   -- With :set hidden, opening a new file when the current buffer has unsaved
-  o.hidden = true
+  vim.opt.hidden = true
 
   -- Don't wrap lines
-  wo.wrap = false
+  vim.opt.wrap = false
 
-  o.splitbelow = true
-  o.splitright = true
+  vim.opt.splitbelow = true
+  vim.opt.splitright = true
 
-  o.ignorecase = true
-  o.smartcase = true
+  vim.opt.ignorecase = true
+  vim.opt.smartcase = true
 
-  o.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 
   -- Use `indent` based folding
-  o.foldmethod = "indent"
+  vim.opt.foldmethod = "indent"
 
   -- Disable all folds on file open until `zc` or `zM` etc is used
-  o.foldenable = false
+  vim.opt.foldenable = false
 
   -- Lazyredraw attempts to solve Vim lag by reducing the amount of
   -- processing required. When enabled, any action that is not typed
   -- will not cause the screen to redraw
   -- TODO: syntax?
-  -- o.lazyredraw = true
+  -- vim.opt.lazyredraw = true
 
   -- Increase redraw time for large files ...
   -- TODO: used? syntax?
-  -- o.redrawtime = 10000
+  -- vim.opt.redrawtime = 10000
 
   -- Stop vim trying to syntax highlight long lines, typically found in minified
   -- files. This greatly reduces lag yet is still wide enough for large displays
-  o.synmaxcol = 500
+  vim.opt.synmaxcol = 500
 
   -- Highlight current line
-  wo.cursorline = false
+  vim.opt.cursorline = false
 
   -- Smoother scrolling when moving horizontally
-  o.sidescroll = 1
+  vim.opt.sidescroll = 1
 
   -- Enable mouse with tmux
-  o.mouse = 'a'
+  vim.opt.mouse = 'a'
 
   vim.opt.listchars = { tab = '  ', extends = '>', precedes = '<', nbsp = '·', trail = '·' }
-  o.list = true
+  vim.opt.list = true
 
-  o.incsearch = true
+  vim.opt.incsearch = true
 end
 
 function M.load_settings()
