@@ -10,6 +10,7 @@ lsp_status.register_progress()
 
 local lspconfig = require('lspconfig')
 local configs = require('lspconfig/configs')
+local lsp_signature = require('lsp_signature')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -37,6 +38,10 @@ vim.fn.sign_define('LspDiagnosticsSignHint', {text = '', texthl = 'LspDiagnos
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client)
+  lsp_signature.on_attach({
+    bind = true,
+    hint_enable = false,
+  })
 
   -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
   -- Set $ as keyword to fix Intelephense (php) completion
