@@ -1,6 +1,6 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
-local map = require("utils").map
+local map = require("utils").wkmap
 
 telescope.setup{
   defaults = {
@@ -41,16 +41,16 @@ telescope.setup{
 --   };
 -- })
 
-map("n", "<C-p>", ":lua require('telescope.builtin').git_files{}<CR>", {silent = true})
-map("n", "<M-p>", ":lua require('telescope.builtin').find_files{}<CR>", {silent = true})
-map("n", "π", ":lua require('telescope.builtin').find_files{}<CR>", {silent = true}) -- find files on darwin...
-map("n", "<BS>", ":lua require('telescope.builtin').command_history{}<CR>", {silent = true})
-map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", {silent = true})
-map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = true}<CR>", {silent = true}) -- Show unloaded buffers aswell
-map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", {silent = true})
-map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", {silent = true})
-map("n", "<Leader>ff", ":lua require('telescope.builtin').builtin{}<CR>", {silent = true})
+map("n", "<C-p>", ":lua require('telescope.builtin').git_files{}<CR>", 'Find Git Files', {silent = true})
+map("n", "<M-p>", ":lua require('telescope.builtin').find_files{}<CR>", 'Find Files', {silent = true})
+map("n", "π", ":lua require('telescope.builtin').find_files{}<CR>", 'Find Files', {silent = true}) -- find files on darwin...
+map("n", "<BS>", ":lua require('telescope.builtin').command_history{}<CR>", 'Command History', {silent = true})
+map("n", "<C-f>", ":lua require('telescope.builtin').live_grep{}<CR>", 'Live grep', {silent = true})
+map("n", "<C-SPACE>", ":lua require('telescope.builtin').buffers{show_all_buffers = true}<CR>", 'Find Buffers', {silent = true}) -- Show unloaded buffers aswell
+map("n", "<Leader>o", ":lua require('telescope.builtin').lsp_document_symbols{}<CR>", 'Find LSP Document Symbols', {silent = true})
+map("n", "<Leader>O", ":lua require('telescope.builtin').lsp_references{}<CR>", 'Find LSP references', {silent = true})
+map("n", "<Leader>ff", ":lua require('telescope.builtin').builtin{}<CR>", 'Telescope', {silent = true})
 
 require('telescope').load_extension('tmuxinator')
-map("n", "<C-t>", ":lua require('telescope').extensions.tmuxinator.projects(require('telescope.themes').get_dropdown({}))<CR>", {silent = true})
+map("n", "<C-t>", ":lua require('telescope').extensions.tmuxinator.projects(require('telescope.themes').get_dropdown({}))<CR>", 'Tmuxinator Projects', {silent = true})
 

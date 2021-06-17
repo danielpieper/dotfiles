@@ -6,13 +6,24 @@ whichkey.setup {
   -- refer to the configuration section below
 }
 
--- whichkey.register({
---   ["<leader>"] = {
---     f = {
---       name = "+file",
---       f = { "<cmd>Telescope find_files<cr>", "Find File" },
---       r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
---       n = { "<cmd>enew<cr>", "New File" },
---     },
---   },
--- })
+-- packer.nvim plugin loading keys:
+whichkey.register({
+  ["<F5>"] = { 'Open database drawer' },
+  ["<Leader><F5>"] = { 'Last database query results' },
+  ["<Leader>t"] = {
+    name = "+test",
+    ["t"] = { "Test nearest" },
+    ["f"] = { "Test file" },
+    ["s"] = { "Test suite" },
+    ["l"] = { "Test last" },
+    ["v"] = { "Jump to last test" },
+  },
+  ["<Leader>tt"] = {
+    name = "+test",
+    ["t"] = { "Test nearest w/ results" },
+    ["f"] = { "Test file w/ results" },
+    ["s"] = { "Test suite w/ results" },
+    ["l"] = { "Test last w/ results" },
+  },
+  ["<F4>"] = { 'Open undo drawer' },
+})

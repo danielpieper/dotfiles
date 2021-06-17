@@ -1,40 +1,40 @@
-local map = require("utils").map
+local map = require("utils").wkmap
 
 -- Magic buffer-picking mode
-map('n', '<Leader>bb', ':BufferPick<CR>', {silent = true})
+map('n', '<Leader>bb', ':BufferPick<CR>', 'Pick Buffer', {silent = true})
 
 -- Sort automatically by...
 -- nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
 -- nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
 
 -- Move to previous/next
-map('n', '[b', ":BufferPrevious<CR>", {silent = true})
-map('n', ']b', ":BufferNext<CR>", {silent = true})
+map('n', '[b', ":BufferPrevious<CR>", 'Previous Buffer', {silent = true})
+map('n', ']b', ":BufferNext<CR>", 'Next Buffer', {silent = true})
 
 -- Re-order to previous/next
-map('n', '<Leader>b<', ":BufferMovePrevious<CR>", {silent = true})
-map('n', '<Leader>b>', ":BufferMoveNext<CR>", {silent = true})
+map('n', '<Leader>b<', ":BufferMovePrevious<CR>", 'Move Buffer left', {silent = true})
+map('n', '<Leader>b>', ":BufferMoveNext<CR>", 'Move Buffer right', {silent = true})
 
 -- Goto buffer in position...
-map('n', '<Leader>1', ":BufferGoto 1<CR>", {silent = true})
-map('n', '<Leader>2', ":BufferGoto 2<CR>", {silent = true})
-map('n', '<Leader>3', ":BufferGoto 3<CR>", {silent = true})
-map('n', '<Leader>4', ":BufferGoto 4<CR>", {silent = true})
-map('n', '<Leader>5', ":BufferGoto 5<CR>", {silent = true})
-map('n', '<Leader>6', ":BufferGoto 6<CR>", {silent = true})
-map('n', '<Leader>7', ":BufferGoto 7<CR>", {silent = true})
-map('n', '<Leader>8', ":BufferGoto 8<CR>", {silent = true})
-map('n', '<Leader>9', ":BufferLast<CR>", {silent = true})
+map('n', '<Leader>1', ":BufferGoto 1<CR>", 'Jump to Buffer 1', {silent = true})
+map('n', '<Leader>2', ":BufferGoto 2<CR>", 'Jump to Buffer 2', {silent = true})
+map('n', '<Leader>3', ":BufferGoto 3<CR>", 'Jump to Buffer 3', {silent = true})
+map('n', '<Leader>4', ":BufferGoto 4<CR>", 'Jump to Buffer 4', {silent = true})
+map('n', '<Leader>5', ":BufferGoto 5<CR>", 'Jump to Buffer 5', {silent = true})
+map('n', '<Leader>6', ":BufferGoto 6<CR>", 'Jump to Buffer 6', {silent = true})
+map('n', '<Leader>7', ":BufferGoto 7<CR>", 'Jump to Buffer 7', {silent = true})
+map('n', '<Leader>8', ":BufferGoto 8<CR>", 'Jump to Buffer 8', {silent = true})
+map('n', '<Leader>9', ":BufferLast<CR>", 'Jump to last Buffer', {silent = true})
 
 -- Close buffer
-map('n', '<Leader>q', ":BufferClose<CR>", {silent = true})
+map('n', '<Leader>q', ":BufferClose<CR>", 'Close Buffer', {silent = true})
 
 -- " Wipeout buffer
-map('n', '<Leader>Q', ":BufferWipeout<CR>", {silent = true})
+map('n', '<Leader>Q', ":BufferWipeout<CR>", 'Wipe Buffer', {silent = true})
 
-map('n', 'Q', ":BufferCloseAllButCurrent<CR>", {silent = true})
-map('n', 'Ql', ":BufferCloseBuffersRight<CR>", {silent = true})
-map('n', 'Qh', ":BufferCloseBuffersLeft<CR>", {silent = true})
+map('n', 'Q', ":BufferCloseAllButCurrent<CR>", 'Close all Buffers but current', {silent = true})
+map('n', 'Q>', ":BufferCloseBuffersRight<CR>", 'Close all Buffers right', {silent = true})
+map('n', 'Q<', ":BufferCloseBuffersLeft<CR>", 'Close all Buffers left', {silent = true})
 
 vim.g.bufferline = {
   -- Enable/disable animations

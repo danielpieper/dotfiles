@@ -28,6 +28,24 @@ function utils.map(mode, key, result, opts)
   )
 end
 
+-- which-key map
+function utils.wkmap(mode, key, result, name, opts)
+  -- if packer_plugins["which-key.nvim"] and packer_plugins["which-key.nvim"].loaded then
+  if utils.isModuleAvailable("which-key") then
+    local wk = require("which-key")
+    wk.register(
+      { [ key ] = { result, name } },
+      {
+        mode = mode,
+        noremap = true,
+        silent = opts.silent or false,
+      }
+    )
+  else
+    utils.map(mode, key, result, opts)
+  end
+end
+
 function utils.augroup(group, fn)
   vim.api.nvim_command("augroup " .. group)
   vim.api.nvim_command("autocmd!")
@@ -60,6 +78,21 @@ end
 function utils.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
+end
+
+function utils.isModuleAvailable(name)
+  if package.loaded[name] then
+    return true
+  else
+    for _, searcher in ipairs(package.searchers or package.loaders) do
+      local loader = searcher(name)
+      if type(loader) == 'function' then
+        package.preload[name] = loader
+        return true
+      end
+    end
+    return false
+  end
 end
 
 utils.load_variables()

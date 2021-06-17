@@ -1,4 +1,4 @@
-local map = require("utils").map
+local map = require("utils").wkmap
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 vim.api.nvim_set_var('nvim_tree_bindings', {
@@ -18,5 +18,5 @@ vim.api.nvim_set_var('nvim_tree_icons', {
   symlink = '',
 })
 
-map('n', '<F3>', ':NvimTreeToggle<CR>', { silent = true })
-map('n', '<Leader><F3>', ':NvimTreeFindFile<CR>', { silent = true })
+map('n', '<F3>', ':NvimTreeToggle<CR>', 'Open Files Drawer', { silent = true })
+map('n', '<Leader><F3>', ':NvimTreeFindFile<CR>', 'Open Files Drawer at current file', { silent = true })
