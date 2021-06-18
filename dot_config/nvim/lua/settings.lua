@@ -48,7 +48,7 @@ end
 function M.line_numbers()
   vim.opt.number = true
   vim.opt.relativenumber = true
-  vim.opt.signcolumn = "yes:1"
+  vim.opt.signcolumn = "auto:1"
 end
 
 -- Backup, undo, swap options
