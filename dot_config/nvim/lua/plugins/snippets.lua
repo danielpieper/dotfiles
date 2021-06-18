@@ -135,6 +135,10 @@ echo "execution took \$time seconds\n";
 \$debug = ${0};
 \Illuminate\Support\Facades\Log::info(var_export(\$debug, true));
 ]]);
+    ["measure"] = U.match_indentation([[
+start_measure(__METHOD__);
+stop_measure(__METHOD__);${0}
+]]);
   };
   _global = {
     -- If you aren't inside of a comment, make the line a comment.
