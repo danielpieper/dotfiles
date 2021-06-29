@@ -75,8 +75,8 @@ function! SetLines(timer) abort
     let wwidth = winwidth(0)
     if wwidth < 30
       set columns=30
-    elseif wwidth > 100
-      set columns=100
+"    elseif wwidth > 100
+"      set columns=100
     endif
 
     set wrap
