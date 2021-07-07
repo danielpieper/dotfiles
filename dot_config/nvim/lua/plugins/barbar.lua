@@ -81,7 +81,7 @@ vim.g.bufferline = {
   maximum_padding = 0,
 
   -- Sets the maximum buffer name length.
-  maximum_length = 30,
+  maximum_length = 40,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
   auto_hide = false,
