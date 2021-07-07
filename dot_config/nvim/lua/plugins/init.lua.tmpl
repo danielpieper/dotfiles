@@ -212,6 +212,11 @@ return require('packer').startup {
                 'https://github.com/lspcontainers/lspcontainers.nvim', -- Neovim plugin for lspcontainers.
             }
         } -- This plugin handles automatically launching, initializing, and configuring language servers that are installed on your system.
+        use {
+            'https://github.com/ray-x/navigator.lua',
+            config = 'require("plugins.navigator")',
+            requires = { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
+        } -- Navigate codes like a breeze. Exploring LSP and 🌲Treesitter symbols a piece of 🍰
 
 
         -- *****************************************
