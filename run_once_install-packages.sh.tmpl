@@ -60,7 +60,6 @@ brew install --cask jetbrains-toolbox || true
 brew install --cask kitty || true
 brew install koekeishiya/formulae/skhd || true
 brew install koekeishiya/formulae/yabai || true
-brew install hashicorp/tap/terraform-ls || true
 brew install golangci/tap/golangci-lint || true
 brew install dty1er/tap/kubecolor || true
 {{- end }}
@@ -69,15 +68,10 @@ sudo npm install -g \
   intelephense \
   diagnostic-languageserver \
   markdownlint-cli \
-  dockerfile-language-server-nodejs \
-  bash-language-server \
   vim-language-server \
   vls \
   vscode-css-languageserver-bin \
-  vscode-html-languageserver-bin \
-  vscode-json-languageserver \
-  typescript typescript-language-server
-sudo yarn global add yaml-language-server
+  typescript
 
 {{ if ne .chezmoi.os "darwin" -}}
 pip3 install --upgrade \
