@@ -11,6 +11,7 @@ lsp_status.register_progress()
 local lspconfig = require('lspconfig')
 local configs = require('lspconfig/configs')
 local lsp_signature = require('lsp_signature')
+local lspcontainers = require('lspcontainers')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -94,10 +95,33 @@ end
 
 local servers = {
   cssls = {},
-  bashls = {},
-  dockerls = {},
-  html = {},
+  vimls = {},
+  kotlin_language_server = {
+    root_dir = lspconfig.util.root_pattern( "settings.gradle", "settings.gradle.kts", ".git" ),
+  },
+  bashls = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('bashls'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
+  dockerls = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('dockerls'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
+  html = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('html'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
   gopls = {
+    cmd = lspcontainers.command('gopls'),
     settings = {
       gopls = {
         -- analyses = {
@@ -108,21 +132,46 @@ local servers = {
       },
     },
   },
-  tsserver = {},
-  jsonls = {},
-  kotlin_language_server = {
-    root_dir = lspconfig.util.root_pattern( "settings.gradle", "settings.gradle.kts", ".git" ),
+  tsserver = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('tsserver'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   },
-  terraformls = {},
-  pyls = {},
-  rls = {},
-  rust_analyzer = {},
-  vimls = {},
-  yamlls = {},
-  vuels = {},
-{{ if ne .chezmoi.os "darwin" -}}
+  jsonls = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('jsonls'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
+  terraformls = {
+    cmd = lspcontainers.command('terraformls'),
+    filetypes = { "hcl", "tf", "terraform", "tfvars" },
+  },
+  pylsp = {
+    cmd = lspcontainers.command('pylsp'),
+  },
+  rust_analyzer = {
+    cmd = lspcontainers.command('rust_analyzer'),
+  },
+  yamlls = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('yamlls'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
+  vuels = {
+    before_init = function(params)
+        params.processId = vim.NIL
+      end,
+      cmd = lspcontainers.command('vuels'),
+      root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  },
   sumneko_lua = {
-    cmd = { "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/bin/Linux/lua-language-server", "-E", "/home/daniel/.local/share/nvim/lspinstall/lua-langauge-server/main.lua" },
+    cmd = lspcontainers.command('sumneko_lua'),
     settings = {
       Lua = {
         runtime = {
@@ -145,7 +194,6 @@ local servers = {
       },
     },
   },
-{{- end -}}
   intelephense = {
     init_options = {
       globalStoragePath = "{{ .chezmoi.homedir }}/.cache/nvim/intelephense",
