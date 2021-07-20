@@ -195,6 +195,11 @@ local servers = {
     },
   },
   intelephense = {
+    before_init = function(params)
+      params.processId = vim.NIL
+    end,
+    cmd = lspcontainers.command('intelephense'),
+    root_dir = lspconfig.util.root_pattern("composer.json", ".git", vim.fn.getcwd()),
     init_options = {
       globalStoragePath = "{{ .chezmoi.homedir }}/.cache/nvim/intelephense",
       licenceKey = "{{ $licenseKey }}",
