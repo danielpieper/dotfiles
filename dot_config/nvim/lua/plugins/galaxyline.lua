@@ -44,6 +44,10 @@ local get_lsp_client = function (msg)
   return msg
 end
 
+local lsp_messages = function (msg)
+  return lspstatus.status_progress() or msg
+end
+
 gls.left[1] = {
   FirstElement = {
     provider = function() return ' ' end,
@@ -146,9 +150,7 @@ gls.left[9] = {
 }
 gls.left[10] = {
   LspStatus = {
-    provider = lspstatus.status,
-    -- event = 'User LspMessageUpdate',
-    event = 'LspDiagnosticsChanged',
+    provider = lsp_messages,
     condition = condition.check_active_lsp,
     highlight = { colors.line_fg, colors.line_bg },
   }
