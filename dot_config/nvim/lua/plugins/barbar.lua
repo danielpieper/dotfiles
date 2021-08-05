@@ -25,6 +25,7 @@ map('n', '<Leader>6', ":BufferGoto 6<CR>", 'Jump to Buffer 6', {silent = true})
 map('n', '<Leader>7', ":BufferGoto 7<CR>", 'Jump to Buffer 7', {silent = true})
 map('n', '<Leader>8', ":BufferGoto 8<CR>", 'Jump to Buffer 8', {silent = true})
 map('n', '<Leader>9', ":BufferLast<CR>", 'Jump to last Buffer', {silent = true})
+map('n', '<Leader>p', ":BufferPin<CR>", 'Pin Buffer', {silent = true})
 
 -- Close buffer
 map('n', '<Leader>q', ":BufferClose<CR>", 'Close Buffer', {silent = true})
