@@ -150,7 +150,9 @@ return require('packer').startup {
         -- Buffers
         -- *****************************************
         use {
-            'https://github.com/romgrk/barbar.nvim',
+            -- 'https://github.com/romgrk/barbar.nvim',
+            'https://github.com/danielpieper/barbar.nvim',
+            branch = 'close-all-but-pinned',
             -- disable = true,
             config = 'require("plugins.barbar")',
             requires = {

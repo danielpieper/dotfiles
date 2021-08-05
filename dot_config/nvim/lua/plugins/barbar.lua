@@ -33,7 +33,8 @@ map('n', '<Leader>q', ":BufferClose<CR>", 'Close Buffer', {silent = true})
 -- " Wipeout buffer
 map('n', '<Leader>Q', ":BufferWipeout<CR>", 'Wipe Buffer', {silent = true})
 
-map('n', 'Q', ":BufferCloseAllButCurrent<CR>", 'Close all Buffers but current', {silent = true})
+map('n', 'QQ', ":BufferCloseAllButCurrent<CR>", 'Close all Buffers but current', {silent = true})
+map('n', 'Q',  ":BufferCloseAllButPinned<CR>", 'Close all Buffers but pinned', {silent = true})
 map('n', 'Q>', ":BufferCloseBuffersRight<CR>", 'Close all Buffers right', {silent = true})
 map('n', 'Q<', ":BufferCloseBuffersLeft<CR>", 'Close all Buffers left', {silent = true})
 
