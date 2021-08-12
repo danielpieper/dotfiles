@@ -302,7 +302,8 @@ return require('packer').startup {
         -- *****************************************
         use {
             'https://github.com/glacambre/firenvim',
-            run = '+call firenvim#install(0)',
+            -- disable = true,
+            run = function() vim.fn['firenvim#install'](0) end,
             config = 'require("plugins.firenvim")'
         } -- Turn your browser into a Neovim client
 {{- if eq .usage "private" }}
