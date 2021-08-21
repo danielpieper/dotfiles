@@ -12,7 +12,14 @@ telescope.setup{
         ["œ"] = actions.send_selected_to_qflist + actions.open_qflist, -- <M-q> on darwin...
       },
     },
-  }
+  },
+  extensions = {
+    tmuxinator = {
+      select_action = 'switch', -- | 'stop' | 'kill'
+      stop_action = 'stop', -- | 'kill'
+      disable_icons = false,
+    },
+  },
 }
 
 map("n", "<C-p>", ":lua require('telescope.builtin').git_files{}<CR>", 'Find Git Files', {silent = true})
