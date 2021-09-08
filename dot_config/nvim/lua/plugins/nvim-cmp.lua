@@ -1,14 +1,22 @@
 local cmp = require('cmp')
+local luasnip = require("luasnip")
+
+local function check_back_space()
+  local col = vim.fn.col '.' - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+end
+
+local function t(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
+      luasnip.lsp_expand(args.body)
+    end
   },
   mapping = {
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
-    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
     ['<C-n>'] = cmp.mapping.scroll_docs(-4),
     ['<C-p>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -17,6 +25,34 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }),
+    -- ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    -- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.fn.feedkeys(t("<C-n>"), "n")
+        elseif luasnip.expand_or_jumpable() then
+          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+        elseif check_back_space() then
+          vim.fn.feedkeys(t("<Tab>"), "n")
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.fn.feedkeys(t("<C-p>"), "n")
+        elseif luasnip.jumpable(-1) then
+          vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
   },
   formatting = {
     format = function(entry, vim_item)
@@ -26,7 +62,7 @@ cmp.setup {
       -- set a name for each source
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
-        vsnip = "[Snippet]",
+        luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
         calc = "[Calc]",
@@ -38,7 +74,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'calc' },
