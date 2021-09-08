@@ -12,6 +12,7 @@ local lspconfig = require('lspconfig')
 local configs = require('lspconfig/configs')
 local lsp_signature = require('lsp_signature')
 local lspcontainers = require('lspcontainers')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 -- Set log level
 -- Levels by name: "trace", "debug", "info", "warn", "error"
@@ -43,10 +44,6 @@ local on_attach = function(client, bufnr)
     bind = true,
     hint_enable = false,
   })
-
-  -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
-  -- Set $ as keyword to fix Intelephense (php) completion
-  vim.api.nvim_buf_set_option(bufnr, "iskeyword", "@,48-57,_,192-255,$")
 
   -- Always use autoindent 
   -- php workaround, see https://vi.stackexchange.com/questions/11023/auto-indent-turns-off-itself-automatically-on-php-files
@@ -389,9 +386,14 @@ end
 for server, config in pairs(servers) do
   config.on_attach = on_attach
 
-  config.log_level = vim.lsp.protocol.MessageType.Log;
-  config.message_level = vim.lsp.protocol.MessageType.Log;
-  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
+  -- config.log_level = vim.lsp.protocol.MessageType.Log;
+  -- config.message_level = vim.lsp.protocol.MessageType.Log;
+  config.capabilities = vim.tbl_extend(
+    'keep',
+    config.capabilities or vim.lsp.protocol.make_client_capabilities(),
+    lsp_status.capabilities
+  )
+  config.capabilities = cmp_nvim_lsp.update_capabilities(config.capabilities)
 
   lspconfig[server].setup(config)
 end

@@ -116,10 +116,17 @@ return require('packer').startup {
         -- *****************************************
         -- Snippets
         -- *****************************************
-        -- use 'https://github.com/honza/vim-snippets' -- snippets for various programming languages
         use {'https://github.com/norcalli/snippets.nvim',
             config = 'require("plugins.snippets")',
+            disable = true,
         } -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
+        use {'https://github.com/hrsh7th/vim-vsnip',
+            config = 'require("plugins.vim-vsnip")',
+            disable = false,
+            requires = {
+              'https://github.com/rafamadriz/friendly-snippets' -- Set of preconfigured snippets for different languages.
+            }
+        } -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.
 
 
         -- *****************************************
@@ -201,6 +208,30 @@ return require('packer').startup {
 
 
         -- *****************************************
+        -- Completion
+        -- *****************************************
+        use {
+            'https://github.com/onsails/lspkind-nvim',
+            config = 'require("plugins.lspkind-nvim")',
+        } -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
+        use {
+            'https://github.com/hrsh7th/nvim-cmp',
+            disable = false,
+            config = 'require("plugins.nvim-cmp")',
+            requires = {
+                'https://github.com/hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words 
+                'https://github.com/hrsh7th/cmp-emoji', -- nvim-cmp source for emoji 
+                'https://github.com/hrsh7th/cmp-nvim-lua', -- nvim-cmp source for nvim lua
+                'https://github.com/hrsh7th/cmp-path', -- nvim-cmp source for path
+                'https://github.com/hrsh7th/cmp-vsnip', -- nvim-cmp source for vim-vsnip
+                'https://github.com/hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim builtin LSP client
+                'https://github.com/hrsh7th/cmp-calc', -- nvim-cmp source for math calculation
+                'https://github.com/onsails/lspkind-nvim', -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
+            }
+        }
+
+
+        -- *****************************************
         -- LanguageServer and Diagnostics
         -- *****************************************
         use {
@@ -210,25 +241,9 @@ return require('packer').startup {
                 'https://github.com/nvim-lua/lsp-status.nvim', -- This is a Neovim plugin/library for generating statusline components from the built-in LSP client.
                 'https://github.com/ray-x/lsp_signature.nvim', -- lsp signature hint when you type
                 'https://github.com/lspcontainers/lspcontainers.nvim', -- Neovim plugin for lspcontainers.
+                'https://github.com/hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim builtin LSP client
             }
         } -- This plugin handles automatically launching, initializing, and configuring language servers that are installed on your system.
-
-
-        -- *****************************************
-        -- Completion
-        -- *****************************************
-        use {
-            'https://github.com/hrsh7th/nvim-compe',
-            disable = false,
-            config = 'require("plugins.nvim-compe")',
-            requires = {
-                'https://github.com/norcalli/snippets.nvim', -- Intelephense Hotfix, see https://github.com/nvim-lua/completion-nvim/issues/252#issuecomment-716048547
-            }
-        } -- Auto completion plugin for nvim.
-        use {
-            'https://github.com/onsails/lspkind-nvim',
-            config = 'require("plugins.lspkind-nvim")',
-        } -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
 
 
         -- *****************************************
@@ -249,7 +264,7 @@ return require('packer').startup {
             -- config = 'require("plugins.vim-dadbod-completion")',
             requires = {
                 'https://github.com/tpope/vim-dadbod', -- Dadbod is a Vim plugin for interacting with databases.
-                'https://github.com/hrsh7th/nvim-compe', -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
+                -- 'https://github.com/hrsh7th/nvim-compe', -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp completion
                 -- 'https://github.com/nvim-lua/completion-nvim', -- completion-nvim is an auto completion framework that aims to provide a better completion experience with neovim's built-in LSP.
                 -- 'https://github.com/steelsojka/completion-buffers', -- A buffer completion source for completion-nvim
             }
