@@ -68,6 +68,7 @@ cmp.setup {
         calc = "[Calc]",
         nvim_lua = "[Lua]",
         emoji = "[Emoji]",
+        ['vim-dadbod-completion'] = "[DB]",
       })[entry.source.name]
       return vim_item
     end,

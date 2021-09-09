@@ -1,23 +1,19 @@
--- nvim-compe:
--- vim.g.compe.source.vim_dadbod_completion = true
+local utils = require("utils")
 
--- completion-nvim:
--- local utils = require("utils")
+function _G.enable_vim_dadbod_completion()
+  require('cmp').setup.buffer({
+    sources = {
+      { name = 'vim-dadbod-completion' },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+      { name = 'calc' },
+    },
+  })
+end
 
--- utils.augroup(
---   'vim-dadbod-completion',
---   function ()
---     vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
---     vim.cmd([[autocmd FileType sql let g:completion_trigger_character = ['.', '"', '`', '['] ]])
---   end
--- )
-
--- vim.api.nvim_set_var('completion_chain_complete_list', vim.tbl_extend(
---   'keep',
---   vim.g.completion_chain_complete_list or {},
---   {
---     sql = {
---       { complete_items = { 'vim-dadbod-completion', 'buffers' } },
---     },
---   }
--- ))
+utils.augroup(
+  'vim-dadbod-completion',
+  function ()
+    vim.cmd([[autocmd FileType sql,mysql,plsql lua enable_vim_dadbod_completion()]])
+  end
+)
