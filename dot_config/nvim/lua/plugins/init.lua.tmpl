@@ -60,7 +60,14 @@ return require('packer').startup {
             'https://github.com/nvim-treesitter/nvim-treesitter',
             config = 'require("plugins.treesitter")',
             run = ':TSUpdate'
-        }
+        } -- Nvim Treesitter configurations and abstraction layer
+        use {
+            'https://github.com/p00f/nvim-ts-rainbow',
+            config = 'require("plugins.nvim-ts-rainbow")',
+            requires = {
+                'https://github.com/nvim-treesitter/nvim-treesitter', -- Nvim Treesitter configurations and abstraction layer
+            }
+        } -- 🌈 Rainbow parentheses for neovim using tree-sitter 🌈
 
 
         -- *****************************************

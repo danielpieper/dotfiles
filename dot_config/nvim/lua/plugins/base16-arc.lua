@@ -54,6 +54,14 @@ vim.api.nvim_command([[
     highlight BufferVisibleIndex                 guibg=#1D1F21
     highlight BufferVisibleSign                  guibg=#1D1F21
     highlight BufferInactiveSign                 guifg=Black guibg=#151718
+
+    highlight rainbowcol1                        guifg=#eacd95
+    highlight rainbowcol2                        guifg=#daae85
+    highlight rainbowcol3                        guifg=#d193e4
+    highlight rainbowcol4                        guifg=#adcf94
+    highlight rainbowcol5                        guifg=#78c5ce
+    highlight rainbowcol6                        guifg=#81bff2
+    highlight rainbowcol7                        guifg=#e68991
   endfunction
 ]])
 
