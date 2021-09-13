@@ -49,6 +49,10 @@ return require('packer').startup {
           'https://github.com/Yggdroot/indentLine',
           config = 'require("plugins.indentline")',
         }
+        use {
+          'beauwilliams/focus.nvim',
+          config = function() require("focus").setup() end 
+        } -- Auto-Focusing and Auto-Resizing Splits/Windows for Neovim written in Lua! Vim splits on steroids.
 
 
         -- *****************************************
