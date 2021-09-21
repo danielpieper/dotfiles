@@ -68,11 +68,13 @@ return require('packer').startup {
         } -- Nvim Treesitter configurations and abstraction layer
         use {
             'https://github.com/p00f/nvim-ts-rainbow',
+            disable = false,
             config = 'require("plugins.nvim-ts-rainbow")',
             requires = {
                 'https://github.com/nvim-treesitter/nvim-treesitter', -- Nvim Treesitter configurations and abstraction layer
             }
         } -- 🌈 Rainbow parentheses for neovim using tree-sitter 🌈
+        use 'https://github.com/towolf/vim-helm' -- vim syntax for helm templates (yaml + gotmpl + sprig + custom)
 
 
         -- *****************************************
