@@ -18,7 +18,7 @@ g.db_ui_execute_on_save = 0
 {{ if eq .usage "work" }}{{ $vault = "Personio" }}{{ end -}}
 
 g.dbs = {
-{{- range (secretJSON "list" "items" "--vault" $vault "--categories" "Database") }}
+{{- range (secretJSON "list" "items" "--vault" $vault "--categories" "Database" "--tags" "neovim") }}
   {{ template "database" (secretJSON "get" "item" .uuid "--fields" "title,database_type,hostname,port,database,username,password") -}}
 {{ end }}
 }

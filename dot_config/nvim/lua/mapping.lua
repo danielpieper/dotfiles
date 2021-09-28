@@ -1,33 +1,38 @@
-local map = require("utils").map
+local wkmap = require("utils").wkmap
 
 -- Save file
-map("n", "<CR>", ":wa<CR>", {silent = true})
+wkmap("n", "<CR>", ":wa<CR>", "Save buffer", {silent = true})
 
 -- Better indenting
-map("v", "<", "<gv", {})
-map("v", ">", ">gv", {})
+wkmap("v", "<", "<gv", "Indent left", {})
+wkmap("v", ">", ">gv", "Indent right", {})
 
 -- clear all the highlighted text from the previous search
-map("n", "<F2>", ":noh<CR>", {silent = true})
+wkmap("n", "<F2>", ":noh<CR>", "Clear search highlight", {silent = true})
 
 -- Easier Moving between splits
-map("n", "<C-J>", "<C-W><C-J>", {})
-map("n", "<C-K>", "<C-W><C-K>", {})
-map("n", "<C-L>", "<C-W><C-L>", {})
-map("n", "<C-H>", "<C-W><C-H>", {})
+wkmap("n", "<C-J>", "<C-W><C-J>", "Move to below split", {})
+wkmap("n", "<C-K>", "<C-W><C-K>", "Move to above split", {})
+wkmap("n", "<C-L>", "<C-W><C-L>", "Move to right split", {})
+wkmap("n", "<C-H>", "<C-W><C-H>", "Move to left split", {})
 
 -- Split
-map("n", "<Leader>x", ":split<CR>", {silent = true})
-map("n", "<Leader>v", ":vsplit<CR>", {silent = true})
+wkmap("n", "<Leader>x", ":split<CR>", "Split horizontally", {silent = true})
+wkmap("n", "<Leader>v", ":vsplit<CR>", "Split vertically", {silent = true})
 
 -- Make `Y` work from the cursor to the end of line
-map("n", "Y", "y$", {})
+wkmap("n", "Y", "y$", "Yank to end of line", {})
 
 -- Resize splits
-map("n", "<Up>", ":exe 'resize ' . (winheight(0) * 3/2)<CR>", {silent = true})
-map("n", "<Down>", ":exe 'resize ' . (winheight(0) * 2/3)<CR>", {silent = true})
-map("n", "<Right>", ":exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>", {silent = true})
-map("n", "<Left>", ":exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>", {silent = true})
+wkmap("n", "<Up>", ":exe 'resize ' . (winheight(0) * 3/2)<CR>", "Resize split up", {silent = true})
+wkmap("n", "<Down>", ":exe 'resize ' . (winheight(0) * 2/3)<CR>", "Resize split down", {silent = true})
+wkmap("n", "<Right>", ":exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>", "Resize split right", {silent = true})
+wkmap("n", "<Left>", ":exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>", "Resize split left", {silent = true})
 
 -- close all windows
-map("n", "ZZ", ":qa<CR>", {silent=true})
+wkmap("n", "ZZ", ":qa<CR>", "quit closing all windows", {silent=true})
+
+-- Copy git repo url to file and marked text
+wkmap("n", "<Leader>G", ":GBrowse!<CR>", "Copy git repo url", {silent=true})
+wkmap("v", "<Leader>G", ":GBrowse!<CR>", "Copy git repo url for lines", {silent=true})
+
