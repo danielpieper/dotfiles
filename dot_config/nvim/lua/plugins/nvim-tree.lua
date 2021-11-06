@@ -31,7 +31,7 @@ require('nvim-tree').setup {
     update_cwd  = false,
     -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
     -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-    ignore_list = {}
+    ignore_list = { '.git', 'node_modules', '.cache' },
   },
   -- configuration options for the system open command (`s` in the tree by default)
   system_open = {
@@ -60,7 +60,6 @@ require('nvim-tree').setup {
   }
 }
 
-vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 1

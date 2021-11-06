@@ -118,6 +118,9 @@ local servers = {
       root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   },
   gopls = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod" },
+    root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     -- cmd = lspcontainers.command('gopls'),
     settings = {
       gopls = {
