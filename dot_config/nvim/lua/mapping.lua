@@ -20,9 +20,6 @@ wkmap("n", "<C-H>", "<C-W><C-H>", "Move to left split", {})
 wkmap("n", "<Leader>x", ":split<CR>", "Split horizontally", {silent = true})
 wkmap("n", "<Leader>v", ":vsplit<CR>", "Split vertically", {silent = true})
 
--- Make `Y` work from the cursor to the end of line
-wkmap("n", "Y", "y$", "Yank to end of line", {})
-
 -- Resize splits
 wkmap("n", "<Up>", ":exe 'resize ' . (winheight(0) * 3/2)<CR>", "Resize split up", {silent = true})
 wkmap("n", "<Down>", ":exe 'resize ' . (winheight(0) * 2/3)<CR>", "Resize split down", {silent = true})

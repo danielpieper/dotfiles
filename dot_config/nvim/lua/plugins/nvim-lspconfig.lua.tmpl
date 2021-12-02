@@ -20,23 +20,20 @@ local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 -- Diagnostic configuration
 --
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    -- virtual_text = {
-    --   spacing = 4,
-    --   prefix = '',
-    -- },
-    signs = true,
-    update_in_insert = false,
-  }
-)
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
 
-vim.fn.sign_define('LspDiagnosticsSignError', {text = '', texthl = 'LspDiagnosticsSignError'})
-vim.fn.sign_define('LspDiagnosticsSignWarning', {text = '', texthl = 'LspDiagnosticsSignWarning'})
-vim.fn.sign_define('LspDiagnosticsSignInformation', {text = '', texthl = 'LspDiagnosticsSignInformation'})
-vim.fn.sign_define('LspDiagnosticsSignHint', {text = '', texthl = 'LspDiagnosticsSignHint'})
+-- Set diagnostic symbols
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client)
@@ -68,8 +65,8 @@ local on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
   -- Diagnostics
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "[c", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "]c", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -195,10 +192,10 @@ local servers = {
     },
   },
   intelephense = {
-    before_init = function(params)
-      params.processId = vim.NIL
-    end,
-    cmd = lspcontainers.command('intelephense'),
+    -- before_init = function(params)
+    --   params.processId = vim.NIL
+    -- end,
+    -- cmd = lspcontainers.command('intelephense'),
     root_dir = lspconfig.util.root_pattern("composer.json", ".git", vim.fn.getcwd()),
     init_options = {
       licenceKey = "{{ $licenseKey }}",
@@ -214,6 +211,7 @@ local servers = {
           virtual_text = {
             spacing = 4,
             prefix = '',
+            source = "always",
           },
           signs = true,
           update_in_insert = false,
@@ -375,16 +373,16 @@ local servers = {
   }
 }
 
-if not lspconfig.psalmls then
-  configs.psalmls = {
-    default_config = {
-      cmd = {'./vendor/bin/psalm-language-server'};
-      filetypes = {'php'};
-      root_dir = lspconfig.util.root_pattern( "psalm.xml", "psalm.xml.dist" );
-      settings = {};
-    };
-  }
-end
+-- if not lspconfig.psalmls then
+--   configs.psalmls = {
+--     default_config = {
+--       cmd = {'./vendor/bin/psalm-language-server'};
+--       filetypes = {'php'};
+--       root_dir = lspconfig.util.root_pattern( "psalm.xml", "psalm.xml.dist" );
+--       settings = {};
+--     };
+--   }
+-- end
 
 for server, config in pairs(servers) do
   config.on_attach = on_attach
