@@ -174,7 +174,7 @@ export NVM_DIR="$HOME/.nvm"
 
 alias pc="~/projects/personio/perctl"
 alias wl="nvim ~/projects/private/personio/worklog.md"
-{{- else if eq .chezmoi.hostname "pop-os" }}
+{{- else if or (eq .chezmoi.hostname "pop-os") (eq .chezmoi.hostname "falcon9-pop") }}
 export PATH=/usr/local/go/bin:$PATH
 export TERM=xterm-kitty
 export TERMINFO=/usr/share/terminfo/x/xterm-kitty
