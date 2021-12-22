@@ -87,7 +87,7 @@ function! OnUIEnter(event) abort
     set laststatus=0
     let g:bufferline.auto_hide=1
 
-    call timer_start(800, function("SetLines"))
+"    call timer_start(800, function("SetLines"))
 
     autocmd BufEnter *atlassian.net_*.txt set filetype=html
     autocmd BufEnter *gitlab.*.txt set filetype=markdown
