@@ -163,8 +163,7 @@ export BROWSER='firefox'
 export PATH=~/.composer/vendor/bin:~/.local/bin:~/go/bin:~/.gem/ruby/2.6.0/bin:~/.local/nvim/bin:~/.yarn/bin:$PATH
 
 {{- if eq .chezmoi.os "darwin" }}
-export TERM=xterm-kitty
-export TERMINFO=/Applications/kitty.app/Contents/Resources/terminfo
+# export TERMINFO=/Applications/kitty.app/Contents/Resources/terminfo
 export PATH=/usr/local/sbin:/usr/local/opt/mysql-client/bin:/usr/local/opt/libpq/bin:$PATH
 export PATH=/usr/local/opt/php@7.4/sbin:/usr/local/opt/php@7.4/bin:$PATH
 # nvm:
@@ -176,8 +175,7 @@ alias pc="~/projects/personio/perctl"
 alias wl="nvim ~/projects/private/personio/worklog.md"
 {{- else if or (eq .chezmoi.hostname "pop-os") (eq .chezmoi.hostname "falcon9-pop") }}
 export PATH=/usr/local/go/bin:$PATH
-export TERM=xterm-kitty
-export TERMINFO=/usr/share/terminfo/x/xterm-kitty
+# export TERMINFO=/usr/share/terminfo/x/xterm-kitty
 {{- end }}
 
 {{- if eq .chezmoi.hostname "falcon9" }}
